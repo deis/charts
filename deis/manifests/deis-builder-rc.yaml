@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-builder
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    name: deis-builder
+  template:
+    metadata:
+      labels:
+        name: deis-builder
+    spec:
+      containers:
+        - name: deis-builder
+          image: quay.io/deisci/builder:v2-alpha
+          ports:
+            - containerPort: 2223
+              name: ssh
+            - containerPort: 3000
+              name: fetcher
+          env:
+            - name: "EXTERNAL_PORT"
+              value: "2223"
