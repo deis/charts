@@ -8,6 +8,5 @@ spec:
   ports:
     - name: http
       port: 5432
-      protocol: TCP
   selector:
     name: deis-database
