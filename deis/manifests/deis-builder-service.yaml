@@ -8,6 +8,5 @@ spec:
   ports:
     - name: ssh
       port: 2222
-      protocol: TCP
   selector:
     app: deis-builder

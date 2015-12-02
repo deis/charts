@@ -9,6 +9,5 @@ spec:
   ports:
     - name: client
       port: 2381
-      protocol: TCP
   selector:
     name: deis-etcd-discovery
