@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-workflow
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    name: deis-workflow
+  template:
+    metadata:
+      labels:
+        name: deis-workflow
+    spec:
+      containers:
+        - name: deis-workflow
+          image: quay.io/deisci/workflow:v2-alpha
+          env:
+            - name: DEIS_DATABASE_USER
+              value: deis
+            - name: DEIS_DATABASE_PASSWORD
+              value: changeme123
+          ports:
+            - containerPort: 8000
+              name: http
+          volumeMounts:
+            - mountPath: /var/run/docker.sock
+              name: docker-socket
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
