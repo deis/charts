@@ -12,6 +12,35 @@ For more general-purpose Helm Charts, visit the [Helm Chart repository](https://
 
 Deis v2 and Helm are changing quickly. Your feedback and participation are more than welcome, but be aware that this project is considered a work in progress.
 
+## Contributing
+
+Hacking on Deis v2 is a bit rough right now--please help us fix the bugs and improve the installation process.
+
+First, add this Chart repo to Helm to install the "deis" chart:
+```console
+$ helm add repo deis https://github.com/deis/charts
+$ helm up
+$ helm fetch deis/deis
+$ helm install deis
+$ kubectl get pods  # repeat this until deis-workflow is "Running"
+$ kubectl get service deis-workflow  # note the IP address for later
+```
+
+Then open an SSH session to a Kubernetes minion node, install the `deis` client, and register:
+
+```console
+$ curl -sSL http://deis.io/deis-cli/install.sh | sh
+$ mkdir $HOME/bin && mv deis $HOME/bin
+$ deis register 10.247.59.157:8000  # or the appropriate CLUSTER_IP, from above
+$ ssh-keygen -t rsa -b 4096 -C "your_email@deis.com"
+$ eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa
+$ deis keys:add ~/.ssh/id_rsa.pub
+$ deis create --no-remote
+Creating Application... done, created madras-radiator
+$ deis pull deis/example-go -a madras-radiator
+Creating build... ..o
+```
+
 ## License
 
 Copyright 2015 Engine Yard, Inc.
