@@ -2,5 +2,6 @@ kind: Secret
 apiVersion: v1
 metadata:
   name: deis-etcd-discovery-token
+  namespace: deis
 data:
   token: "RTJENjQ1NzYtRDU0Ny00OThDLUFGNzEtM0NGNkVGMzE5QThCCg=="
