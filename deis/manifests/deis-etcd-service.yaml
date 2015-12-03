@@ -12,6 +12,5 @@ spec:
       protocol: TCP
     - name: client
       port: 4100
-      protocol: TCP
   selector:
     name: deis-etcd-1

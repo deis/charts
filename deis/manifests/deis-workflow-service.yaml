@@ -8,6 +8,5 @@ spec:
   ports:
     - name: http
       port: 8000
-      protocol: TCP
   selector:
     name: deis-workflow
