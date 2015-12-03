@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: deis-registry
-          image: registry:2
+          image: quay.io/deisci/registry:v2-alpha
           imagePullPolicy: Always
           env:
             - name: REGISTRY_STORAGE_DELETE_ENABLED
