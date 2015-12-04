@@ -16,6 +16,7 @@ spec:
       containers:
         - name: deis-builder
           image: quay.io/deisci/builder:v2-alpha
+          imagePullPolicy: Always
           ports:
             - containerPort: 2223
               name: ssh

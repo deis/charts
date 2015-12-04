@@ -16,6 +16,7 @@ spec:
       containers:
         - name: deis-database
           image: quay.io/deisci/database:v2-alpha
+          imagePullPolicy: Always
           env:
             - name: POSTGRES_USER
               value: "deis"
