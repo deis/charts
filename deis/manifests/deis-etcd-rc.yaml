@@ -20,6 +20,7 @@ spec:
       containers:
         - name: deis-etcd-1
           image: quay.io/deisci/etcd:v2-alpha
+          imagePullPolicy: Always
           env:
             - name: DEIS_ETCD_CLUSTER_SIZE
               value: "3"
