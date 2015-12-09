@@ -16,6 +16,18 @@ Deis v2 and Helm are changing quickly. Your feedback and participation are more 
 
 First, add this Chart repo to Helm to install the current "deis-dev" chart:
 
+### Prerequisites
+You must enable the extensions api for your kube-apiserver. For now the only requirement is that the daemonsets portion of the api be enabled. To do this add the following line to the script that starts your api server:
+
+```console
+--runtime-config=extensions/v1beta1=true,extensions/v1beta1/daemonsets=true
+```
+
+you can also do `ENABLE_DAEMONSETS=true` before running the `kube-up.sh` script.
+
+### Installation
+
+First, add this Chart repo to Helm to install the "deis" chart:
 ```console
 $ helm repo add deis https://github.com/deis/charts
 $ helm up

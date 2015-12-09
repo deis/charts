@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-logger
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    app: deis-logger
+  template:
+    metadata:
+      labels:
+        app: deis-logger
+    spec:
+      containers:
+      - name: deis-logger
+        image: quay.io/deis/logger:v2-beta
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8088
+          name: http
+        - containerPort: 514
+          name: transport
+          protocol: UDP
