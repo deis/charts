@@ -5,6 +5,12 @@ metadata:
   namespace: deis
   labels:
     heritage: deis
+    routable: "true"
+  annotations:
+    deis.io/routerConfig: |
+      {
+        "domains": [ "deis" ]
+      }
 spec:
   ports:
     - name: http
