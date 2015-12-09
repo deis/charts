@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
         - name: deis-minio
+          imagePullPolicy: Always
           image: quay.io/deis/minio
           imagePullPolicy: Always
           ports:

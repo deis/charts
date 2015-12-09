@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
         - name: deis-builder
+          imagePullPolicy: Always
           image: quay.io/deisci/builder:v2-alpha
           imagePullPolicy: Always
           ports:
