@@ -10,4 +10,4 @@ spec:
     - name: ssh
       port: 2222
   selector:
-    app: deis-builder
+    name: deis-builder
