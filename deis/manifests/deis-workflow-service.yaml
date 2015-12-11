@@ -9,7 +9,9 @@ metadata:
   annotations:
     deis.io/routerConfig: |
       {
-        "domains": [ "deis" ]
+        "domains": [ "deis" ],
+        "connectTimeout": 10,
+        "tcpTimeout": 1200
       }
 spec:
   ports:
