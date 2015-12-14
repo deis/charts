@@ -26,3 +26,11 @@ spec:
           env:
             - name: "EXTERNAL_PORT"
               value: "2223"
+          volumeMounts:
+            - name: minio-user
+              mountPath: /var/run/secrets/object/store
+              readOnly: true
+      volumes:
+        - name: minio-user
+          secret:
+            secretName: minio-user
