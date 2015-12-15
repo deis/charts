@@ -29,6 +29,10 @@ spec:
             # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
             - name: "DOCKERIMAGE"
               value: "1"
+            - name: POD_NAMESPACE
+                valueFrom:
+                  fieldRef:
+                    fieldPath: metadata.namespace
           volumeMounts:
             - name: minio-user
               mountPath: /var/run/secrets/object/store
