@@ -4,11 +4,11 @@ metadata:
   name: deis-etcd-discovery
   namespace: deis
   labels:
-    name: deis-etcd-discovery
+    heritage: deis
 spec:
   replicas: 1
   selector:
-    name: deis-etcd-discovery
+    app: deis-etcd-discovery
   template:
     metadata:
       labels:

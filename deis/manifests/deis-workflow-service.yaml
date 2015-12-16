@@ -19,4 +19,4 @@ spec:
       port: 80
       targetPort: 8000
   selector:
-    name: deis-workflow
+    app: deis-workflow
