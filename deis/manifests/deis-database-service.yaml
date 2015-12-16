@@ -10,4 +10,4 @@ spec:
     - name: http
       port: 5432
   selector:
-    name: deis-database
+    app: deis-database
