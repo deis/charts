@@ -5,8 +5,6 @@ metadata:
   namespace: deis
   labels:
     heritage: deis
-    name: deis-etcd-1
-    app: deis
 spec:
   ports:
     - name: peer
