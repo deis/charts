@@ -1,0 +1,20 @@
+[Etcd]
+Name = "deis1"
+Image = "quay.io/desici/etcd:v2-alpha2"
+Replicas = 5
+
+[Etcd.Labels]
+stability = "alpha"
+
+[Etcd.Annotations]
+author = "Matt Butcher"
+
+[Discovery]
+Command = "/usr/local/bin/discovery"
+
+[Discovery.Annotations]
+author = "Matt Butcher"
+
+[Discovery.Labels]
+stability = "alpha"
+
