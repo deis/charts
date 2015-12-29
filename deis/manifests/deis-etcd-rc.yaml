@@ -14,10 +14,6 @@ spec:
       labels:
         name: deis-etcd-1
     spec:
-      volumes:
-        - name: discovery-token
-          secret:
-            secretName: deis-etcd-discovery-token
       containers:
         - name: deis-etcd-1
           image: quay.io/deis/etcd:2.0.0-alpha
@@ -39,3 +35,7 @@ spec:
             - name: discovery-token
               readOnly: true
               mountPath: /var/run/secrets/deis/etcd/discovery
+      volumes:
+        - name: discovery-token
+          secret:
+            secretName: deis-etcd-discovery-token
