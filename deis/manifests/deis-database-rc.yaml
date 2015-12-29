@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: deis-database
-          image: quay.io/deisci/postgres:v2-alpha
-          imagePullPolicy: Always
+          image: quay.io/deis/postgres:2.0.0-alpha
+          imagePullPolicy: IfNotPresent
           env:
             - name: POSTGRES_USER
               value: "deis"

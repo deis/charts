@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: deis-registry
-          image: quay.io/deisci/registry:v2-alpha
-          imagePullPolicy: Always
+          image: quay.io/deis/registry:2.0.0-alpha
+          imagePullPolicy: IfNotPresent
           env:
             - name: REGISTRY_STORAGE_DELETE_ENABLED
               value: "true"
