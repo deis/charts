@@ -20,8 +20,8 @@ spec:
             secretName: deis-etcd-discovery-token
       containers:
         - name: deis-etcd-1
-          image: quay.io/deisci/etcd:v2-alpha
-          imagePullPolicy: Always
+          image: quay.io/deis/etcd:2.0.0-alpha
+          imagePullPolicy: IfNotPresent
           env:
             - name: DEIS_ETCD_CLUSTER_SIZE
               value: "3"

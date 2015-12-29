@@ -20,8 +20,8 @@ spec:
             secretName: deis-etcd-discovery-token
       containers:
         - name: deis-etcd-discovery
-          image: quay.io/deisci/etcd:v2-alpha
-          imagePullPolicy: Always
+          image: quay.io/deis/etcd:2.0.0-alpha
+          imagePullPolicy: IfNotPresent
           command:
             - /usr/local/bin/discovery
           ports:
