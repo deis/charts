@@ -29,7 +29,7 @@ $ kubectl get service deis-workflow  # note the IP address for later
 Then open an SSH session to a Kubernetes minion node, install the `deis` client, and register:
 
 ```console
-$ curl -sSL http://deis.io/deis-cli/install.sh | sh
+$ curl -sSL http://deis.io/deis-cli/install-v2-alpha.sh | bash
 $ mkdir $HOME/bin && mv deis $HOME/bin
 $ deis register 10.247.59.157:8000  # or the appropriate CLUSTER_IP, from above
 $ ssh-keygen -t rsa -b 4096 -C "your_email@deis.com"
