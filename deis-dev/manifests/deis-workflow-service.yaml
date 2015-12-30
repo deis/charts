@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: deis-workflow
+  namespace: deis
+  labels:
+    heritage: deis
+    routable: "true"
+  annotations:
+    deis.io/routerConfig: |
+      {
+        "domains": [ "deis" ],
+        "connectTimeout": 10,
+        "tcpTimeout": 1200
+      }
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+  selector:
+    name: deis-workflow

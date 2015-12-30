@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: deis-workflow
-          image: quay.io/deis/workflow:2.0.0-alpha
-          imagePullPolicy: IfNotPresent
+          image: quay.io/deisci/workflow:v2-beta
+          imagePullPolicy: Always
           env:
             - name: DEIS_DATABASE_USER
               value: deis

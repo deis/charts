@@ -1,4 +1,4 @@
-# Deis 2.0.0-alpha
+# Deis 2.0.0-beta
 
 WARNING: this chart is for testing only! Features may not work, the
 components are not HA, and there are likely to be bugs.
