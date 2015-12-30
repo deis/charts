@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: deis-etcd-1
+  namespace: deis
+  labels:
+    name: deis-etcd-1
+    app: deis
+spec:
+  ports:
+    - name: peer
+      port: 2380
+      protocol: TCP
+    - name: client
+      port: 4100
+  selector:
+    name: deis-etcd-1
