@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-workflow
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    name: deis-workflow
+  template:
+    metadata:
+      labels:
+        name: deis-workflow
+    spec:
+      containers:
+        - name: deis-workflow
+          image: quay.io/deisci/workflow:v2-beta
+          imagePullPolicy: Always
+          env:
+            - name: DEIS_DATABASE_USER
+              value: deis
+            - name: DEIS_DATABASE_PASSWORD
+              value: changeme123
+          ports:
+            - containerPort: 8000
+              name: http
+          volumeMounts:
+            - mountPath: /var/run/docker.sock
+              name: docker-socket
+            - name: minio-user
+              mountPath: /var/run/secrets/deis/minio/user
+              readOnly: true
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: minio-user
+          secret:
+            secretName: minio-user
