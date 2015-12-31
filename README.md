@@ -22,8 +22,8 @@ $ helm repo add deis https://github.com/deis/charts
 $ helm up
 $ helm fetch deis/deis
 $ helm install deis
-$ kubectl get pods  # repeat this until deis-workflow is "Running"
-$ kubectl get service deis-workflow  # note the IP address for later
+$ kubectl --namespace=deis get pods  # repeat this until deis-workflow is "Running"
+$ kubectl --namespace=deis get service deis-workflow  # note the IP address for later
 ```
 
 Then open an SSH session to a Kubernetes minion node, install the `deis` client, and register:
