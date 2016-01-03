@@ -4,8 +4,7 @@ metadata:
   name: deis-etcd-1
   namespace: deis
   labels:
-    name: deis-etcd-1
-    app: deis
+    heritage: deis
 spec:
   ports:
     - name: peer
@@ -14,4 +13,4 @@ spec:
     - name: client
       port: 4100
   selector:
-    name: deis-etcd-1
+    app: deis-etcd-1

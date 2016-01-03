@@ -8,11 +8,11 @@ metadata:
 spec:
   replicas: 1
   selector:
-    name: deis-workflow
+    app: deis-workflow
   template:
     metadata:
       labels:
-        name: deis-workflow
+        app: deis-workflow
     spec:
       containers:
         - name: deis-workflow
@@ -26,7 +26,7 @@ spec:
           ports:
             - containerPort: 8000
               name: http
-              # expose port to node to make workflow to be accessable from
+              # expose port to node to make workflow to be accessable from host
               hostPort: 8000
           volumeMounts:
             - mountPath: /var/run/docker.sock

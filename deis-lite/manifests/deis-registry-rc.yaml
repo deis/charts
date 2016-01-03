@@ -8,11 +8,11 @@ metadata:
 spec:
   replicas: 1
   selector:
-    name: deis-registry
+    app: deis-registry
   template:
     metadata:
       labels:
-        name: deis-registry
+        app: deis-registry
     spec:
       containers:
         - name: deis-registry

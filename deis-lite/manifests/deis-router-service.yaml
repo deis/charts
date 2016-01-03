@@ -6,7 +6,7 @@ metadata:
   labels:
     heritage: deis
 spec:
-#  type: LoadBalancer
+  type: LoadBalancer
   selector:
     app: deis-router
   ports:

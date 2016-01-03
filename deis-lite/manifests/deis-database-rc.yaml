@@ -8,11 +8,11 @@ metadata:
 spec:
   replicas: 1
   selector:
-    name: deis-database
+    app: deis-database
   template:
     metadata:
       labels:
-        name: deis-database
+        app: deis-database
     spec:
       containers:
         - name: deis-database
