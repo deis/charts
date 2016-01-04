@@ -6,10 +6,7 @@ metadata:
   labels:
     heritage: deis
   annotations:
-    deis.io/routerConfig: |
-      {
-        "useProxyProtocol": false
-      }
+    router.deis.io/useProxyProtocol: "false"
 spec:
   replicas: 1
   selector:
