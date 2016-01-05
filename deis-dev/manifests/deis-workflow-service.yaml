@@ -7,12 +7,9 @@ metadata:
     heritage: deis
     routable: "true"
   annotations:
-    deis.io/routerConfig: |
-      {
-        "domains": [ "deis" ],
-        "connectTimeout": 10,
-        "tcpTimeout": 1200
-      }
+    router.deis.io/domains: deis
+    router.deis.io/connectTimeout: "10"
+    router.deis.io/tcpTimeout: "1200"
 spec:
   ports:
     - name: http
