@@ -3,7 +3,7 @@ home: https://github.com/deis/workflow
 version: 2.0.0-alpha
 description: For testing only!
 maintainers:
-- Matt Boersma <mboersma@deis.com>
+- Deis Team <engineering@deis.com>
 details: |-
   WARNING: this chart is for testing only! Features may not work, the
   components are not HA, and there are likely to be bugs.
