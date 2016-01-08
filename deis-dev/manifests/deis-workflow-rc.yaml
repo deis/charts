@@ -18,6 +18,18 @@ spec:
         - name: deis-workflow
           image: quay.io/deisci/workflow:v2-beta
           imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /health-check
+              port: 8000
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /health-check
+              port: 8000
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
           env:
             - name: DEIS_DATABASE_USER
               value: deis
