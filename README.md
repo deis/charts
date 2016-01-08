@@ -16,9 +16,7 @@ Deis v2 and Helm are changing quickly. Your feedback and participation are more 
 
 Hacking on Deis v2 is a bit rough right now--please help us fix the bugs and improve the installation process.
 
-***First*** you need to have a working Kubernetes cluster on Google Container Engine (Deis, of course, works anywhere Kubernetes can be installed, but the installation instructions below are tailored to GKE, should also work on AWS)
-
-- add this Chart repo to Helm to install the "deis" chart:
+First add this Chart repo to Helm to install the "deis" chart:
 
 ```console
 $ helm repo add deis https://github.com/deis/charts
@@ -26,20 +24,21 @@ $ helm up
 $ helm fetch deis/deis
 $ helm install deis
 $ kubectl --namespace=deis get pods -w # watch this until all pods show "Running"
-$ kubectl --namespace=deis get svc deis-router  # note the EXTERNAL IP address for later
+$ kubectl --namespace=deis get svc deis-router  
+# note the "EXTERNAL_IP" field for IP address on GKE/GCE/AWS, on Vagrant look for an "IP(S)"
 ```
 
-- install the `deis` client, and register to `Deis` cluster:
+Then install the `deis` client, register yourself as a user and create your first application:
 
 ```console
 $ curl -sSL http://deis.io/deis-cli/install-v2-alpha.sh | bash
 $ mkdir $HOME/bin && mv deis $HOME/bin
-$ deis register deis.EXTERNAL_IP_YOU_GOT_ABOVE.xip.io # to register yourself as the first user 
+$ deis register deis.IP_YOU_GOT_ABOVE.xip.io # to register yourself as the first user 
 $ ssh-keygen -t rsa -b 4096 -C "your_email@deis.com"
 $ eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa
 $ deis keys:add ~/.ssh/id_rsa.pub
 ```
-- create App:
+Now let's create an App:
 
 ```
 $ git clone https://github.com/deis/example-go.git
@@ -48,7 +47,7 @@ $ deis create mytest
 Creating Application... done, created madras-radiator
 $ git push deis master
 Creating build... ..o
-$ curl mytest.EXTERNAL_IP_YOU_GOT_ABOVE.xip.io # to ensure the app is up and running
+$ deis open
 $ deis scale web=3 -a mytest # to scale up the app
 ```
 
