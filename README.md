@@ -16,7 +16,7 @@ Deis v2 and Helm are changing quickly. Your feedback and participation are more 
 
 Hacking on Deis v2 is a bit rough right now--please help us fix the bugs and improve the installation process.
 
-First add this Chart repo to Helm to install the "deis" chart:
+First, add this Chart repo to Helm to install the "deis" chart:
 
 ```console
 $ helm repo add deis https://github.com/deis/charts
