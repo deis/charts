@@ -17,28 +17,38 @@ Deis v2 and Helm are changing quickly. Your feedback and participation are more 
 Hacking on Deis v2 is a bit rough right now--please help us fix the bugs and improve the installation process.
 
 First, add this Chart repo to Helm to install the "deis" chart:
+
 ```console
 $ helm repo add deis https://github.com/deis/charts
 $ helm up
 $ helm fetch deis/deis
 $ helm install deis
-$ kubectl --namespace=deis get pods  # repeat this until deis-workflow is "Running"
-$ kubectl --namespace=deis get service deis-workflow  # note the IP address for later
+$ kubectl --namespace=deis get pods -w # watch this until all pods show "Running"
+$ kubectl --namespace=deis get svc deis-router  
+# note the "EXTERNAL_IP" field for IP address on GKE/GCE/AWS, on Vagrant look for an "IP(S)"
 ```
 
-Then open an SSH session to a Kubernetes minion node, install the `deis` client, and register:
+Then install the `deis` client, register yourself as a user and create your first application:
 
 ```console
 $ curl -sSL http://deis.io/deis-cli/install-v2-alpha.sh | bash
 $ mkdir $HOME/bin && mv deis $HOME/bin
-$ deis register 10.247.59.157:8000  # or the appropriate CLUSTER_IP, from above
+$ deis register deis.IP_YOU_GOT_ABOVE.xip.io # to register yourself as the first user 
 $ ssh-keygen -t rsa -b 4096 -C "your_email@deis.com"
 $ eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa
 $ deis keys:add ~/.ssh/id_rsa.pub
-$ deis create --no-remote
+```
+Now let's create an App:
+
+```
+$ git clone https://github.com/deis/example-go.git
+$ cd example-go
+$ deis create mytest
 Creating Application... done, created madras-radiator
-$ deis pull deis/example-go -a madras-radiator
+$ git push deis master
 Creating build... ..o
+$ deis open
+$ deis scale web=3 -a mytest # to scale up the app
 ```
 
 ## License
