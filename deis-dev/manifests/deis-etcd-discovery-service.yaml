@@ -6,9 +6,10 @@ metadata:
   labels:
     name: deis-etcd-discovery
     app: deis
+    heritage: deis
 spec:
   ports:
     - name: client
       port: 2381
   selector:
-    name: deis-etcd-discovery
+    app: deis-etcd-discovery

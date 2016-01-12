@@ -5,14 +5,15 @@ metadata:
   namespace: deis
   labels:
     name: deis-etcd-1
+    heritage: deis
 spec:
   replicas: 3
   selector:
-    name: deis-etcd-1
+    app: deis-etcd-1
   template:
     metadata:
       labels:
-        name: deis-etcd-1
+        app: deis-etcd-1
     spec:
       volumes:
         - name: discovery-token
