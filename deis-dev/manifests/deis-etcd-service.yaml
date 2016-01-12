@@ -14,4 +14,4 @@ spec:
     - name: client
       port: 4100
   selector:
-    name: deis-etcd-1
+    app: deis-etcd-1

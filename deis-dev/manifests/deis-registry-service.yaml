@@ -10,4 +10,4 @@ spec:
     - name: http
       port: 5000
   selector:
-    name: deis-registry
+    app: deis-registry

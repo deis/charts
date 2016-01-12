@@ -11,4 +11,4 @@ spec:
       port: 2222
       targetPort: 2223
   selector:
-    name: deis-builder
+    app: deis-builder
