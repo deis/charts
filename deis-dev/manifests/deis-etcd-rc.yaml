@@ -5,6 +5,7 @@ metadata:
   namespace: deis
   labels:
     name: deis-etcd-1
+    heritage: deis
 spec:
   replicas: 3
   selector:
