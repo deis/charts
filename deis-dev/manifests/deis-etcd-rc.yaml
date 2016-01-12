@@ -8,11 +8,11 @@ metadata:
 spec:
   replicas: 3
   selector:
-    name: deis-etcd-1
+    app: deis-etcd-1
   template:
     metadata:
       labels:
-        name: deis-etcd-1
+        app: deis-etcd-1
     spec:
       volumes:
         - name: discovery-token

@@ -11,4 +11,4 @@ spec:
     - name: client
       port: 2381
   selector:
-    name: deis-etcd-discovery
+    app: deis-etcd-discovery
