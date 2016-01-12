@@ -18,6 +18,12 @@ spec:
         - name: deis-registry
           image: quay.io/deisci/registry:v2-beta
           imagePullPolicy: Always
+          readinessProbe:
+            httpGet:
+              path: /v2/
+              port: 5000
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
           env:
             - name: REGISTRY_STORAGE_DELETE_ENABLED
               value: "true"
