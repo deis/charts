@@ -37,7 +37,13 @@ spec:
             - name: minio-user
               mountPath: /var/run/secrets/object/store
               readOnly: true
+            - name: builder-key-auth
+              mountPath: /var/run/secrets/api/auth
+              readOnly: true
       volumes:
         - name: minio-user
           secret:
             secretName: minio-user
+        - name: builder-key-auth
+          secret:
+            secretName: builder-key-auth
