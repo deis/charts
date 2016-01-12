@@ -6,6 +6,7 @@ metadata:
   labels:
     name: deis-etcd-discovery
     app: deis
+    heritage: deis
 spec:
   ports:
     - name: client
