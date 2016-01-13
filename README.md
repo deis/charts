@@ -14,15 +14,14 @@ Deis v2 and Helm are changing quickly. Your feedback and participation are more 
 
 ## Contributing
 
-Hacking on Deis v2 is a bit rough right now--please help us fix the bugs and improve the installation process.
-
-First, add this Chart repo to Helm to install the "deis" chart:
+First, add this Chart repo to Helm to install the current "deis-dev" chart:
 
 ```console
 $ helm repo add deis https://github.com/deis/charts
 $ helm up
-$ helm fetch deis/deis
-$ helm install deis
+$ helm fetch deis/deis-dev
+$ helm generate deis-dev  # creates the required secrets
+$ helm install deis-dev
 $ kubectl --namespace=deis get pods -w # watch this until all pods show "Running"
 $ kubectl --namespace=deis get svc deis-router  
 # note the "EXTERNAL_IP" field for IP address on GKE/GCE/AWS, on Vagrant look for an "IP(S)"
@@ -32,8 +31,8 @@ Then install the `deis` client, register yourself as a user and create your firs
 
 ```console
 $ curl -sSL http://deis.io/deis-cli/install-v2-alpha.sh | bash
-$ mkdir $HOME/bin && mv deis $HOME/bin
-$ deis register deis.IP_YOU_GOT_ABOVE.xip.io # to register yourself as the first user 
+$ export PATH=.:$PATH
+$ deis register deis.IP_YOU_GOT_ABOVE.xip.io  # register as the first user
 $ ssh-keygen -t rsa -b 4096 -C "your_email@deis.com"
 $ eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa
 $ deis keys:add ~/.ssh/id_rsa.pub
@@ -53,7 +52,7 @@ $ deis scale web=3 -a mytest # to scale up the app
 
 ## License
 
-Copyright 2015 Engine Yard, Inc.
+Copyright 2015, 2016 Engine Yard, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at <http://www.apache.org/licenses/LICENSE-2.0>
 
