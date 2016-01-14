@@ -42,4 +42,4 @@ spec:
             secretName: minio-user
         - name: minio-data
           persistentVolumeClaim:
-            claimName: minio-data
+            claimName: deis-minio-data
