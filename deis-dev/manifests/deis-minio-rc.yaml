@@ -31,6 +31,8 @@ spec:
             - name: minio-user
               mountPath: /var/run/secrets/deis/minio/user
               readOnly: true
+            - name: minio-data
+              mountPath: /mnt/minio/data
       volumes:
         - name: minio-admin
           secret:
@@ -38,3 +40,6 @@ spec:
         - name: minio-user
           secret:
             secretName: minio-user
+        - name: minio-data
+          persistentVolumeClaim:
+            claimName: minio-data
