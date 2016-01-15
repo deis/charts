@@ -10,5 +10,5 @@ spec:
   - name: deis-e2e
     image: quay.io/deisci/deis-e2e:canary
     command: ["/bin/sh", "-c"]
-    args: ["/bin/tests.test || true"]
+    args: ["/bin/tests.test"]
   restartPolicy: Never
