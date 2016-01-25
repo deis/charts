@@ -1,0 +1,12 @@
+name: deis-logger
+home: http://github.com/deis/deis
+version: 0.1.0
+description: Provides a UDP compatible logger interface for the deis cli
+maintainers:
+- Jonathan Chauncey <jchauncey@deis.com>
+details: |-
+  NOTE: This chart requires daemonsets to be enabled. Please see https://github.com/kubernetes/kubernetes/blob/master/docs/api.md#enabling-resources-in-the-extensions-group for more information.
+
+  This chart will start a service and replication controller which is needed to fulfil requests to the logger component. The deis controller talks to logger over port 8080 and returns the logs to the deis cli. The logger component also listens on port 514 and accepts any syslog compatible message.
+
+  For more information please see github.com/deis/logger and github.com/deis/fluentd.
