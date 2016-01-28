@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: deis-tests
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  containers:
+  - name: deis-e2e
+    image: quay.io/deisci/deis-e2e:canary
+    command: ["/bin/sh", "-c"]
+    args: ["/bin/tests.test || true"]
+  restartPolicy: Never
