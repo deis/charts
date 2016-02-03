@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-ui
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    app: deis-ui
+  template:
+    metadata:
+      labels:
+        app: deis-ui
+    spec:
+      containers:
+      - name: deis-ui
+        image: quay.io/fishworks/deis-ui
+        imagePullPolicy: Always
+        env:
+        - name: DEIS_API
+          value: http://deis-workflow
+        ports:
+        - containerPort: 9000
