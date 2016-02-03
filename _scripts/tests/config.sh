@@ -1,6 +1,5 @@
 
 if [ ! -z "${JENKINS_URL}" ]; then
-  echo "Setting up GCLOUD_CREDENTIALS_FILE"
   mkdir -p "${HOME}/.secrets/"
   echo ${GCLOUD_CREDENTIALS} > "${HOME}/.secrets/helm-testing-creds.json"
 fi
