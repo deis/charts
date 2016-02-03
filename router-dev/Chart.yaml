@@ -12,6 +12,6 @@ details: |-
   external (to the cluster) load balancer.  Router(s) will require a single external load balancer,
   handle all ingress, and direct all incoming traffic to appropriate services within the cluster.  
   
-  Router works by regularly querying the Kubernetes API for services labeled with `routable:
-  "true"`. Such services are compared to known services resident in memory. If there are
-  differences, new Nginx configuration is generated and Nginx is reloaded.
+  Router works by regularly querying the Kubernetes API for services labeled with
+  `router.deis.io/routable: "true"`. Such services are compared to known services resident in
+  memory. If there are differences, new Nginx configuration is generated and Nginx is reloaded.
