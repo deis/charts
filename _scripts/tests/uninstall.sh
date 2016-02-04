@@ -5,5 +5,4 @@ cd "$(dirname $0)"
 source config.sh
 source shared.sh
 
-helm uninstall -n deis -y deis-tests
-healthcheck-deis
+helm uninstall -n deis -y deis-dev;

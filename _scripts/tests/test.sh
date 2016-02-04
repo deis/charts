@@ -10,4 +10,4 @@ helm uninstall -n deis -y deis-tests; helm install deis-tests
 
 wait-for-all-pods "deis"
 kubectl --namespace=deis logs -f deis-tests
-return-pod-status "deis-tests"
+return-pod-exit-code "deis-tests"

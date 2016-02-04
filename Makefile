@@ -8,6 +8,11 @@ create:
 	@echo "Creating kubernetes cluster + deploying Deis..."
 	@_scripts/tests/create.sh
 
+.PHONY: install
+install:
+	@echo "Installing Deis..."
+	@_scripts/tests/install.sh
+
 .PHONY: destroy
 destroy:
 	@echo "Tearing down kubernetes cluster..."
@@ -23,5 +28,10 @@ test:
 	@echo "Running e2e tests..."
 	@_scripts/tests/test.sh
 
+.PHONY: uninstall
+uninstall:
+	@echo "Uninstalling Deis..."
+	@_scripts/tests/uninstall.sh
+
 .PHONY: ci
-ci: init create check test
+ci: init create install check test
