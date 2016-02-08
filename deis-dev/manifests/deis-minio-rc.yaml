@@ -18,8 +18,24 @@ spec:
         - name: deis-minio
           image: quay.io/deisci/minio:v2-beta
           imagePullPolicy: Always
+          env:
+            - name: HEALTH_SERVER_PORT
+              value: "8082"
           ports:
             - containerPort: 9000
+            - containerPort: 8082
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8082
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8082
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
           command:
             - boot
           args:
