@@ -27,13 +27,13 @@ spec:
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 8092
+              port: 8082
             initialDelaySeconds: 30
             timeoutSeconds: 1
           readinessProbe:
             httpGet:
               path: /healthz
-              port: 8092
+              port: 8082
             initialDelaySeconds: 30
             timeoutSeconds: 1
           command:
