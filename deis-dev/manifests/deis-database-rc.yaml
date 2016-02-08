@@ -25,3 +25,9 @@ spec:
               value: "changeme123"
           ports:
             - containerPort: 5432
+          livenessProbe:
+            exec:
+              command:
+                - is_master
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
