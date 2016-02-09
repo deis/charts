@@ -12,6 +12,7 @@ spec:
       labels:
         heritage: deis
     spec:
+      serviceAccount: deis-logger-fluentd
       containers:
       - name: deis-logger-fluentd
         image: quay.io/deis/fluentd:v2-beta
