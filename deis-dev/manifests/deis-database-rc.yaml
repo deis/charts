@@ -31,3 +31,10 @@ spec:
                 - is_master
             initialDelaySeconds: 30
             timeoutSeconds: 1
+          volumeMounts:
+            - name: minio-user
+              mountPath: /etc/wal-e.d/env
+      volumes:
+        - name: minio-user
+          secret:
+            secretName: minio-user
