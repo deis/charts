@@ -14,6 +14,7 @@ spec:
       labels:
         app: deis-logger
     spec:
+      serviceAccount: deis-logger
       containers:
       - name: deis-logger
         image: quay.io/deis/logger:v2-beta

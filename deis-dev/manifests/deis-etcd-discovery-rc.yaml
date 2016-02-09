@@ -15,6 +15,7 @@ spec:
       labels:
         app: deis-etcd-discovery
     spec:
+      serviceAccount: deis-etcd
       volumes:
         - name: discovery-token
           secret:
