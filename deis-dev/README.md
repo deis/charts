@@ -8,7 +8,6 @@ to the appropriate GitHub repository:
 - builder: https://github.com/deis/builder
 - chart: https://github.com/deis/charts
 - database: https://github.com/deis/postgres
-- etcd: https://github.com/deis/etcd
 - helm: https://github.com/helm/helm
 - minio: https://github.com/deis/minio
 - registry: https://github.com/deis/registry
