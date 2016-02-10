@@ -14,6 +14,7 @@ spec:
       labels:
         app: deis-database
     spec:
+      serviceAccount: deis-database
       containers:
         - name: deis-database
           image: quay.io/deisci/postgres:v2-beta

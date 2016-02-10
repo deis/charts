@@ -16,7 +16,7 @@ spec:
       labels:
         app: deis-router
     spec:
-      serviceAccount: deis
+      serviceAccount: deis-router
       containers:
       - name: deis-router
         image: quay.io/deisci/router:v2-beta

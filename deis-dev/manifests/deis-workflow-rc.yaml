@@ -14,6 +14,7 @@ spec:
       labels:
         app: deis-workflow
     spec:
+      serviceAccount: deis-workflow
       containers:
         - name: deis-workflow
           image: quay.io/deisci/workflow:v2-beta

@@ -14,6 +14,7 @@ spec:
       labels:
         app: deis-registry
     spec:
+      serviceAccount: deis-registry
       containers:
         - name: deis-registry
           image: quay.io/deisci/registry:v2-beta
