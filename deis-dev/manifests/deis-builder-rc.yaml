@@ -47,13 +47,13 @@ spec:
             httpGet:
               path: /healthz
               port: 8092
-            initialDelaySeconds: 30
+            initialDelaySeconds: 2
             timeoutSeconds: 1
           readinessProbe:
             httpGet:
               path: /healthz
               port: 8092
-            initialDelaySeconds: 30
+            initialDelaySeconds: 2
             timeoutSeconds: 1
           volumeMounts:
             - name: minio-user
