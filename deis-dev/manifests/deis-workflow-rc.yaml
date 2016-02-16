@@ -31,11 +31,6 @@ spec:
               port: 8000
             initialDelaySeconds: 30
             timeoutSeconds: 1
-          env:
-            - name: DEIS_DATABASE_USER
-              value: deis
-            - name: DEIS_DATABASE_PASSWORD
-              value: changeme123
           ports:
             - containerPort: 8000
               name: http
@@ -51,6 +46,9 @@ spec:
             - name: django-secret-key
               mountPath: /var/run/secrets/api/django
               readOnly: true
+            - name: database-creds
+              mountPath: /var/run/secrets/deis/database/creds
+              readOnly: true
       volumes:
         - name: docker-socket
           hostPath:
@@ -64,3 +62,6 @@ spec:
         - name: builder-key-auth
           secret:
             secretName: builder-key-auth
+        - name: database-creds:
+          secret:
+            secretName: database-creds
