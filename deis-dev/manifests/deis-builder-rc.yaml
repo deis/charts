@@ -22,7 +22,11 @@ spec:
           ports:
             - containerPort: 2223
               name: ssh
+            - containerPort: 8092
+              name: healthsrv
           env:
+            - name: "HEALTH_SERVER_PORT"
+              value: "8092"
             - name: "EXTERNAL_PORT"
               value: "2223"
             # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
@@ -34,6 +38,18 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8092
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8092
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
           volumeMounts:
             - name: minio-user
               mountPath: /var/run/secrets/object/store
