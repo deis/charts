@@ -22,13 +22,8 @@ spec:
           ports:
             - containerPort: 2223
               name: ssh
-<<<<<<< 655039ce30e6cca6f422e0c270747851624b3ef6
-=======
-            - containerPort: 3000
-              name: fetcher
             - containerPort: 8092
               name: healthsrv
->>>>>>> feat(deis-dev/manifests/deis-builder-rc.yaml): add liveness and readiness probes
           env:
             - name: "HEALTH_SERVER_PORT"
               value: "8092"
@@ -47,13 +42,13 @@ spec:
             httpGet:
               path: /healthz
               port: 8092
-            initialDelaySeconds: 2
+            initialDelaySeconds: 30
             timeoutSeconds: 1
           readinessProbe:
             httpGet:
               path: /healthz
               port: 8092
-            initialDelaySeconds: 2
+            initialDelaySeconds: 30
             timeoutSeconds: 1
           volumeMounts:
             - name: minio-user
