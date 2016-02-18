@@ -62,6 +62,6 @@ spec:
         - name: builder-key-auth
           secret:
             secretName: builder-key-auth
-        - name: database-creds:
+        - name: database-creds
           secret:
             secretName: database-creds
