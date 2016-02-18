@@ -35,7 +35,12 @@ spec:
           volumeMounts:
             - name: minio-user
               mountPath: /etc/wal-e.d/env
+            - name: database-creds
+              mountPath: /var/run/secrets/deis/database/creds
       volumes:
         - name: minio-user
           secret:
             secretName: minio-user
+        - name: database-creds
+          secret:
+            secretName: database-creds
