@@ -12,10 +12,10 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 80
+      targetPort: 8080
     - name: https
       port: 443
-      targetPort: 443
+      targetPort: 6443
     - name: builder
       port: 2222
       targetPort: 2222
