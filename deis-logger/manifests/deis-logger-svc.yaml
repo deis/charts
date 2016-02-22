@@ -13,7 +13,7 @@ spec:
     targetPort: http
   - port: 514
     name: transport
-    targetPort: transport
+    targetPort: 1514
     protocol: UDP
   selector:
     app: deis-logger
