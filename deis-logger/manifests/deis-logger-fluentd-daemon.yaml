@@ -29,9 +29,9 @@ spec:
           readOnly: true
         env:
         - name: "SYSLOG_HOST"
-          value: $(DEIS_LOGGER_PORT_514_UDP_ADDR)
+          value: $(DEIS_LOGGER_SERVICE_HOST)
         - name: "SYSLOG_PORT"
-          value: $(DEIS_LOGGER_PORT_514_UDP_PORT)
+          value: $(DEIS_LOGGER_SERVICE_PORT_TRANSPORT)
       volumes:
       - name: varlog
         hostPath:
