@@ -22,6 +22,7 @@ if [ ! -z $CI ]; then
   echo "INJECTING VERSIONS!"
   echo "-------------------"
   pushd ../../ &> /dev/null
+  bumpver-if-set "deis-tests" "deis-e2e" "${WORKFLOW_E2E_SHA}"
   bumpver-if-set "deis-logger" "logger" "${LOGGER_GIT_SHA}"
   bumpver-if-set "deis-dev" "builder" "${BUILDER_GIT_SHA}"
   bumpver-if-set "deis-dev" "minio" "${MINIO_GIT_SHA}"
