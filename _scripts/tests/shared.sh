@@ -85,11 +85,18 @@ function wait-for-http-status {
   local status="${2}"
 
   echo "Checking DNS (${url})..."
-  wait-for-output "curl -s -o /dev/null -w '%{http_code}' "${url}"" \
-                  "[ \${command_output} -eq 401 ]" \
-                  "Deis is responding at ${url}." \
-                  "Deis is unresponsive at ${url}" \
-                  10
+
+  local successes
+  while [[ ${successes} -lt 5 ]]; do
+    wait-for-output "curl -s -o /dev/null -w '%{http_code}' "${url}"" \
+                    "[ \${command_output} -eq 401 ]" \
+                    "Deis is responding at ${url}." \
+                    "Deis is unresponsive at ${url}" \
+                    10
+    let successes+=1
+    echo "Successfully interacted with Deis platform ${successes} time(s)."
+    sleep 5
+  done
 }
 
 function get-router-ip {
