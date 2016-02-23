@@ -28,7 +28,7 @@ echo "==> Operating on files: ${target_file}"
 file=""
 for file in ${target_file}; do
   echo -e "\t${CHART_NAME}: set ${COMPONENT_NAME} to ${GIT_PREFIXED_TAG}"
-  sed -E -i .bak "s%image: quay.io/([a-z]+)/${COMPONENT_NAME}:.*%image: quay.io/\1/${COMPONENT_NAME}:${GIT_PREFIXED_TAG}%" "${file}"
+  sed -E -i.bak "s%image: quay\.io/([a-z]+)/${COMPONENT_NAME}:.*%image: quay.io/\1/${COMPONENT_NAME}:${GIT_PREFIXED_TAG}%" "${file}"
 done
 
 # remove the backup file
