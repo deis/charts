@@ -1,0 +1,8 @@
+name: deis-workflow-manager
+home: http://github.com/deis/workflow-manager
+version: v2-beta
+description: Deis component for cluster health and lifecycle maintenance
+maintainers:
+- Jack Francis <jack@deis.com>
+details: |-
+  Workflow Manager Service is responsible for managing the lifecycle health of a deis cluster.

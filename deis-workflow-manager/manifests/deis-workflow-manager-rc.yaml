@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-workflow-manager
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    app: deis-workflow-manager
+  template:
+    metadata:
+      labels:
+        app: deis-workflow-manager
+    spec:
+      serviceAccount: deis-workflow-manager
+      containers:
+      - name: deis-workflow-manager
+        image: quay.io/deis/workflow-manager:v2-beta
+        imagePullPolicy: Always
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: WORKFLOW_MANAGER_PORT
+          value: "8080"
+        - name: WORKFLOW_API_URL
+          value: "https://deis-workflow-api.engineyard.com"
+        - name: WORKFLOW_MANAGER_POLLING
+          value: "60"
+        - name: WORKFLOW_MANAGER_DEIS_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        ports:
+        - containerPort: 8080
