@@ -19,11 +19,6 @@ spec:
         - name: deis-database
           image: quay.io/deisci/postgres:v2-beta
           imagePullPolicy: Always
-          env:
-            - name: POSTGRES_USER
-              value: "deis"
-            - name: POSTGRES_PASSWORD
-              value: "changeme123"
           ports:
             - containerPort: 5432
           livenessProbe:
