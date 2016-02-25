@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-cd "$(dirname $0)"
-
-source config.sh
-source shared.sh
+source _scripts/tests/shared.sh
 
 download-chart-mate
 download-jq
+
+./rerun chart-mate:init
