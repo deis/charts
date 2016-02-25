@@ -19,9 +19,6 @@ spec:
         imagePullPolicy: Always
         securityContext:
           privileged: true
-        resources:
-          limits:
-            cpu: 100m
         volumeMounts:
         - name: varlog
           mountPath: /var/log
