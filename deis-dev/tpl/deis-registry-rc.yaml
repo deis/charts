@@ -1,3 +1,4 @@
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-registry-rc.yaml -d $HELM_GENERATE_DIR/tpl/objectstorage.toml $HELM_GENERATE_DIR/tpl/deis-registry-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -36,11 +37,18 @@ spec:
               value: "true"
             - name: REGISTRY_LOG_LEVEL
               value: info
+            - name: REGISTRY_STORAGE
+              value: {{default "filesystem" .storage}}
           ports:
             - containerPort: 5000
           volumeMounts:
             - name: registry-storage
               mountPath: /var/lib/registry
+            - name: registry-creds
+              mountPath: /var/run/secrets/deis/registry/creds
       volumes:
         - name: registry-storage
           emptyDir: {}
+        - name: registry-creds
+          secret:
+            secretName: objectstorage-keyfile
