@@ -42,7 +42,5 @@ container = "your-container-name"
 [gcs]
 # key_json is expanded into a JSON file on the remote server. It must be
 # well-formatted JSON data.
-key_json = ```
-Paste JSON data here.
-```
+key_json = '''Paste JSON data here.'''
 bucket = "your-bucket-name"
