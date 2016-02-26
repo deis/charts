@@ -2,19 +2,36 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: registry
+  name: deis-registry
+  namespace: deis
+  labels:
+    heritage: deis
 spec:
   replicas: 1
   selector:
-    name: registry
+    app: deis-registry
   template:
     metadata:
       labels:
-        name: registry
+        app: deis-registry
     spec:
+      serviceAccount: deis-registry
       containers:
-        - name: registry
-          image: registry:2
+        - name: deis-registry
+          image: quay.io/deisci/registry:v2-beta
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /v2/
+              port: 5000
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /v2/
+              port: 5000
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
           env:
             - name: REGISTRY_STORAGE_DELETE_ENABLED
               value: "true"
