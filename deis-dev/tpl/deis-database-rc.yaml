@@ -1,3 +1,4 @@
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-database-rc.yaml -d $HELM_GENERATE_DIR/tpl/objectstorage.toml $HELM_GENERATE_DIR/tpl/deis-database-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -21,6 +22,9 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 5432
+          env:
+            - name: DATABASE_STORAGE
+              value: {{default "minio" .storage}}
           livenessProbe:
             exec:
               command:
@@ -32,6 +36,8 @@ spec:
               mountPath: /etc/wal-e.d/env
             - name: database-creds
               mountPath: /var/run/secrets/deis/database/creds
+            - name: objectstore-creds
+              mountPath: /var/run/secrets/deis/objectstore/creds
       volumes:
         - name: minio-user
           secret:
@@ -39,3 +45,6 @@ spec:
         - name: database-creds
           secret:
             secretName: database-creds
+        - name: objectstore-creds
+          secret:
+            secretName: objectstorage-keyfile
