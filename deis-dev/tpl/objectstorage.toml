@@ -33,7 +33,7 @@ secretkey = "YOUR SECRET HERE"
 region = "us-west-1"
 # Your buckets.
 bucket = "your-bucket-name"
-database-bucket = "your-database-bucket-name"
+database_bucket = "your-database-bucket-name"
 
 [azure]
 accountname = "YOUR ACCOUNT NAME"
