@@ -31,8 +31,9 @@ accesskey = "YOUR KEY HERE"
 secretkey = "YOUR SECRET HERE"
 # Any S3 region
 region = "us-west-1"
-# Your bucket.
+# Your buckets.
 bucket = "your-bucket-name"
+database-bucket = "your-database-bucket-name"
 
 [azure]
 accountname = "YOUR ACCOUNT NAME"
