@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
   - name: deis-e2e
-    image: quay.io/deisci/deis-e2e:git-2c8b26f
+    image: quay.io/deisci/deis-e2e:git-c8e9ecd
     imagePullPolicy: Always
     command: ["/bin/sh", "-c"]
     args: ["/bin/tests.test"]
