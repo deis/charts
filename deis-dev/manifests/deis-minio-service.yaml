@@ -8,6 +8,7 @@ metadata:
 spec:
   ports:
     - name: s3
-      port: 9000
+      port: 80
+      targetPort: 9000
   selector:
     app: deis-minio
