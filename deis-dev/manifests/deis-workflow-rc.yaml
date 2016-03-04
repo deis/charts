@@ -34,6 +34,9 @@ spec:
           ports:
             - containerPort: 8000
               name: http
+          env:
+            - name: "APP_STORAGE"
+              value: {{default "minio" .storage}}
           volumeMounts:
             - mountPath: /var/run/docker.sock
               name: docker-socket
