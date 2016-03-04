@@ -29,6 +29,8 @@ spec:
               value: "8092"
             - name: "EXTERNAL_PORT"
               value: "2223"
+            - name: BUILDER_STORAGE
+              value: {{default "minio" .storage}}
             # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
             - name: "DOCKERIMAGE"
               value: "1"
@@ -57,6 +59,8 @@ spec:
             - name: builder-key-auth
               mountPath: /var/run/secrets/api/auth
               readOnly: true
+            - name: objectstore-creds
+              mountPath: /var/run/secrets/deis/objectstore/creds
       volumes:
         - name: minio-user
           secret:
@@ -64,3 +68,6 @@ spec:
         - name: builder-key-auth
           secret:
             secretName: builder-key-auth
+        - name: objectstore-creds
+          secret:
+            secretName: objectstorage-keyfile
