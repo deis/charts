@@ -9,7 +9,6 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: 8088
     name: http
     targetPort: http
   - port: 514
