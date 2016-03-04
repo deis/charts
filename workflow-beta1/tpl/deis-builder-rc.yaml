@@ -70,6 +70,7 @@ spec:
               readOnly: true
             - name: objectstore-creds
               mountPath: /var/run/secrets/deis/objectstore/creds
+              readOnly: true
       volumes:
         - name: minio-user
           secret:
