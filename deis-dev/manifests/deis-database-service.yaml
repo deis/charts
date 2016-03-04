@@ -7,7 +7,7 @@ metadata:
     heritage: deis
 spec:
   ports:
-    - name: http
+    - name: postgres
       port: 5432
   selector:
     app: deis-database
