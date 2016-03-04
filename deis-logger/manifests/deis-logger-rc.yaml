@@ -25,3 +25,15 @@ spec:
         - containerPort: 1514
           name: transport
           protocol: UDP
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8088
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8088
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
