@@ -8,7 +8,8 @@ metadata:
     app: deis-logger
 spec:
   ports:
-  - port: 8088
+  - port: 80
+    targetPort: 8088
     name: http
     targetPort: http
   - port: 514
