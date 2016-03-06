@@ -1,0 +1,7 @@
+FROM ubuntu:latest
+MAINTAINER nelluri@engineyard.com
+RUN apt-get update && apt-get -y install make python lsb-release unzip wget vim git curl jq && echo "deb http://packages.cloud.google.com/apt cloud-sdk-precise main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list && curl -L https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && apt-get update && apt-get install google-cloud-sdk &&  wget https://storage.googleapis.com/kubernetes-release/release/v1.1.8/bin/linux/amd64/kubectl && chmod +x kubectl && mv kubectl /usr/local/bin && apt-get clean && wget https://dl.bintray.com/deis/helm/helm-0.5.0+1689ee4-linux-amd64.zip && unzip helm-0.5.0+1689ee4-linux-amd64.zip && mv helm /usr/local/bin/ &&  mkdir /home/charts && mkdir /root/.secrets
+WORKDIR /home/charts
+ENV TERM xterm-256color
+ADD . .
+RUN curl -L https://dl.bintray.com/sgoings/rerun-modules/rerun-0.2.0-10-g7340992 > rerun && chmod +x rerun &&  echo "alias init="_scripts/tests/init.sh"" >> $HOME/.bashrc && echo "alias create="/home/charts/_scripts/tests/create.sh"" >> $HOME/.bashrc && echo "alias test="/home/charts/_scripts/tests/test.sh"" >> $HOME/.bashrc && echo "alias install="/home/charts/_scripts/tests/install.sh"" >> $HOME/.bashrc && echo "alias uninstall="/home/charts/_scripts/tests/uninstall.sh"" >> $HOME/.bashrc && echo "alias check="/home/charts/_scripts/tests/check.sh"" >> $HOME/.bashrc && echo "alias destroy="/home/charts/_scripts/tests/destroy.sh"" >> $HOME/.bashrc && /bin/bash -c "source /root/.bashrc"
