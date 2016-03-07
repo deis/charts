@@ -18,10 +18,7 @@
 # - azure: Store persistent data in Azure's object storage
 # - gcs: Store persistent data in Google Cloud Storage
 # - minio: Store persistent data on in-cluster Minio server
-storage = "filesystem"
-
-[filesystem]
-# This space intentionally left blank.
+storage = "minio"
 
 [minio]
 # This space intentionally left blank.
