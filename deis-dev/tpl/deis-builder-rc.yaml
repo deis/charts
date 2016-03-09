@@ -32,6 +32,10 @@ spec:
               value: "2223"
             - name: BUILDER_STORAGE
               value: {{default "minio" .storage}}
+            - name: "SLUGBUILDER_IMAGE_NAME"
+              value: "quay.io/deisci/slugbuilder:v2-beta"
+            - name: "SLUGRUNNER_IMAGE_NAME"
+              value: "quay.io/deisci/dockerbuilder:v2-beta"
             # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
             - name: "DOCKERIMAGE"
               value: "1"
