@@ -18,8 +18,8 @@ spec:
       serviceAccount: deis-workflow
       containers:
         - name: deis-workflow
-          image: quay.io/deisci/workflow:v2-beta
-          imagePullPolicy: Always
+          image: quay.io/deisci/workflow:git-1c28a80
+          imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
               path: /healthz
