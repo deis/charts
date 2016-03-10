@@ -2,6 +2,8 @@
 
 set -eo pipefail
 
+rm -rf ${HOME}/.chart-mate
+
 export CI=true
 
 trap "./rerun chart-mate:down" EXIT
