@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/deis/charts.svg?branch=master)](https://travis-ci.org/deis/charts)
 
-This repository contains Helm Charts for Deis v2, the open source PaaS.
+This repository contains Helm Charts for Deis, the open source PaaS company.
 
 For more general-purpose Helm Charts, visit the [Helm Chart repository](https://github.com/helm/charts). To learn more about Helm, visit the [Helm repository](https://github.com/helm/helm).
 
@@ -10,13 +10,14 @@ For more general-purpose Helm Charts, visit the [Helm Chart repository](https://
 
 ![Deis Graphic](https://s3-us-west-2.amazonaws.com/get-deis/deis-graphic-small.png)
 
-Deis v2 and Helm are changing quickly. Your feedback and participation are more than welcome, but be aware that this project is considered a work in progress.
+Workflow and Helm are changing quickly. Your feedback and participation are more than welcome, but be aware that this project is considered a work in progress.
 
 ## Contributing
 
-First, add this Chart repo to Helm to install the current "deis-dev" chart:
+First, add this Chart repo to Helm to install the current "workflow-dev" chart:
 
 ### Prerequisites
+
 You must enable the extensions api for your kube-apiserver. For now the only requirement is that the daemonsets portion of the api be enabled. To do this add the following line to the script that starts your api server:
 
 ```console
@@ -27,15 +28,16 @@ you can also do `ENABLE_DAEMONSETS=true` before running the `kube-up.sh` script.
 
 ### Installation
 
-First, add this Chart repo to Helm to install the "deis" chart:
+First, add this Chart repo to Helm to install the "workflow" chart:
+
 ```console
 $ helm repo add deis https://github.com/deis/charts
 $ helm up
-$ helm fetch deis/deis-dev
-$ helm generate deis-dev  # creates the required secrets
-$ helm install deis-dev
+$ helm fetch deis/workflow-dev
+$ helm generate workflow-dev  # creates the required secrets
+$ helm install workflow-dev
 $ kubectl --namespace=deis get pods -w # watch this until all pods show "Running"
-$ kubectl --namespace=deis get svc deis-router  
+$ kubectl --namespace=deis get svc deis-router
 # note the "EXTERNAL_IP" field for IP address on GKE/GCE/AWS, on Vagrant look for an "IP(S)"
 ```
 
@@ -49,6 +51,7 @@ $ ssh-keygen -t rsa -b 4096 -C "your_email@deis.com"
 $ eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa
 $ deis keys:add ~/.ssh/id_rsa.pub
 ```
+
 Now let's create an App:
 
 ```
@@ -66,7 +69,7 @@ $ deis scale web=3 -a mytest # to scale up the app
 ```
 <---SECRET FILE-->
 The secret file is the Google Cloud credentials(helm-credentials.json)  which you will already have for the helm-project. If not found, you can download from the Google cloud platform ( API Manager -> Credentials ). NOTE: Get access to the
-helm-project)  
+helm-project)
 
 $ docker build .
 

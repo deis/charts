@@ -1,6 +1,6 @@
-name: deis-dev
+name: workflow
 home: https://github.com/deis/workflow
-version: v2-beta
+version: 2.0.0-alpha
 description: For testing only!
 maintainers:
 - Deis Team <engineering@deis.com>
