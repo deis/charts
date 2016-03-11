@@ -10,6 +10,6 @@ spec:
   - name: deis-e2e
     image: quay.io/deisci/deis-e2e:canary
     imagePullPolicy: Always
-    command: ["/bin/sh", "-c"]
-    args: ["/bin/tests.test"]
+    command: ["/bin/tests.test"]
+    args: ["-test.v", "-test.timeout=60m", "-ginkgo.v", "-ginkgo.slowSpecThreshold=120"]
   restartPolicy: Never
