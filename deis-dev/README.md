@@ -13,3 +13,4 @@ to the appropriate GitHub repository:
 - registry: https://github.com/deis/registry
 - router: https://github.com/deis/router
 - workflow: https://github.com/deis/workflow
+- workflow manager: https://github.com/deis/workflow-manager
