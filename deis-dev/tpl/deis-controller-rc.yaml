@@ -1,24 +1,24 @@
-#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-workflow-rc.yaml -d $HELM_GENERATE_DIR/tpl/objectstorage.toml $HELM_GENERATE_DIR/tpl/deis-workflow-rc.yaml
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-controller-rc.yaml -d $HELM_GENERATE_DIR/tpl/objectstorage.toml $HELM_GENERATE_DIR/tpl/deis-controller-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: deis-workflow
+  name: deis-controller
   namespace: deis
   labels:
     heritage: deis
 spec:
   replicas: 1
   selector:
-    app: deis-workflow
+    app: deis-controller
   template:
     metadata:
       labels:
-        app: deis-workflow
+        app: deis-controller
     spec:
-      serviceAccount: deis-workflow
+      serviceAccount: deis-controller
       containers:
-        - name: deis-workflow
-          image: quay.io/deisci/workflow:git-1c28a80
+        - name: deis-controller
+          image: quay.io/deisci/controller:git-1c28a80
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
