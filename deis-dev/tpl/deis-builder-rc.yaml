@@ -18,7 +18,7 @@ spec:
       serviceAccount: deis-builder
       containers:
         - name: deis-builder
-          image: quay.io/deisci/builder:v2-beta
+          image: quay.io/deisci/builder:canary
           imagePullPolicy: Always
           ports:
             - containerPort: 2223
