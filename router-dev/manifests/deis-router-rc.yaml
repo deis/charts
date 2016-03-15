@@ -17,7 +17,7 @@ spec:
       serviceAccount: deis-router
       containers:
       - name: deis-router
-        image: quay.io/deisci/router:v2-beta
+        image: quay.io/deisci/router:canary
         imagePullPolicy: Always
         env:
         - name: POD_NAMESPACE
