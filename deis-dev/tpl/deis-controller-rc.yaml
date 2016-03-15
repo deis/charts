@@ -38,6 +38,8 @@ spec:
           env:
             - name: "APP_STORAGE"
               value: {{default "minio" .storage}}
+            - name: "SLUGRUNNER_IMAGE_NAME"
+              value: "quay.io/deisci/slugrunner:canary"
           volumeMounts:
             - mountPath: /var/run/docker.sock
               name: docker-socket
