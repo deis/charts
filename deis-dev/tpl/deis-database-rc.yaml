@@ -38,8 +38,6 @@ spec:
               mountPath: /var/run/secrets/deis/database/creds
             - name: objectstore-creds
               mountPath: /var/run/secrets/deis/objectstore/creds
-            - name: postgres-data
-              mountPath: /var/lib/postgresql
       volumes:
         - name: minio-user
           secret:
@@ -50,5 +48,3 @@ spec:
         - name: objectstore-creds
           secret:
             secretName: objectstorage-keyfile
-        - name: postgres-data
-          emptyDir: {}
