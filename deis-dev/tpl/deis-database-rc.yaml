@@ -18,7 +18,7 @@ spec:
       serviceAccount: deis-database
       containers:
         - name: deis-database
-          image: quay.io/deisci/postgres:v2-beta
+          image: quay.io/deisci/postgres:canary
           imagePullPolicy: Always
           ports:
             - containerPort: 5432
