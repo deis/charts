@@ -1,0 +1,44 @@
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-objectstorage-secret.yaml -d $HELM_GENERATE_FILE $HELM_GENERATE_DIR/tpl/deis-objectstorage-secret.yaml
+#
+# This is the main configuration file for Deis object storage. The values in
+# this file are passed into the appropriate services so that they can configure
+# themselves for persisting data in object storage.
+#
+# In general, all object storage credentials must be able to read and write to
+# the container or bucket they are configured to use.
+#
+# When you change values in this file, make sure to re-run `helm generate`
+# on this chart.
+
+# Set the storage backend
+#
+# Valid values are:
+# - filesystem: Store persistent data on ephemeral disk
+# - s3: Store persistent data in AWS S3 (configure in S3 section)
+# - azure: Store persistent data in Azure's object storage
+# - gcs: Store persistent data in Google Cloud Storage
+# - minio: Store persistent data on in-cluster Minio server
+storage = "minio"
+
+[minio]
+# This space intentionally left blank.
+
+[s3]
+accesskey = "YOUR KEY HERE"
+secretkey = "YOUR SECRET HERE"
+# Any S3 region
+region = "us-west-1"
+# Your buckets.
+bucket = "your-bucket-name"
+database_bucket = "your-database-bucket-name"
+
+[azure]
+accountname = "YOUR ACCOUNT NAME"
+accountkey = "YOUR ACCOUNT KEY"
+container = "your-container-name"
+
+[gcs]
+# key_json is expanded into a JSON file on the remote server. It must be
+# well-formatted JSON data.
+key_json = '''Paste JSON data here.'''
+bucket = "your-bucket-name"

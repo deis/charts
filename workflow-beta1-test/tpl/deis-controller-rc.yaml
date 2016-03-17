@@ -1,0 +1,67 @@
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-controller-rc.yaml -d $HELM_GENERATE_DIR/tpl/objectstorage.toml $HELM_GENERATE_DIR/tpl/deis-controller-rc.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-controller
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    app: deis-controller
+  template:
+    metadata:
+      labels:
+        app: deis-controller
+    spec:
+      serviceAccount: deis-controller
+      containers:
+        - name: deis-controller
+          image: quay.io/deisci/controller:git-ca32f94
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            - name: "APP_STORAGE"
+              value: {{default "minio" .storage}}
+            - name: "SLUGRUNNER_IMAGE_NAME"
+              value: "quay.io/deisci/slugrunner:git-3aea2b0"
+          volumeMounts:
+            - mountPath: /var/run/docker.sock
+              name: docker-socket
+            - name: builder-key-auth
+              mountPath: /var/run/secrets/api/builder/auth
+              readOnly: true
+            - name: django-secret-key
+              mountPath: /var/run/secrets/api/django
+              readOnly: true
+            - name: database-creds
+              mountPath: /var/run/secrets/deis/database/creds
+              readOnly: true
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: django-secret-key
+          secret:
+            secretName: django-secret-key
+        - name: builder-key-auth
+          secret:
+            secretName: builder-key-auth
+        - name: database-creds
+          secret:
+            secretName: database-creds
