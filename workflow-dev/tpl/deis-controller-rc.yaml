@@ -19,7 +19,7 @@ spec:
       containers:
         - name: deis-controller
           image: quay.io/deisci/controller:canary
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           livenessProbe:
             httpGet:
               path: /healthz
