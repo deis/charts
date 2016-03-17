@@ -43,9 +43,6 @@ spec:
           volumeMounts:
             - mountPath: /var/run/docker.sock
               name: docker-socket
-            - name: minio-user
-              mountPath: /var/run/secrets/deis/minio/user
-              readOnly: true
             - name: builder-key-auth
               mountPath: /var/run/secrets/api/builder/auth
               readOnly: true
@@ -59,9 +56,6 @@ spec:
         - name: docker-socket
           hostPath:
             path: /var/run/docker.sock
-        - name: minio-user
-          secret:
-            secretName: minio-user
         - name: django-secret-key
           secret:
             secretName: django-secret-key
