@@ -5,11 +5,6 @@ metadata:
   namespace: deis
   labels:
     heritage: deis
-  annotations:
-    deis.io/routerConfig: |
-      {
-        "useProxyProtocol": false
-      }
 spec:
   replicas: 1
   selector:
@@ -19,10 +14,10 @@ spec:
       labels:
         app: deis-router
     spec:
-      serviceAccount: deis
+      serviceAccount: deis-router
       containers:
       - name: deis-router
-        image: quay.io/deis/router:2.0.0-alpha
+        image: quay.io/deisci/router:git-4f66eec
         imagePullPolicy: IfNotPresent
         env:
         - name: POD_NAMESPACE
@@ -30,11 +25,23 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           hostPort: 80
-        - containerPort: 443
+        - containerPort: 6443
           hostPort: 443
         - containerPort: 2222
           hostPort: 2222
         - containerPort: 9090
           hostPort: 9090
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 9090
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 9090
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
