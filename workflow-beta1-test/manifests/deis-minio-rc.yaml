@@ -18,7 +18,7 @@ spec:
       containers:
         - name: deis-minio
           image: quay.io/deisci/minio:git-acc85c8
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: HEALTH_SERVER_PORT
               value: "8082"
