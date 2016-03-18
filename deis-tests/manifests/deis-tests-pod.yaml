@@ -12,4 +12,7 @@ spec:
     imagePullPolicy: Always
     command: ["/bin/tests.test"]
     args: ["-test.v", "-test.timeout=60m", "-ginkgo.v", "-ginkgo.slowSpecThreshold=120"]
+    env:
+      - name: JUNIT
+        value: "true"
   restartPolicy: Never
