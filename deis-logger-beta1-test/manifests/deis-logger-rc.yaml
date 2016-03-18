@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-logger
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    app: deis-logger
+  template:
+    metadata:
+      labels:
+        app: deis-logger
+    spec:
+      containers:
+      - name: deis-logger
+        image: quay.io/deisci/logger:git-a16379c
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8088
+          name: http
+        - containerPort: 1514
+          name: transport
+          protocol: UDP
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8088
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8088
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
