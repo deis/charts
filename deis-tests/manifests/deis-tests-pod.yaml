@@ -6,6 +6,7 @@ metadata:
   labels:
     heritage: deis
 spec:
+  restartPolicy: Never
   containers:
   - name: deis-e2e
     image: quay.io/deisci/deis-e2e:canary
@@ -15,4 +16,16 @@ spec:
     env:
       - name: JUNIT
         value: "true"
-  restartPolicy: Never
+    volumeMounts:
+    - name: artifact-volume
+      mountPath: /root
+  - name: artifacts
+    image: busybox
+    imagePullPolicy: Always
+    command: ["tail", "-f", "/dev/null"]
+    volumeMounts:
+    - name: artifact-volume
+      mountPath: /root
+  volumes:
+  - name: artifact-volume
+    emptyDir: {}
