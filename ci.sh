@@ -14,4 +14,3 @@ _scripts/tests/install-chart-mate.sh
 ./rerun chart-mate:install
 ./rerun chart-mate:check
 ./rerun chart-mate:test
-./rerun chart-mate:init
