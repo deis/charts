@@ -18,7 +18,7 @@ spec:
       serviceAccount: deis-registry
       containers:
         - name: deis-registry
-          image: quay.io/deisci/registry:git-d019479
+          image: quay.io/deis/registry:v2.0.0-beta1
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:

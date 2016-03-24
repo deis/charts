@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: workflow-beta1-e2e
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  restartPolicy: Never
+  containers:
+  - name: deis-e2e
+    image: quay.io/deis/deis-e2e:v2.0.0-beta1
+    imagePullPolicy: IfNotPresent
+    command: ["/bin/tests.test"]
+    args: ["-test.v", "-test.timeout=60m", "-ginkgo.v", "-ginkgo.slowSpecThreshold=120"]
+    env:
+      - name: JUNIT
+        value: "true"
+    volumeMounts:
+    - name: artifact-volume
+      mountPath: /root
+  - name: artifacts
+    image: busybox
+    imagePullPolicy: Always
+    command: ["tail", "-f", "/dev/null"]
+    volumeMounts:
+    - name: artifact-volume
+      mountPath: /root
+  volumes:
+  - name: artifact-volume
+    emptyDir: {}

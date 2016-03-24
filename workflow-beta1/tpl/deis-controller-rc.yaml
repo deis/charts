@@ -18,7 +18,7 @@ spec:
       serviceAccount: deis-controller
       containers:
         - name: deis-controller
-          image: quay.io/deisci/controller:git-92e440a
+          image: quay.io/deis/controller:v2.0.0-beta1
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
@@ -39,7 +39,7 @@ spec:
             - name: "APP_STORAGE"
               value: {{default "minio" .storage}}
             - name: "SLUGRUNNER_IMAGE_NAME"
-              value: "quay.io/deisci/slugrunner:git-3aea2b0"
+              value: "quay.io/deis/slugrunner:v2.0.0-beta1"
           volumeMounts:
             - mountPath: /var/run/docker.sock
               name: docker-socket

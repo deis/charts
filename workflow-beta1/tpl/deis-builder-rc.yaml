@@ -18,7 +18,7 @@ spec:
       serviceAccount: deis-builder
       containers:
         - name: deis-builder
-          image: quay.io/deisci/builder:git-cdf8ace
+          image: quay.io/deis/builder:v2.0.0-beta1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 2223
@@ -33,9 +33,9 @@ spec:
             - name: BUILDER_STORAGE
               value: {{default "minio" .storage}}
             - name: "SLUGBUILDER_IMAGE_NAME"
-              value: "quay.io/deisci/slugbuilder:git-6dce113"
+              value: "quay.io/deis/slugbuilder:v2.0.0-beta1"
             - name: "DOCKERBUILDER_IMAGE_NAME"
-              value: "quay.io/deisci/dockerbuilder:git-4c7d718"
+              value: "quay.io/deis/dockerbuilder:v2.0.0-beta1"
             # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
             - name: "DOCKERIMAGE"
               value: "1"
