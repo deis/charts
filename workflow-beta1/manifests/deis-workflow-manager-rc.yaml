@@ -17,7 +17,7 @@ spec:
       serviceAccount: deis-workflow-manager
       containers:
       - name: deis-workflow-manager
-        image: quay.io/deisci/workflow-manager:git-b378151
+        image: quay.io/deis/workflow-manager:v2.0.0-beta1
         imagePullPolicy: IfNotPresent
         env:
         - name: POD_NAMESPACE
