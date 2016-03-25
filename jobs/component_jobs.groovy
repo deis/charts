@@ -89,7 +89,6 @@ repos.each { Map repo ->
             //       completedStatus('ERROR', 'Something went really wrong. Investigate!')
             //     }
             //   }
-            }
           }
         }
       }
