@@ -1,31 +1,4 @@
-repos = [
-  [name: 'builder', slackChannel: 'builder'],
-  [name: 'dockerbuilder', slackChannel: 'builder'],
-  [name: 'fluentd', slackChannel: 'logger'],
-  [name: 'logger', slackChannel: 'logger'],
-  [name: 'minio', slackChannel: 'object-store'],
-  [name: 'postgres', slackChannel: 'postgres'],
-  [name: 'registry', slackChannel: 'registry'],
-  [name: 'router', slackChannel: 'router'],
-  [name: 'slugbuilder', slackChannel: 'builder'],
-  [name: 'slugrunner', slackChannel: 'builder'],
-  [name: 'controller', slackChannel: 'controller'],
-  [name: 'workflow-e2e', slackChannel: 'testing'],
-  [name: 'workflow-manager', slackChannel: 'wfm'],
-]
-
-repos.each { Map repo ->
-  repo.commitEnvVar = "${repo.name.toUpperCase().replaceAll('-', '_')}_SHA"
-}
-
-defaults = [
-  numBuildsToKeep: 42,
-  bumpverCommitCmd: 'git commit -a -m "chore(versions): ci bumped versions via ${BUILD_URL}" || true',
-  testJob: [master: 'workflow-test', pr: 'workflow-test-pr'],
-]
-
-// TODO: place the above ^^ into common.groovy
-// evaluate(new File("./common.groovy"))
+evaluate(new File("${WORKSPACE}/jobs/common.groovy"))
 
 repos.each { Map repo ->
   [
@@ -40,7 +13,7 @@ repos.each { Map repo ->
 
     job(name) {
       description """<ol>
-      <li>Watches the ${repo.name} repo for a ${config.type} commit/li>
+      <li>Watches the ${repo.name} repo for a ${config.type} commit</li>
       <li>Kicks off downstream ${defaults.testJob[config.type]} job to vet changes</li>
     </ol>"""
       scm {
@@ -119,23 +92,24 @@ repos.each { Map repo ->
       }
 
       steps {
+        // if a PR commit, build and push immutable docker tag
+        if (isPR) {
+          shell '''
+            #!/usr/bin/env bash
+
+            set -eo pipefail
+
+            make bootstrap || true
+
+            export IMAGE_PREFIX=deisci
+            docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+            DEIS_REGISTRY='' make docker-build docker-immutable-push
+            docker login -e="$QUAY_EMAIL" -u="$QUAY_USERNAME" -p="$QUAY_PASSWORD" quay.io
+            DEIS_REGISTRY=quay.io/ make docker-build docker-immutable-push
+          '''.stripIndent().trim()
+        }
+        // do not run e2e tests for workflow-manager at this time
         if (repo.name != 'workflow-manager') {
-          if (isPR) { // we'll need to push docker images
-            shell '''
-              #!/usr/bin/env bash
-
-              set -eo pipefail
-
-              make bootstrap || true
-
-              export IMAGE_PREFIX=deisci
-              docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-              DEIS_REGISTRY='' make docker-build docker-immutable-push
-              docker login -e="$QUAY_EMAIL" -u="$QUAY_USERNAME" -p="$QUAY_PASSWORD" quay.io
-              DEIS_REGISTRY=quay.io/ make docker-build docker-immutable-push
-            '''.stripIndent().trim()
-          }
-
           downstreamParameterized {
             trigger("${defaults.testJob[config.type]}") {
               parameters {
@@ -148,15 +122,17 @@ repos.each { Map repo ->
               }
             }
           }
-        } else { // do not run e2e tests for workflow-manager at this time
+        }
+        // if workflow-manager master commit, bump the chart version and commit
+        if (repo.name == 'workflow-manager' && isMaster) {
           shell """
             #!/usr/bin/env bash
 
             set -eo pipefail
 
             if [ ! -z "\${WORKFLOW_MANAGER_SHA}" ]; then
-              rerun chart-mate:bumpver
-              ${defaults.bumpverCommitCmd}
+            rerun chart-mate:bumpver
+            ${defaults.bumpverCommitCmd}
             fi
           """.stripIndent().trim()
         }
