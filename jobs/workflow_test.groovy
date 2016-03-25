@@ -57,6 +57,11 @@ evaluate(new File("${WORKSPACE}/jobs/common.groovy"))
          retainLongStdout(false)
        }
 
+       archiveArtifacts {
+         pattern('logs/**')
+         onlyIfSuccessful(false)
+         fingerprint(false)
+       }
      }
 
     parameters {
