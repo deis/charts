@@ -40,6 +40,26 @@ spec:
               value: {{default "minio" .storage}}
             - name: "SLUGRUNNER_IMAGE_NAME"
               value: "quay.io/deisci/slugrunner:canary"
+            - name: DEIS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django-secret-key
+                  key: secret-key
+            - name: DEIS_BUILDER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: builder-key-auth
+                  key: builder-key
+            - name: DEIS_DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: database-creds
+                  key: user
+            - name: DEIS_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: database-creds
+                  key: password
           volumeMounts:
             - mountPath: /var/run/docker.sock
               name: docker-socket
