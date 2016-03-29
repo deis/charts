@@ -104,3 +104,23 @@ dockerTag = "canary"
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+
+[grafana]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[influxdb]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[telegraf]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[stdoutmetrics]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"

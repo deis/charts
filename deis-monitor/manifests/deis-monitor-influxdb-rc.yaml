@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-monitor-influxdb
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    app: deis-monitor-influxdb
+  template:
+    metadata:
+      labels:
+        app: deis-monitor-influxdb
+    spec:
+      containers:
+      - name: deis-monitor-influxdb
+        image: quay.io/deis/influxdb:canary
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8083
+          name: admin
+        - containerPort: 8086
+          name: transport
+          protocol: TCP
+        - containerPort: 8084
+          name: ssltransport
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 8086
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: 8086
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
