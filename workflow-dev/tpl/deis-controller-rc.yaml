@@ -18,7 +18,7 @@ spec:
       serviceAccount: deis-controller
       containers:
         - name: deis-controller
-          image: quay.io/deisci/controller:git-559aff3
+          image: quay.io/deisci/controller:git-4cf1761
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
