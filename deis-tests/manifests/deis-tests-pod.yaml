@@ -12,7 +12,7 @@ spec:
     image: quay.io/deisci/deis-e2e:canary
     imagePullPolicy: Always
     command: ["ginkgo"]
-    args: ["-slowSpecThreshold=120.00", "-noisyPendings=false", "-progress", "-nodes=30", "tests/"]
+    args: ["-slowSpecThreshold=120.00", "-nodes=15", "-noisyPendings=false", "-progress", "tests/"]
     env:
       - name: JUNIT
         value: "true"
