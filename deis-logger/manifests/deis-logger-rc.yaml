@@ -17,7 +17,7 @@ spec:
       serviceAccount: deis-logger
       containers:
       - name: deis-logger
-        image: quay.io/deis/logger:v2-beta
+        image: quay.io/deisci/logger:git-ba4427c
         imagePullPolicy: Always
         ports:
         - containerPort: 8088
