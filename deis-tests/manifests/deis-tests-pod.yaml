@@ -9,17 +9,13 @@ spec:
   restartPolicy: Never
   containers:
   - name: deis-e2e
-    image: quay.io/deisci/deis-e2e:canary
+    image: quay.io/deisci/deis-e2e:git-7f7d775
     imagePullPolicy: Always
-    command: ["ginkgo"]
-    args: ["-slowSpecThreshold=120.00", "-noisyPendings=false", "-progress", "tests/"]
+    command: ["/bin/tests.test"]
+    args: ["-test.v", "-test.timeout=60m", "-ginkgo.v", "-ginkgo.slowSpecThreshold=120"]
     env:
       - name: JUNIT
         value: "true"
-      - name: DEFAULT_MAX_TIMEOUT
-        value: "300s"
-      - name: DEFAULT_EVENTUALLY_TIMEOUT
-        value: "30s"
     volumeMounts:
     - name: artifact-volume
       mountPath: /root
