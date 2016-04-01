@@ -9,10 +9,10 @@ spec:
   restartPolicy: Never
   containers:
   - name: deis-e2e
-    image: quay.io/deisci/deis-e2e:git-7f7d775
+    image: quay.io/deisci/deis-e2e:canary
     imagePullPolicy: Always
     command: ["ginkgo"]
-    args: ["-slowSpecThreshold=120.00", "-noisyPendings=false", "-progress", "tests/"]
+    args: ["-slowSpecThreshold=120.00", "-noisyPendings=false", "-progress", "-nodes=30", "tests/"]
     env:
       - name: JUNIT
         value: "true"
