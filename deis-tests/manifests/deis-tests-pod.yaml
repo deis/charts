@@ -12,10 +12,14 @@ spec:
     image: quay.io/deisci/deis-e2e:canary
     imagePullPolicy: Always
     command: ["ginkgo"]
-    args: ["-slowSpecThreshold=120.00", "-nodes=15", "-noisyPendings=false", "-progress", "tests/"]
+    args: ["-slowSpecThreshold=120.00", "-noisyPendings=false", "-progress", "tests/"]
     env:
       - name: JUNIT
         value: "true"
+      - name: DEFAULT_MAX_TIMEOUT
+        value: "300s"
+      - name: DEFAULT_EVENTUALLY_TIMEOUT
+        value: "30s"
     volumeMounts:
     - name: artifact-volume
       mountPath: /root
