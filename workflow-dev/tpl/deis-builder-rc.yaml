@@ -33,7 +33,7 @@ spec:
             - name: BUILDER_STORAGE
               value: {{default "minio" .storage}}
             - name: "SLUGBUILDER_IMAGE_NAME"
-              value: "quay.io/deisci/slugbuilder:canary"
+              value: "quay.io/deisci/slugbuilder:git-a713e13"
             - name: "DOCKERBUILDER_IMAGE_NAME"
               value: "quay.io/deisci/dockerbuilder:canary"
             # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
