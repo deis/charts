@@ -1,25 +1,21 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: deis-tests
+  name: workflow-dev-e2e
   namespace: deis
   labels:
     heritage: deis
 spec:
   restartPolicy: Never
   containers:
-  - name: deis-e2e
-    image: quay.io/deisci/deis-e2e:canary
+  - name: tests
+    image: quay.io/deisci/workflow-e2e:canary
     imagePullPolicy: Always
-    command: ["ginkgo"]
-    args: ["-slowSpecThreshold=120.00", "-noisyPendings=false", "-progress", "tests/"]
     env:
+      - name: GINKGO_NODES
+        value: "15"
       - name: JUNIT
         value: "true"
-      - name: DEFAULT_MAX_TIMEOUT
-        value: "300s"
-      - name: DEFAULT_EVENTUALLY_TIMEOUT
-        value: "30s"
     volumeMounts:
     - name: artifact-volume
       mountPath: /root
