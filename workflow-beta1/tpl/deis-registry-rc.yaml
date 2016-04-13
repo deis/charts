@@ -18,8 +18,8 @@ spec:
       serviceAccount: deis-registry
       containers:
         - name: deis-registry
-          image: quay.io/deis/registry:v2.0.0-beta1
-          imagePullPolicy: IfNotPresent
+          image: quay.io/{{.registry.org}}/registry:{{.registry.docker-tag}}
+          imagePullPolicy: {{.registry.pull-policy}}
           livenessProbe:
             httpGet:
               path: /v2/
