@@ -18,8 +18,8 @@ spec:
       serviceAccount: deis-builder
       containers:
         - name: deis-builder
-          image: quay.io/deisci/builder:git-8df2568
-          imagePullPolicy: IfNotPresent
+          image: quay.io/{{.builder.org}}/builder:{{.builder.docker-tag}}
+          imagePullPolicy: {{.builder.pull-policy}}
           ports:
             - containerPort: 2223
               name: ssh

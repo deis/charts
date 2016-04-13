@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: deis-logger
-        image: quay.io/deisci/logger:git-a3994e4
-        imagePullPolicy: IfNotPresent
+        image: quay.io/{{.logger.org}}/logger:{{.logger.docker-tag}}
+        imagePullPolicy: {{.router.pull-policy}}
         ports:
         - containerPort: 8088
           name: http

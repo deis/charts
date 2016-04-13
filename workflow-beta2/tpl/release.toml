@@ -1,0 +1,49 @@
+[builder]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "git-8df2568"
+
+[slugbuilder]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "v2.0.0-beta1"
+
+[dockerbuilder]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "v2.0.0-beta1"
+
+[controller]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "git-3c07d6c"
+
+[database]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "git-03ddca5"
+
+[registry]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "git-93d8fb2"
+
+[workflow-manager]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "v2.0.0-beta1"
+
+[logger]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "git-a3994e4"
+
+[minio]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "git-e7f7ca1"
+
+[router]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "git-e674c68"
