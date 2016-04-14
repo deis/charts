@@ -18,6 +18,11 @@ org = "deisci"
 pull-policy = "IfNotPresent"
 docker-tag = "git-3c07d6c"
 
+[slugrunner]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "git-bcdeae2"
+
 [database]
 org = "deisci"
 pull-policy = "IfNotPresent"

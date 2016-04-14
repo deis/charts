@@ -39,7 +39,7 @@ spec:
             - name: "APP_STORAGE"
               value: {{default "minio" .storage}}
             - name: "SLUGRUNNER_IMAGE_NAME"
-              value: "quay.io/deisci/slugrunner:git-12dc491"
+              value: "quay.io/{{.slugrunner.org}}/slugrunner:{{.slugrunner.docker-tag}}"
             - name: DEIS_SECRET_KEY
               valueFrom:
                 secretKeyRef:
