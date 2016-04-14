@@ -1,3 +1,4 @@
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifest/deis-minio-rc.yaml $HELM_GENERATE_DIR/tpl/deis-minio-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -17,8 +18,8 @@ spec:
       serviceAccount: deis-minio
       containers:
         - name: deis-minio
-          image: quay.io/{{.minio.org}}/minio:{{.minio.docker-tag}}
-          imagePullPolicy: {{.minio.pull-policy}}
+          image: quay.io/{{.minio.org}}/minio:{{.minio.dockerTag}}
+          imagePullPolicy: {{.minio.pullPolicy}}
           env:
             - name: HEALTH_SERVER_PORT
               value: "8082"

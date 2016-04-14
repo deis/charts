@@ -47,3 +47,63 @@ key_json = '''Paste JSON data here.'''
 registry_bucket = "your-regsitry-bucket-name"
 database_bucket = "your-database-bucket-name"
 builder_bucket = "your-builder-bucket-name"
+
+[builder]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "git-8df2568"
+
+[slugbuilder]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[dockerbuilder]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[controller]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "git-3c07d6c"
+
+[slugrunner]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "git-bcdeae2"
+
+[database]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "git-03ddca5"
+
+[registry]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "git-93d8fb2"
+
+[workflow-manager]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[logger]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "git-a3994e4"
+
+[minio]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "git-0c71217"
+
+[router]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "git-e674c68"
+
+[fluentd]
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "git-c2910f1"

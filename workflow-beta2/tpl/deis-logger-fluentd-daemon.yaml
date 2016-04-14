@@ -1,3 +1,4 @@
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifest/deis-logger-fluentd-daemon.yaml $HELM_GENERATE_DIR/tpl/deis-logger-fluentd-daemon.yaml
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
@@ -15,8 +16,8 @@ spec:
       serviceAccount: deis-logger-fluentd
       containers:
       - name: deis-logger-fluentd
-        image: quay.io/{{.fluentd.org}}/fluentd:{{.fluentd.docker-tag}}
-        imagePullPolicy: {{.fluentd.pull-policy}}
+        image: quay.io/{{.fluentd.org}}/fluentd:{{.fluentd.dockerTag}}
+        imagePullPolicy: {{.fluentd.pullPolicy}}
         securityContext:
           privileged: true
         volumeMounts:

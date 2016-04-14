@@ -1,4 +1,4 @@
-#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-database-rc.yaml -d $HELM_GENERATE_DIR/tpl/objectstorage.toml $HELM_GENERATE_DIR/tpl/deis-database-rc.yaml
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-database-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-database-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -18,8 +18,8 @@ spec:
       serviceAccount: deis-database
       containers:
         - name: deis-database
-          image: quay.io/{{.database.org}}/postgres:{{.database.docker-tag}}
-          imagePullPolicy: {{.database.pull-policy}}
+          image: quay.io/{{.database.org}}/postgres:{{.database.dockerTag}}
+          imagePullPolicy: {{.database.pullPolicy}}
           ports:
             - containerPort: 5432
           env:

@@ -1,4 +1,4 @@
-#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-registry-rc.yaml -d $HELM_GENERATE_DIR/tpl/objectstorage.toml $HELM_GENERATE_DIR/tpl/deis-registry-rc.yaml
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-registry-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-registry-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -18,8 +18,8 @@ spec:
       serviceAccount: deis-registry
       containers:
         - name: deis-registry
-          image: quay.io/{{.database.org}}/registry:{{.database.docker-tag}}
-          imagePullPolicy: {{.database.pull-policy}}
+          image: quay.io/{{.database.org}}/registry:{{.database.dockerTag}}
+          imagePullPolicy: {{.database.pullPolicy}}
           livenessProbe:
             httpGet:
               path: /v2/
