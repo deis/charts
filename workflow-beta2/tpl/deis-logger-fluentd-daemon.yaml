@@ -7,11 +7,16 @@ metadata:
   labels:
     heritage: deis
 spec:
+  selector:
+    matchLabels:
+      app: deis-logger-fluentd
+      heritage: deis
   template:
     metadata:
       name: deis-logger-fluentd
       labels:
         heritage: deis
+        app: deis-logger-fluentd
     spec:
       serviceAccount: deis-logger-fluentd
       containers:
