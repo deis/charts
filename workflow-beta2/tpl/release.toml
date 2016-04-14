@@ -52,3 +52,8 @@ docker-tag = "git-0c71217"
 org = "deisci"
 pull-policy = "IfNotPresent"
 docker-tag = "git-e674c68"
+
+[fluentd]
+org = "deisci"
+pull-policy = "IfNotPresent"
+docker-tag = "git-c2910f1"

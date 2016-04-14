@@ -15,8 +15,8 @@ spec:
       serviceAccount: deis-logger-fluentd
       containers:
       - name: deis-logger-fluentd
-        image: quay.io/deisci/fluentd:git-c2910f1
-        imagePullPolicy: IfNotPresent
+        image: quay.io/{{.fluentd.org}}/fluentd:{{.fluentd.docker-tag}}
+        imagePullPolicy: {{.fluentd.pull-policy}}
         securityContext:
           privileged: true
         volumeMounts:
