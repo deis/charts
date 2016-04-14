@@ -1,4 +1,4 @@
-#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifest/deis-router-rc.yaml $HELM_GENERATE_DIR/tpl/deis-router-rc.yaml
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-router-rc.yaml $HELM_GENERATE_DIR/tpl/deis-router-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
