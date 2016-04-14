@@ -18,7 +18,7 @@ spec:
       containers:
       - name: deis-logger
         image: quay.io/{{.logger.org}}/logger:{{.logger.dockerTag}}
-        imagePullPolicy: {{.router.pullPolicy}}
+        imagePullPolicy: {{.logger.pullPolicy}}
         ports:
         - containerPort: 8088
           name: http
