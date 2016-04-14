@@ -33,13 +33,13 @@ spec:
             - name: BUILDER_STORAGE
               value: {{default "minio" .storage}}
             - name: "SLUGBUILDER_IMAGE_NAME"
-              value: "quay.io/deisci/slugbuilder:git-a713e13"
+              value: "quay.io/{{.slugbuilder.org}}/slugbuilder:{{.slugbuilder.docker-tag}}
             - name: "DOCKERBUILDER_IMAGE_NAME"
-              value: "quay.io/deisci/dockerbuilder:git-36ea3fa"
+              value: "quay.io/{{.dockerbuilder.org}}/dockerbuilder:{{.dockerbuilder.docker-tag}}"
             - name: "SLUG_BUILDER_IMAGE_PULL_POLICY"
-              value: "IfNotPresent"
+              value: "{{.slugbuilder.pull-policy}}"
             - name: "DOCKER_BUILDER_IMAGE_PULL_POLICY"
-              value: "IfNotPresent"
+              value: "{{.dockerbuilder.pull-policy}}"
             # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
             - name: "DOCKERIMAGE"
               value: "1"
