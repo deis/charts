@@ -85,7 +85,7 @@ org = "deisci"
 pullPolicy = "IfNotPresent"
 dockerTag = "git-93d8fb2"
 
-[workflow-manager]
+[workflowManager]
 org = "deisci"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-beta1"
