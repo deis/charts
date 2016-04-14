@@ -21,7 +21,9 @@
 storage = "minio"
 
 [minio]
-# This space intentionally left blank.
+org = "deisci"
+pullPolicy = "IfNotPresent"
+dockerTag = "git-0c71217"
 
 [s3]
 accesskey = "YOUR KEY HERE"
@@ -92,11 +94,6 @@ dockerTag = "v2.0.0-beta1"
 org = "deisci"
 pullPolicy = "IfNotPresent"
 dockerTag = "git-a3994e4"
-
-[minio]
-org = "deisci"
-pullPolicy = "IfNotPresent"
-dockerTag = "git-0c71217"
 
 [router]
 org = "deisci"
