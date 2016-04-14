@@ -41,7 +41,7 @@ docker-tag = "git-a3994e4"
 [minio]
 org = "deisci"
 pull-policy = "IfNotPresent"
-docker-tag = "git-e7f7ca1"
+docker-tag = "git-bd66397"
 
 [router]
 org = "deisci"
