@@ -23,7 +23,7 @@ storage = "minio"
 [minio]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "git-0c71217"
+dockerTag = "git-98c3647"
 
 [s3]
 accesskey = "YOUR KEY HERE"
@@ -53,22 +53,22 @@ builder_bucket = "your-builder-bucket-name"
 [builder]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "git-8df2568"
+dockerTag = "git-f278e80"
 
 [slugbuilder]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "v2.0.0-beta1"
+dockerTag = "git-a713e13"
 
 [dockerbuilder]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "v2.0.0-beta1"
+dockerTag = "git-36ea3fa"
 
 [controller]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "git-3c07d6c"
+dockerTag = "git-304e641"
 
 [slugrunner]
 org = "deisci"
@@ -78,7 +78,7 @@ dockerTag = "git-bcdeae2"
 [database]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "git-03ddca5"
+dockerTag = "git-07d1a27"
 
 [registry]
 org = "deisci"
@@ -88,17 +88,17 @@ dockerTag = "git-93d8fb2"
 [workflowManager]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "v2.0.0-beta1"
+dockerTag = "git-9ba6db7"
 
 [logger]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "git-a3994e4"
+dockerTag = "git-c54fd36"
 
 [router]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "git-e674c68"
+dockerTag = "git-0c743f0"
 
 [fluentd]
 org = "deisci"

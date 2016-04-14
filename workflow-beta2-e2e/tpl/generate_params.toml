@@ -1,4 +1,4 @@
 [e2e]
 org = "deisci"
-dockerTag = "git-0b0156d"
+dockerTag = "git-9139411"
 pullPolicy = "IfNotPresent"
