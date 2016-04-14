@@ -68,7 +68,7 @@ dockerTag = "git-36ea3fa"
 [controller]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "git-304e641"
+dockerTag = "git-72f97bc"
 
 [slugrunner]
 org = "deisci"
