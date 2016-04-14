@@ -33,7 +33,7 @@ spec:
             - name: BUILDER_STORAGE
               value: {{default "minio" .storage}}
             - name: "SLUGBUILDER_IMAGE_NAME"
-              value: "quay.io/{{.slugbuilder.org}}/slugbuilder:{{.slugbuilder.dockerTag}}
+              value: "quay.io/{{.slugbuilder.org}}/slugbuilder:{{.slugbuilder.dockerTag}}"
             - name: "DOCKERBUILDER_IMAGE_NAME"
               value: "quay.io/{{.dockerbuilder.org}}/dockerbuilder:{{.dockerbuilder.dockerTag}}"
             - name: "SLUG_BUILDER_IMAGE_PULL_POLICY"
