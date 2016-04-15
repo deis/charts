@@ -1,0 +1,81 @@
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-builder-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-builder-rc.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-builder
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    app: deis-builder
+  template:
+    metadata:
+      labels:
+        app: deis-builder
+    spec:
+      serviceAccount: deis-builder
+      containers:
+        - name: deis-builder
+          image: quay.io/{{.builder.org}}/builder:{{.builder.dockerTag}}
+          imagePullPolicy: {{.builder.pullPolicy}}
+          ports:
+            - containerPort: 2223
+              name: ssh
+            - containerPort: 8092
+              name: healthsrv
+          env:
+            - name: "HEALTH_SERVER_PORT"
+              value: "8092"
+            - name: "EXTERNAL_PORT"
+              value: "2223"
+            - name: BUILDER_STORAGE
+              value: {{default "minio" .storage}}
+            - name: "SLUGBUILDER_IMAGE_NAME"
+              value: "quay.io/{{.slugbuilder.org}}/slugbuilder:{{.slugbuilder.dockerTag}}"
+            - name: "DOCKERBUILDER_IMAGE_NAME"
+              value: "quay.io/{{.dockerbuilder.org}}/dockerbuilder:{{.dockerbuilder.dockerTag}}"
+            - name: "SLUG_BUILDER_IMAGE_PULL_POLICY"
+              value: "{{.slugbuilder.pullPolicy}}"
+            - name: "DOCKER_BUILDER_IMAGE_PULL_POLICY"
+              value: "{{.dockerbuilder.pullPolicy}}"
+            # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
+            - name: "DOCKERIMAGE"
+              value: "1"
+            - name: "DEBUG"
+              value: "true"
+            - name: "POD_NAMESPACE"
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: DEIS_BUILDER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: builder-key-auth
+                  key: builder-key
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8092
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8092
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+          volumeMounts:
+            - name: builder-key-auth
+              mountPath: /var/run/secrets/api/auth
+              readOnly: true
+            - name: objectstore-creds
+              mountPath: /var/run/secrets/deis/objectstore/creds
+      volumes:
+        - name: builder-key-auth
+          secret:
+            secretName: builder-key-auth
+        - name: objectstore-creds
+          secret:
+            secretName: objectstorage-keyfile
