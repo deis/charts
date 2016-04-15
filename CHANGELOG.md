@@ -1,0 +1,118 @@
+### v2.0.0-beta1
+
+#### Features
+
+ - [`c71fd05`](https://github.com/deis/charts/commit/c71fd0518bf4655eeb319286831d86e72747a9ba) deis-tests: mount /tmp emptyDir for storing artifacts
+ - [`48bbf71`](https://github.com/deis/charts/commit/48bbf71e9f8d439bfdf713c66f04c6eb315e7e3e) Makefile/ci.sh: use bumpver, simplify calls to chart-mate
+ - [`e4c0172`](https://github.com/deis/charts/commit/e4c0172bd4dd88a42c04306dc6474337dc210e14) deis-tests: enable junit test reporting
+ - [`3f2b185`](https://github.com/deis/charts/commit/3f2b185d77c82847a953ca3c12168e6c8a5595e9) mutable: change slugrunner,slugbuilder image setting to point canary
+ - [`9bbdbfa`](https://github.com/deis/charts/commit/9bbdbfa2ba75faa59d59004bf5c48044846cc38c) workflow-manager: added workflow-manager to deis-dev manifests
+ - [`7373b46`](https://github.com/deis/charts/commit/7373b46444e00d2f6f665f61c1457d4c180aae71) builder: get the slug/docker builder images from the environment
+ - [`3b299d5`](https://github.com/deis/charts/commit/3b299d5fa2510e03e4fa474ac6188bb97dbd416a) dockerfile: Added Dockerfile for deis chart e2e test.
+ - [`238b6f6`](https://github.com/deis/charts/commit/238b6f684c80f030dd69f30a3ed950a60edd0903) fix: move builder and workflow rc to tpl direcotry
+ - [`6651fef`](https://github.com/deis/charts/commit/6651fefd4baa9bf333b9c6de030255e086a5969c) storage: add storage envs to builder and workflow rcs
+ - [`abb282e`](https://github.com/deis/charts/commit/abb282e42e3c26e74110a0fcd9845adcef824c1d) postgres: use object storage tempaltes
+ - [`1b71b8a`](https://github.com/deis/charts/commit/1b71b8acf64334c471878c55e9509b716d9060eb) registry: add object storage templates
+ - [`d6469ce`](https://github.com/deis/charts/commit/d6469ced90c650f3ed152972ff3959fd74b43fc4) tests: move most of the infrastructure provisioning to chart-mate
+ - [`84bf578`](https://github.com/deis/charts/commit/84bf578988d9e96e6f96e5b08293eefd528fb66f) _scripts: check deis platform url multiple times
+ - [`2526ca8`](https://github.com/deis/charts/commit/2526ca840fdd1faf9daabc17b0bd30fd67661dc5) _scripts: use git sha of e2e test docker image instead of canary
+ - [`f813c40`](https://github.com/deis/charts/commit/f813c40526f98aab1adddb9b0a6122a5e72c08b2) _scripts: improve version bumper script
+ - [`bd7119f`](https://github.com/deis/charts/commit/bd7119f0d5ad67ffe46f8bba32bb607279266fbc) _scripts: add version bumper for ci
+ - [`c138f2b`](https://github.com/deis/charts/commit/c138f2bc77763af0d8ea8b0097ec3f3a2bbb1a3c) deis-dev: use randAlphaNum
+ - [`d6a746e`](https://github.com/deis/charts/commit/d6a746e82b37393e8b5c359c532c123745e559f6) deis-dev: add username/password secret
+ - [`8ba25bf`](https://github.com/deis/charts/commit/8ba25bf7c6c22dd9c12922907ae961f64cdd9ae0) deis-dev/manifests/deis-builder-rc.yaml: add liveness and readiness probes
+ - [`a1cede7`](https://github.com/deis/charts/commit/a1cede7a52bda5b5885317778c9cd30540077c11) deis-dev: mount minio secrets into deis-database
+ - [`6de0b85`](https://github.com/deis/charts/commit/6de0b851b4fb018b63667839d982a29f2bbf05b2) deis-dev: add postgres livenessProbe
+ - [`a0f2b9b`](https://github.com/deis/charts/commit/a0f2b9b14c8fb7026d759dbcb1dadca440b29430) tests: improve error handling and use one loop function for all pod interactions
+ - [`20d4e4e`](https://github.com/deis/charts/commit/20d4e4e850cb60ee69470c9281d9a439457b758b) deis-tests: always pull updated test image
+ - [`af6fd89`](https://github.com/deis/charts/commit/af6fd89b1cc8f2ec14e3f39408983fecb01812ad) tests: add e2e test running in gke
+ - [`a88df5d`](https://github.com/deis/charts/commit/a88df5db5c631b24eb0b83aa6b153997052515af) deis-tests: add e2e test chart
+ - [`16a6a2d`](https://github.com/deis/charts/commit/16a6a2d3652ea8e747b52ae7b16c933d50bac1cb) logger: - adding logger support to the chart
+ - [`99a21bd`](https://github.com/deis/charts/commit/99a21bd5f87b3b485ad427ea7ac239d1e1a1d214) router: Add secret bearing dhparam for router
+ - [`ff7b359`](https://github.com/deis/charts/commit/ff7b359333d5afe3ea488e6fd3b95f7a8115934e) workflow: generate secrets for builder and django
+ - [`50a291c`](https://github.com/deis/charts/commit/50a291c5cf6754c4b1b31f6bcc2a8150b1cc2f42) registry: add k8s readiness and liveness probes
+ - [`98293c3`](https://github.com/deis/charts/commit/98293c35d2965cf45a4269a80d713fbf62551f22) router: add standalone charts for router and router-dev
+ - [`9c0f390`](https://github.com/deis/charts/commit/9c0f3905318a11bf807e7aa8a5121f905f16e3ea) manifests: etcd - move volumes part, just to have a consistency…
+ - [`a78df9c`](https://github.com/deis/charts/commit/a78df9c6befd5eee63d9d036d56fcd2d0b819846) router: add service for router
+ - [`73583c3`](https://github.com/deis/charts/commit/73583c3c79410f407e68f3b4c8fa3e1f26630aa5) router: add support for non-proxy-proto healthz
+ - [`f2dac9a`](https://github.com/deis/charts/commit/f2dac9a8c25a6344192a6c376c1d078b4b55c83d) workflow: make workflow routable
+ - [`b7c5237`](https://github.com/deis/charts/commit/b7c52373e0b3e109a4cc2858e7664a71051bbc76) etcd: use downward API for namespaces
+ - [`4b65923`](https://github.com/deis/charts/commit/4b6592345ab88daea04e1d7d12f14b716706b4cf) manifests: add router manifest
+ - [`7668cbf`](https://github.com/deis/charts/commit/7668cbf48a2e1ea0990b9946e1ddc4fef672b0e3) README.md: add hacking instructions
+
+#### Fixes
+
+ - [`ef47ffb`](https://github.com/deis/charts/commit/ef47ffb12058e5d4b5f4cedac5cde126fda86353) builder: disable DEBUG level in builder
+ - [`a5d6e67`](https://github.com/deis/charts/commit/a5d6e67551a0d637f07ff2d7695ea8ac46b4e0d1) (all): remove duplicate init call
+ - [`de8b45e`](https://github.com/deis/charts/commit/de8b45e2b775d2b98b690050a5a042cf05550fd5) beta1/minio: Fix image pull policy to IfNotPresent
+ - [`cd396ae`](https://github.com/deis/charts/commit/cd396ae4d6bff24c8bf83bf7e20e0c1651d30a9f) router-dev: Fix metadata issue preventing install
+ - [`2a84e44`](https://github.com/deis/charts/commit/2a84e4459ca5433ba5fa179f543c59252ecfdd46) charts: fixup workflow-beta1-test chart name
+ - [`8619202`](https://github.com/deis/charts/commit/861920226063dd6911b7093663b595562e72d791) registry:  use the canary tag
+ - [`83fd231`](https://github.com/deis/charts/commit/83fd231405ab37e4dc4f2f2db37b79801e27c03c) deis-dev: use canary instead of v2-beta where it makes sense
+ - [`87778b5`](https://github.com/deis/charts/commit/87778b5f5c13963df556cda394d64780285893d8) deis-dev: change controller tag
+ - [`b30f59f`](https://github.com/deis/charts/commit/b30f59fe29d6bd40ddfea64950c6f2810c1e2ebd) quay: now with a working image!
+ - [`9116831`](https://github.com/deis/charts/commit/9116831ea745c850abe49a8ff2080619bff1191c) deis-dev/manifests/deis-registry-service.yaml: make the registry service listen on port 80
+ - [`9262e3d`](https://github.com/deis/charts/commit/9262e3dafeaf1616737e359bd08d129b00ce3f71) deis-dev: use minio as the default storage
+ - [`f164079`](https://github.com/deis/charts/commit/f1640796e6fbc7e1268002633933667cbbacc2f2) deis-logger/manifests/deis-logger-svc.yaml: make the logger service run on port 80
+ - [`a8931ad`](https://github.com/deis/charts/commit/a8931ad3715d896fc1001ca2b3c4b3b4457fea7d) deis-dev/manifests/deis-database-service.yaml: rename the postgres port appropriately
+ - [`a8504a0`](https://github.com/deis/charts/commit/a8504a08f2580caa19c1ae14f9b838832b130c1e) logger: Add readiness and liveness probes
+ - [`c75c6d3`](https://github.com/deis/charts/commit/c75c6d37441353a9f10d5c01cec8248885dedf8e) deis-tests: use canary tag for image
+ - [`dc72b44`](https://github.com/deis/charts/commit/dc72b44847637f6f1b6ed026a158ed54c9444894) deis-dev: change database liveness probe to readiness
+ - [`9e15dd3`](https://github.com/deis/charts/commit/9e15dd3fdcb1a07884c5f97cd661d257b174e521) object_store_template: use '_' instead of '-' for the key names …
+ - [`df09042`](https://github.com/deis/charts/commit/df0904253aa9dd789a052b920dad24b7876667c8) deis-dev: triple-single-quote JSON value for toml
+ - [`6a9cc73`](https://github.com/deis/charts/commit/6a9cc73997bea3ddff557f0d70fbd23f5e570f02) deis-dev/workflow: increase timeouts for readiness/liveness probes
+ - [`8f31cdd`](https://github.com/deis/charts/commit/8f31cdd9645ce6845a876e81c4b69714084d1ac5) test: remove download-jq
+ - [`7900fae`](https://github.com/deis/charts/commit/7900fae1c17e058d2d7a42cec4e07255568416a2) fluentd: Remove cpu limits from fluentd
+ - [`4f63379`](https://github.com/deis/charts/commit/4f6337945fdf18132ac22ea8a1968fe63036b6c7) chart-version-bumper: remove space after -i on sed
+ - [`4f5e864`](https://github.com/deis/charts/commit/4f5e864c8bcf2ff6be7ce4e86e9a182eb801e71f) logger: Only use unprivileged ports
+ - [`8025eb8`](https://github.com/deis/charts/commit/8025eb8059aa07727746f5b1a4555de5c0cced5d) router: Fix incorrect host port mappings
+ - [`d83f43e`](https://github.com/deis/charts/commit/d83f43e947e88d460ba6d8ae13b43d7fba9cacee) router: Use unprivileged target ports
+ - [`3865bca`](https://github.com/deis/charts/commit/3865bca16366e7f8d8703fab12d038dc69ae1b1b) deis-dev: do not use random ascii code for username/password
+ - [`9959924`](https://github.com/deis/charts/commit/99599243d407438916e51afdeb64902d65a042af) deis-dev: hotfix chart syntax
+ - [`655039c`](https://github.com/deis/charts/commit/655039ce30e6cca6f422e0c270747851624b3ef6) router: Drop PROXY protocol option
+ - [`42e13bb`](https://github.com/deis/charts/commit/42e13bb15ad4720ed189ddc35a8877d4b84a9934) deis-dev/manifests/deis-minio-rc.yaml: add probes to the minio RC
+ - [`d441e42`](https://github.com/deis/charts/commit/d441e42901274f2486b9af6ec16995fc0f1d6f21) deis-builder-rc.yaml: add debug to the env for deis-dev builders
+ - [`a3f734b`](https://github.com/deis/charts/commit/a3f734b00b05ba4c66f38c7b2c08d6c4b33bbd72) deis-builder-rc.yaml: remove DOCKERIMAGE env var"
+ - [`20efeec`](https://github.com/deis/charts/commit/20efeecf8ca5280a4ca8875cccb3227ab0530dc8) deis-builder-rc.yaml: remove DOCKERIMAGE env var
+ - [`47b9f77`](https://github.com/deis/charts/commit/47b9f778481bcd7808c4bdf2b8422278ac6a32f2) (all): use standard app labels & selectors, add heritage label where necessary [WIP]
+ - [`1866922`](https://github.com/deis/charts/commit/1866922396dd38fdc03be82e1ffe631299094154) router: add service account needed by router
+ - [`74a4834`](https://github.com/deis/charts/commit/74a483456a137507cc0d8f3b906aa9823986b663) readme: update deis v2 install part
+ - [`9e9af51`](https://github.com/deis/charts/commit/9e9af51d7f78745f4e200af067133b1eec687d5a) readme: add deis namespace to kubectl commands
+ - [`f03f5f4`](https://github.com/deis/charts/commit/f03f5f4e1179381c1c4e726e6185a9c750400521) docs: update the client url to the alpha client
+ - [`6aee840`](https://github.com/deis/charts/commit/6aee8403c739cfcf6bd3f75a55b134c13a11d9ef) deis-workflow-rc.yaml: including & mounting minio creds
+ - [`a0ba863`](https://github.com/deis/charts/commit/a0ba86398a7e83d14a69f548fca0d24051081b44) deis-builder-rc.yaml: tell the RC what namespace it's in
+ - [`be63cd4`](https://github.com/deis/charts/commit/be63cd4e10a0ef17e5446b7dd129221930edcd59) deis-builder-rc.yaml: pass env var to make the minio client work…
+ - [`b7bbf27`](https://github.com/deis/charts/commit/b7bbf275696b45dcb78f7acd1a7e1b13ab6f71d3) deis-builder-rc.yaml: add and mount secret for minio
+ - [`468c0ca`](https://github.com/deis/charts/commit/468c0caa58d86de490b27d169920450c377bba3a) deis-builder-service.yaml: add target port for the builder RC
+ - [`92d9372`](https://github.com/deis/charts/commit/92d93727fd98cf2ce505660659b45b17ef3aa94a) deis-builder-service.yaml: change selector to name
+ - [`c5b3026`](https://github.com/deis/charts/commit/c5b30264098568dea6b76d7c74464b543cf3aac7) minio: use deisci/minio:v2-alpha image
+ - [`229cf8d`](https://github.com/deis/charts/commit/229cf8d55e2b035c8ea311334ec0cb9ca0179b54) deis: remove redundant TCP protocol
+ - [`2bc8110`](https://github.com/deis/charts/commit/2bc81100dbc87ea50c8a0b50393cd385f2c6d0e0) deis: remove redundant targetPort
+ - [`2f6e3bb`](https://github.com/deis/charts/commit/2f6e3bb137293f0a7017f85b012a818b630a8040) deis: use official database repo
+
+#### Documentation
+
+ - [`e247886`](https://github.com/deis/charts/commit/e247886098fe42093a1c78984b70de37714cdafd) readme: added reference to workflow manager
+ - [`519ef4e`](https://github.com/deis/charts/commit/519ef4e0d12d7dbd9244138e365f7a700c407c57) README.md: use deis-dev chart
+
+#### Maintenance
+
+ - [`bdc3e3f`](https://github.com/deis/charts/commit/bdc3e3f1c14edc0369bee9994d74d4d1587b4c5f) release: create beta1 charts
+ - [`f7746ba`](https://github.com/deis/charts/commit/f7746ba564a4cb74de1907062c7a9e60e7e2977e) router: Cleanup standalone router charts
+ - [`10d09b2`](https://github.com/deis/charts/commit/10d09b2e25d7e7b5264093a2fb5ca9fd553c8584) logger: Add beta1 chart for logger
+ - [`8f25a43`](https://github.com/deis/charts/commit/8f25a43a124ba1f93f07d0b9e3244b3162e51322) controller-rc: update controller-rc with latest beta-approved tag
+ - [`4a642e4`](https://github.com/deis/charts/commit/4a642e4dccf8c183f81371cb6ac9fd9e31ab78ee) workflow-beta1-test: create chart with immutable git shas
+ - [`ea6c3f4`](https://github.com/deis/charts/commit/ea6c3f4b61ce00236466abdc5bf47e697d457dc4) workflow: remove workflow chart
+ - [`c2672f4`](https://github.com/deis/charts/commit/c2672f4bc5fcc515a7b1722dd6f0b00f1f6e05b4) database: Transition to canary build where it makes sense
+ - [`2e3cf7b`](https://github.com/deis/charts/commit/2e3cf7b3485dc428734508d1bc17cb7d52d9361e) router: Transition to canary images where it makes sense
+ - [`b671ac8`](https://github.com/deis/charts/commit/b671ac86dfb2f6d5cc97e18ea919fb8dfac343ed) deis-tests: sync command-line e2e options
+ - [`03c6591`](https://github.com/deis/charts/commit/03c6591af8ad081f956a0c95123f0db2593d9394) versions: use immutable tag version for workflow
+ - [`4db45fb`](https://github.com/deis/charts/commit/4db45fb4c9502f951077382b3abc81479fa0d30f) deis-dev: remove database envvars
+ - [`ff1e299`](https://github.com/deis/charts/commit/ff1e299b5af494f9cbdf98c1e8892047917e188d) router: Stop using JSON for router configuration
+ - [`bbb6aa6`](https://github.com/deis/charts/commit/bbb6aa6af50d6a663ab8dace3412da82c9c9ed09) release: set image pull policy and point at deis registry repos
+ - [`19ad3c0`](https://github.com/deis/charts/commit/19ad3c07fb3bd10b7cb5ce008c198ea3738efcc6) workflow: tweak workflow router config to match v1.x
+ - [`1fc43cb`](https://github.com/deis/charts/commit/1fc43cb6f63e343b64d961dd43fddcdaefa6a82d) router: use downward api to get namespace
+ - [`9abf071`](https://github.com/deis/charts/commit/9abf071e2c796e27523668d8fa1479109bb9a587) router: switch to using .io in annotation prefixes
+ - [`050d201`](https://github.com/deis/charts/commit/050d201686b08f8d7326b832aee549c1c87eb585) router: prefix annotations with deis.com/
+ - [`6fa293c`](https://github.com/deis/charts/commit/6fa293c1f0bed3ab8b756a6f469b048f9130f16c) deis: use deis namespace for all manifests
+ - [`65e3c7e`](https://github.com/deis/charts/commit/65e3c7eaa6babf2dafeae2ee401fc4da06c69dbb) manifests: use imagePullPolicy: Always
