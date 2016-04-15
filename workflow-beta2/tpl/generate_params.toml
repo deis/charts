@@ -23,7 +23,7 @@ storage = "minio"
 [minio]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
 
 [s3]
 accesskey = "YOUR KEY HERE"
@@ -53,54 +53,54 @@ builder_bucket = "your-builder-bucket-name"
 [builder]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
 
 [slugbuilder]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
 
 [dockerbuilder]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
 
 [controller]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
 
 [slugrunner]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
 
 [database]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
 
 [registry]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
 
 [workflowManager]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
 
 [logger]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
 
 [router]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
 
 [fluentd]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "2.0.0-beta2"
+dockerTag = "v2.0.0-beta2"
