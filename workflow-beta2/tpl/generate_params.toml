@@ -58,7 +58,7 @@ dockerTag = "git-f278e80"
 [slugbuilder]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "git-a713e13"
+dockerTag = "git-c55ef21"
 
 [dockerbuilder]
 org = "deisci"
@@ -73,7 +73,7 @@ dockerTag = "git-72f97bc"
 [slugrunner]
 org = "deisci"
 pullPolicy = "IfNotPresent"
-dockerTag = "git-bcdeae2"
+dockerTag = "git-ca4bcdc"
 
 [database]
 org = "deisci"
