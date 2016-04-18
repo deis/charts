@@ -35,7 +35,7 @@ spec:
             - name: "SLUGBUILDER_IMAGE_NAME"
               value: "quay.io/{{.slugbuilder.org}}/slugbuilder:{{.slugbuilder.dockerTag}}"
             - name: "SLUG_BUILDER_IMAGE_PULL_POLICY"
-              value: "{{.slugbuilder-pullPolicy}}"
+              value: "{{.slugbuilder.pullPolicy}}"
             - name: "DOCKERBUILDER_IMAGE_NAME"
               value: "quay.io/{{.dockerbuilder.org}}/dockerbuilder:{{.dockerbuilder.dockerTag}}"
             - name: "DOCKER_BUILDER_IMAGE_PULL_POLICY"
