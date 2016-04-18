@@ -2,3 +2,8 @@
 org = "deisci"
 dockerTag = "git-bc95ebd"
 pullPolicy = "Always"
+
+[fluentd]
+org = "deis"
+dockerTag = "v2-beta"
+pullPolicy = "Always"
