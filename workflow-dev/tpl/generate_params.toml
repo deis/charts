@@ -46,7 +46,7 @@ builder_container = "your-builder-container-name"
 # key_json is expanded into a JSON file on the remote server. It must be
 # well-formatted JSON data.
 key_json = '''Paste JSON data here.'''
-registry_bucket = "your-regsitry-bucket-name"
+registry_bucket = "your-registry-bucket-name"
 database_bucket = "your-database-bucket-name"
 builder_bucket = "your-builder-bucket-name"
 
