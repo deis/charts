@@ -18,7 +18,7 @@ spec:
       serviceAccount: deis-registry
       containers:
         - name: deis-registry
-          image: quay.io/{{.registry.org}}/registry:{{.registry.dockerTag}}
+          image: quay.io/{{.registry.org}}/registry:{{env "REGISTRY_GIT_TAG" | default .registry.dockerTag}}
           imagePullPolicy: {{.registry.pullPolicy}}
           livenessProbe:
             httpGet:

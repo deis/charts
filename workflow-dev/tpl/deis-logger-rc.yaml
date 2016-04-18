@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: deis-logger
-        image: quay.io/{{.logger.org}}/logger:{{.logger.dockerTag}}
+        image: quay.io/{{.logger.org}}/logger:{{env "LOGGER_GIT_TAG" | default .logger.dockerTag}}
         imagePullPolicy: {{.logger.pullPolicy}}
         ports:
         - containerPort: 8088

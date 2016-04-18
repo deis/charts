@@ -18,7 +18,7 @@ spec:
       serviceAccount: deis-minio
       containers:
         - name: deis-minio
-          image: quay.io/{{.minio.org}}/minio:{{.minio.dockerTag}}
+          image: quay.io/{{.minio.org}}/minio:{{env "MINIO_GIT_TAG" | default .minio.dockerTag}}
           imagePullPolicy: {{.minio.pullPolicy}}
           env:
             - name: HEALTH_SERVER_PORT

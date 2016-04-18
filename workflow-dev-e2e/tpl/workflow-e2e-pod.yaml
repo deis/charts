@@ -10,7 +10,7 @@ spec:
   restartPolicy: Never
   containers:
   - name: tests
-    image: quay.io/{{.e2e.org}}/workflow-e2e:{{.e2e.dockerTag}}
+    image: quay.io/{{.e2e.org}}/workflow-e2e:{{env WORKFLOW_E2E_GIT_TAG | default .e2e.dockerTag}}
     imagePullPolicy: {{.e2e.pullPolicy}}
     env:
       - name: GINKGO_NODES
