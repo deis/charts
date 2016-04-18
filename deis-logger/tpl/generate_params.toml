@@ -1,0 +1,4 @@
+[logger]
+org = "deis"
+dockerTag = "git-bc95ebd"
+pullPolicy = "Always"
