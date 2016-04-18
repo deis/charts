@@ -9,8 +9,8 @@ spec:
   restartPolicy: Never
   containers:
   - name: tests
-    image: quay.io/deisci/workflow-e2e:canary
-    imagePullPolicy: Always
+    image: quay.io/{{.e2e.org}}/workflow-e2e:{{.e2e.dockerTag}}
+    imagePullPolicy: {{.e2e.pullPolicy}}
     env:
       - name: GINKGO_NODES
         value: "15"
