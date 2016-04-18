@@ -1,3 +1,4 @@
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-logger-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-logger-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -17,8 +18,8 @@ spec:
       serviceAccount: deis-logger
       containers:
       - name: deis-logger
-        image: quay.io/deis/logger:git-bc95ebd
-        imagePullPolicy: Always
+        image: quay.io/{{.logger.org}}/logger:{{.logger.dockerTag}}
+        imagePullPolicy: {{.logger.pullPolicy}}
         ports:
         - containerPort: 8088
           name: http

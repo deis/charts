@@ -1,3 +1,4 @@
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-tests-pod.yaml $HELM_GENERATE_DIR/tpl/deis-tests-pod.yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -9,8 +10,8 @@ spec:
   restartPolicy: Never
   containers:
   - name: deis-e2e
-    image: quay.io/deis/deis-e2e:v2.0.0-beta1
-    imagePullPolicy: IfNotPresent
+    image: quay.io/{{.e2e.org}}/deis-e2e:{{.e2e.dockerTag}}
+    imagePullPolicy: {{.e2e.pullPolicy}}
     command: ["/bin/tests.test"]
     args: ["-test.v", "-test.timeout=60m", "-ginkgo.v", "-ginkgo.slowSpecThreshold=120"]
     env:

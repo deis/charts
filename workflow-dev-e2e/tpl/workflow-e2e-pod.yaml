@@ -1,3 +1,4 @@
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/workflow-e2e-pod.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/workflow-e2e-pod.yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -9,8 +10,8 @@ spec:
   restartPolicy: Never
   containers:
   - name: tests
-    image: quay.io/deisci/workflow-e2e:canary
-    imagePullPolicy: Always
+    image: quay.io/{{.e2e.org}}/workflow-e2e:{{.e2e.dockerTag}}
+    imagePullPolicy: {{.e2e.pullPolicy}}
     env:
       - name: GINKGO_NODES
         value: "15"

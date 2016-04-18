@@ -1,0 +1,9 @@
+[logger]
+org = "deis"
+dockerTag = "v2.0.0-beta1"
+pullPolicy = "IfNotPresent"
+
+[fluentd]
+org = "deisci"
+dockerTag = "git-f537de4"
+pullPolicy = "IfNotPresent"

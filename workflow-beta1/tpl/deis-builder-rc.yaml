@@ -1,4 +1,4 @@
-#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-builder-rc.yaml -d $HELM_GENERATE_DIR/tpl/objectstorage.toml $HELM_GENERATE_DIR/tpl/deis-builder-rc.yaml
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-builder-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-builder-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -18,8 +18,8 @@ spec:
       serviceAccount: deis-builder
       containers:
         - name: deis-builder
-          image: quay.io/deis/builder:v2.0.0-beta1
-          imagePullPolicy: IfNotPresent
+          image: quay.io/{{.builder.org}}/builder:{{.builder.dockerTag}}
+          imagePullPolicy: {{.builder.pullPolicy}}
           ports:
             - containerPort: 2223
               name: ssh
@@ -33,9 +33,13 @@ spec:
             - name: BUILDER_STORAGE
               value: {{default "minio" .storage}}
             - name: "SLUGBUILDER_IMAGE_NAME"
-              value: "quay.io/deis/slugbuilder:v2.0.0-beta1"
+              value: "quay.io/{{.slugbuilder.org}}/slugbuilder:{{.slugbuilder.dockerTag}}"
+            - name: "SLUG_BUILDER_IMAGE_PULL_POLICY"
+              value: "{{.slugbuilder.pullPolicy}}"
             - name: "DOCKERBUILDER_IMAGE_NAME"
-              value: "quay.io/deis/dockerbuilder:v2.0.0-beta1"
+              value: "quay.io/{{.dockerbuilder.org}}/dockerbuilder:{{.dockerbuilder.dockerTag}}"
+            - name: "DOCKER_BUILDER_IMAGE_PULL_POLICY"
+              value: {{.dockerbuilder.pullPolicy}}
             # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
             - name: "DOCKERIMAGE"
               value: "1"

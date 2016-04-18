@@ -1,3 +1,4 @@
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-workflow-manager-rc.yaml $HELM_GENERATE_DIR/tpl/deis-workflow-manager-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -17,8 +18,8 @@ spec:
       serviceAccount: deis-workflow-manager
       containers:
       - name: deis-workflow-manager
-        image: quay.io/deis/workflow-manager:v2.0.0-beta1
-        imagePullPolicy: IfNotPresent
+        image: quay.io/{{.workflowManager.org}}/workflow-manager:{{.workflowManager.dockerTag}}
+        imagePullPolicy: {{.workflowManager.pullPolicy}}
         env:
         - name: POD_NAMESPACE
           valueFrom:
