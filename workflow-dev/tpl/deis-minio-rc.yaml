@@ -17,8 +17,8 @@ spec:
       serviceAccount: deis-minio
       containers:
         - name: deis-minio
-          image: quay.io/deisci/minio:canary
-          imagePullPolicy: Always
+          image: quay.io/{{.minio.org}}/minio:{{.minio.dockerTag}}
+          imagePullPolicy: {{.minio.pullPolicy}}
           env:
             - name: HEALTH_SERVER_PORT
               value: "8082"

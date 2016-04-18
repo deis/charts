@@ -21,7 +21,9 @@
 storage = "minio"
 
 [minio]
-# This space intentionally left blank.
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
 
 [s3]
 accesskey = "YOUR KEY HERE"
@@ -47,3 +49,58 @@ key_json = '''Paste JSON data here.'''
 registry_bucket = "your-regsitry-bucket-name"
 database_bucket = "your-database-bucket-name"
 builder_bucket = "your-builder-bucket-name"
+
+[builder]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[slugbuilder]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[dockerbuilder]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[controller]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[slugrunner]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[database]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[registry]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[workflowManager]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[logger]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[router]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
+[fluentd]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
