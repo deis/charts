@@ -39,7 +39,7 @@ spec:
             - name: "DOCKERBUILDER_IMAGE_NAME"
               value: "quay.io/{{.dockerbuilder.org}}/dockerbuilder:{{.dockerbuilder.dockerTag}}"
             - name: "DOCKER_BUILDER_IMAGE_PULL_POLICY"
-              value: {{.dockerbuilder-pullPolicy}}
+              value: {{.dockerbuilder.pullPolicy}}
             # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
             - name: "DOCKERIMAGE"
               value: "1"
