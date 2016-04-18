@@ -11,7 +11,7 @@ spec:
   containers:
   - name: deis-e2e
     image: quay.io/{{.e2e.org}}/deis-e2e:{{.e2e.dockerTag}}
-    imagePullPolicy: {{.e2e.dockerTag}}
+    imagePullPolicy: {{.e2e.pullPolicy}}
     command: ["/bin/tests.test"]
     args: ["-test.v", "-test.timeout=60m", "-ginkgo.v", "-ginkgo.slowSpecThreshold=120"]
     env:
