@@ -21,7 +21,9 @@
 storage = "minio"
 
 [minio]
-# This space intentionally left blank.
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
 
 [s3]
 accesskey = "YOUR KEY HERE"
@@ -42,3 +44,58 @@ container = "your-container-name"
 # well-formatted JSON data.
 key_json = '''Paste JSON data here.'''
 bucket = "your-bucket-name"
+
+[builder]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[slugbuilder]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[dockerbuilder]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[controller]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[slugrunner]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[database]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[registry]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[workflowManager]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[logger]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[router]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"
+
+[fluentd]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0-beta1"

@@ -1,3 +1,4 @@
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-router-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-router-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -17,8 +18,8 @@ spec:
       serviceAccount: deis-router
       containers:
       - name: deis-router
-        image: quay.io/{{.router.org}}/router:{{.router.docker-tag}}
-        imagePullPolicy: {{.router.pull-policy}}
+        image: quay.io/{{.router.org}}/router:{{.router.dockerTag}}
+        imagePullPolicy: {{.router.pullPolicy}}
         env:
         - name: POD_NAMESPACE
           valueFrom:
