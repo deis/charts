@@ -4,7 +4,7 @@ set -eo pipefail
 
 rm -rf ${HOME}/.chart-mate
 
-trap "./rerun chart-mate:down" EXIT
+trap "./rerun chart-mate:uninstall && ./rerun chart-mate:down" EXIT
 
 _scripts/tests/install-chart-mate.sh
 
