@@ -66,12 +66,18 @@ spec:
             - name: builder-key-auth
               mountPath: /var/run/secrets/api/auth
               readOnly: true
+            - name: builder-ssh-private-keys
+              mountPath: /var/run/secrets/deis/builder/ssh
+              readOnly: true
             - name: objectstore-creds
               mountPath: /var/run/secrets/deis/objectstore/creds
       volumes:
         - name: builder-key-auth
           secret:
             secretName: builder-key-auth
+        - name: builder-ssh-private-keys
+          secret:
+            secretName: builder-ssh-private-keys
         - name: objectstore-creds
           secret:
             secretName: objectstorage-keyfile
