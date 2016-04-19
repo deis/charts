@@ -13,7 +13,6 @@
 # Set the storage backend
 #
 # Valid values are:
-# - filesystem: Store persistent data on ephemeral disk
 # - s3: Store persistent data in AWS S3 (configure in S3 section)
 # - azure: Store persistent data in Azure's object storage
 # - gcs: Store persistent data in Google Cloud Storage
