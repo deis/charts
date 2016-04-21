@@ -52,7 +52,7 @@ $ kubectl --namespace=deis get svc deis-router
 Then install the `deis` client, register yourself as a user and create your first application:
 
 ```console
-$ curl -sSL http://deis.io/deis-cli/install-v2-alpha.sh | bash
+$ curl -sSL http://deis.io/deis-cli/install-v2.sh | bash
 $ export PATH=.:$PATH
 $ deis register deis.IP_YOU_GOT_ABOVE.xip.io  # register as the first user
 $ ssh-keygen -t rsa -b 4096 -C "your_email@deis.com"
