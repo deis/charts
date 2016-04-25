@@ -1,3 +1,24 @@
+### v2.0.0-beta2 -> v2.0.0-beta3
+
+#### Features
+
+ - [`d2e2dc7`](https://github.com/deis/charts/commit/d2e2dc787a9ea059ccde79d82d2613d436e8582b) workflow-dev-e2e: use GINKGO_NODES from local env if exists
+ - [`6309f5c`](https://github.com/deis/charts/commit/6309f5c944ef17741b03c3b76d23b25d97640f07) workflow-dev: store builder ssh private keys in secret
+ - [`2eb4750`](https://github.com/deis/charts/commit/2eb475059e8a88269d6aba67a355ff3db824dd78) (all): replace values that change with each release with template values
+ - [`c0bad28`](https://github.com/deis/charts/commit/c0bad282ea11da388f18473d0f77e3147d47418f) ci.sh: add uninstall step in teardown
+ - [`c3ffd5a`](https://github.com/deis/charts/commit/c3ffd5aca086321d136bba4406e11d6da57e7644) _scripts: add CHANGELOG.md and generator script
+
+#### Fixes
+
+ - [`eaf9ebc`](https://github.com/deis/charts/commit/eaf9ebcd29383336466b71dbcb35e791e908899a) fluentd: Remove privileged:true from manifest
+ - [`77955b6`](https://github.com/deis/charts/commit/77955b654f3d347f193e565b66ebbde34d019b0b) workflow-dev: fixup incorrect usage of helm tpl
+ - [`f2beeb4`](https://github.com/deis/charts/commit/f2beeb406888759d91c9eb49950a8f8995c70a7d) workflow-dev-e2e: Missed quoting the env var for fetch the git sha
+
+#### Maintenance
+
+ - [`0d09e83`](https://github.com/deis/charts/commit/0d09e831cda2f3c6376a82b95028c20b4a6122e5) workflow-beta3: releasing workflow-beta3
+ - [`e6a8996`](https://github.com/deis/charts/commit/e6a8996d9205478fc6d0e1b66b74a6d5e70ad231) objectstorage: filesystem is not a supported object storage type
+
 ### v2.0.0-beta1 -> v2.0.0-beta2
 
 #### Features
