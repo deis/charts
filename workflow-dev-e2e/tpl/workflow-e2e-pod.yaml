@@ -14,7 +14,7 @@ spec:
     imagePullPolicy: {{.e2e.pullPolicy}}
     env:
       - name: GINKGO_NODES
-        value: "15"
+        value: "{{env "GINKGO_NODES" | default 15}}"
       - name: JUNIT
         value: "true"
     volumeMounts:
