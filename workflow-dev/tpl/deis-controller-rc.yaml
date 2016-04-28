@@ -36,6 +36,8 @@ spec:
             - containerPort: 8000
               name: http
           env:
+            - name: KUBERNETES_POD_TERMINATION_GRACE_PERIOD_SECONDS
+              value: "5"
             - name: "APP_STORAGE"
               value: {{default "minio" .storage}}
             - name: "SLUGRUNNER_IMAGE_NAME"
