@@ -62,6 +62,8 @@ spec:
                 secretKeyRef:
                   name: database-creds
                   key: password
+            - name: RESERVED_NAMES
+              value: "deis, deis-builder, deis-workflow-manager"
           volumeMounts:
             - mountPath: /var/run/docker.sock
               name: docker-socket
