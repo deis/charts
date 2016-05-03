@@ -28,10 +28,11 @@ spec:
             timeoutSeconds: 10
           readinessProbe:
             httpGet:
-              path: /healthz
+              path: /readiness
               port: 8000
             initialDelaySeconds: 30
             timeoutSeconds: 10
+            periodSeconds: 5
           ports:
             - containerPort: 8000
               name: http
