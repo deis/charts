@@ -88,6 +88,7 @@ dockerTag = "canary"
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+versionsApiURL = "https://versions-staging.deis.com"
 
 [logger]
 org = "deisci"
