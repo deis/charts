@@ -7,6 +7,7 @@ Please report any issues you find in testing Workflow to the appropriate GitHub 
 - chart: https://github.com/deis/charts
 - database: https://github.com/deis/postgres
 - helm: https://github.com/helm/helm
+- logger: https://github.com/deis/logger
 - minio: https://github.com/deis/minio
 - registry: https://github.com/deis/registry
 - router: https://github.com/deis/router
