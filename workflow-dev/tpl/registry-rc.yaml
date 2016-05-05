@@ -1,23 +1,23 @@
-#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-registry-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-registry-rc.yaml
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/registry-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/registry-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: deis-registry
+  name: registry
   namespace: deis
   labels:
     heritage: deis
 spec:
   replicas: 1
   selector:
-    app: deis-registry
+    app: registry
   template:
     metadata:
       labels:
-        app: deis-registry
+        app: registry
     spec:
-      serviceAccount: deis-registry
+      serviceAccount: registry
       containers:
-        - name: deis-registry
+        - name: registry
           image: quay.io/{{.registry.org}}/registry:{{env "REGISTRY_GIT_TAG" | default .registry.dockerTag}}
           imagePullPolicy: {{.registry.pullPolicy}}
           livenessProbe:

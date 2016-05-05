@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: deis-router
+  name: router
   namespace: deis
   labels:
     heritage: deis
 spec:
   type: LoadBalancer
   selector:
-    app: deis-router
+    app: router
   ports:
     - name: http
       port: 80

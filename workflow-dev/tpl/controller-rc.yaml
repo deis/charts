@@ -1,23 +1,23 @@
-#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-controller-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-controller-rc.yaml
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/controller-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/controller-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: deis-controller
+  name: controller
   namespace: deis
   labels:
     heritage: deis
 spec:
   replicas: 1
   selector:
-    app: deis-controller
+    app: controller
   template:
     metadata:
       labels:
-        app: deis-controller
+        app: controller
     spec:
-      serviceAccount: deis-controller
+      serviceAccount: controller
       containers:
-        - name: deis-controller
+        - name: controller
           image: quay.io/{{.controller.org}}/controller:{{env "CONTROLLER_GIT_TAG" | default .controller.dockerTag}}
           imagePullPolicy: {{.controller.pullPolicy}}
           livenessProbe:

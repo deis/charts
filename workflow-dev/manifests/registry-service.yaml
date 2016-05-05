@@ -1,13 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: deis-database
+  name: registry
   namespace: deis
   labels:
     heritage: deis
 spec:
   ports:
-    - name: postgres
-      port: 5432
+    - name: http
+      port: 80
+      targetPort: 5000
   selector:
-    app: deis-database
+    app: registry
