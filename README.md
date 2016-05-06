@@ -107,3 +107,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 [issues]: https://github.com/deis/charts/issues
 [prs]: https://github.com/deis/charts/pulls
+[k8s-home]: http://kubernetes.io
