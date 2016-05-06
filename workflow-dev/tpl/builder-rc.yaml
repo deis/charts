@@ -1,23 +1,23 @@
-#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-builder-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-builder-rc.yaml
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/builder-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/builder-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: deis-builder
+  name: builder
   namespace: deis
   labels:
     heritage: deis
 spec:
   replicas: 1
   selector:
-    app: deis-builder
+    app: builder
   template:
     metadata:
       labels:
-        app: deis-builder
+        app: builder
     spec:
-      serviceAccount: deis-builder
+      serviceAccount: builder
       containers:
-        - name: deis-builder
+        - name: builder
           image: quay.io/{{.builder.org}}/builder:{{ env "BUILDER_GIT_TAG" | default .builder.dockerTag}}
           imagePullPolicy: {{.builder.pullPolicy}}
           ports:
