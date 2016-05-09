@@ -39,8 +39,8 @@ spec:
             # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
             - name: "DOCKERIMAGE"
               value: "1"
-            - name: "DEBUG"
-              value: "{{ env "DEBUG" | default "false" }}"
+            - name: "DEIS_DEBUG"
+              value: "{{ env "DEIS_DEBUG" | default "false" }}"
             - name: "POD_NAMESPACE"
               valueFrom:
                 fieldRef:
