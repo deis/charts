@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: deis-monitor-telegraf
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  template:
+    metadata:
+      labels:
+        app: deis-monitor-telegraf
+    spec:
+      serviceAccount: deis-monitor-telegraf
+      containers:
+        - name: deis-monitor-telegraf
+          image: quay.io/deis/telegraf:canary
+          imagePullPolicy: Always
+          env:
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: "INFLUXDB_URLS"
+            value: http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)
+          - name: "HOST_PROC"
+            value: "/rootfs/proc"
+          - name: "HOST_SYS"
+            value: "/rootfs/sys"
+          - name: "AGENT_QUIET"
+            value: "true"
+          - name: "AGENT_BUFFER_LIMIT"
+            value: "100000"
+          - name: "ENABLE_INFLUXDB_INPUT"
+            value: "true"
+          volumeMounts:
+          - mountPath: /var/run/docker.sock
+            name: docker-socket
+          - name: sysro
+            mountPath: /rootfs/sys
+            readOnly: true
+          - name: procro
+            mountPath: /rootfs/proc
+            readOnly: true
+          - name: varrunutmpro
+            mountPath: /var/run/utmp
+            readOnly: true
+      volumes:
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
+      - name: sysro
+        hostPath:
+          path: /sys
+      - name: procro
+        hostPath:
+          path: /proc
+      - name: varrunutmpro
+        hostPath:
+          path: /var/run/utmp
