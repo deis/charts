@@ -1,4 +1,4 @@
-#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-objectstorage-secret.yaml -d $HELM_GENERATE_FILE $HELM_GENERATE_DIR/tpl/deis-objectstorage-secret.yaml
+#helm:generate $HELM_GENERATE_DIR/tpl/minio.sh
 #
 # This is the main configuration file for Deis object storage. The values in
 # this file are passed into the appropriate services so that they can configure
