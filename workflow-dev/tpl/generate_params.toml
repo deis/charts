@@ -7,7 +7,7 @@
 # In general, all object storage credentials must be able to read and write to
 # the container or bucket they are configured to use.
 #
-# When you change values in this file, make sure to re-run `helm generate`
+# When you change values in this file, make sure to re-run `helmc generate`
 # on this chart.
 
 # Set the storage backend

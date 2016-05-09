@@ -10,4 +10,4 @@ details: |-
   Workflow is an open source PaaS that makes it easy to deploy and manage applications on your own
   servers. Workflow builds on Kubernetes to provide a lightweight, Heroku-inspired workflow.
 
-  Helm v0.6.0+ is required to use this chart.
+  Helm Classic v0.7.0+ is required to use this chart.
