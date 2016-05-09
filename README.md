@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/deis/charts.svg?branch=master)](https://travis-ci.org/deis/charts)
 
-This repository contains Helm Charts for Deis, the open source PaaS company. Deis (pronounced DAY-iss) Workflow is an open source Platform as a Service (PaaS) that adds a developer-friendly layer to any [Kubernetes][k8s-home] cluster, making it easy to deploy and manage applications on your own servers.
+This repository contains Helm Classic Charts for Deis, the open source PaaS company. Deis (pronounced DAY-iss) Workflow is an open source Platform as a Service (PaaS) that adds a developer-friendly layer to any [Kubernetes][k8s-home] cluster, making it easy to deploy and manage applications on your own servers.
 
-For more information about Deis Workflow, please visit the main project page at https://github.com/deis/workflow. For more general-purpose Helm Charts, visit the [Helm Chart repository](https://github.com/helm/charts). To learn more about Helm, visit the [Helm repository](https://github.com/helm/helm).
+For more information about Deis Workflow, please visit the main project page at https://github.com/deis/workflow. For more general-purpose Helm Classic Charts, visit the [Helm Classic Chart repository](https://github.com/helm/charts). To learn more about Helm Classic, visit the [Helm Classic repository](https://github.com/helm/helm-classic).
 
 ## Beta Status
 
@@ -22,7 +22,7 @@ The Deis project welcomes contributions from all developers. The high level proc
 
 ## Contributing
 
-First, add this Chart repo to Helm to install the current "workflow-dev" chart:
+First, add this Chart repo to Helm Classic to install the current "workflow-dev" chart:
 
 ### Prerequisites
 
@@ -36,14 +36,14 @@ you can also do `ENABLE_DAEMONSETS=true` before running the `kube-up.sh` script.
 
 ### Installation
 
-First, add this Chart repo to Helm to install the "workflow" chart:
+First, add this Chart repo to Helm Classic to install the "workflow" chart:
 
 ```console
-$ helm repo add deis https://github.com/deis/charts
-$ helm up
-$ helm fetch deis/workflow-dev
-$ helm generate workflow-dev  # creates the required secrets
-$ helm install workflow-dev
+$ helmc repo add deis https://github.com/deis/charts
+$ helmc up
+$ helmc fetch deis/workflow-dev
+$ helmc generate workflow-dev  # creates the required secrets
+$ helmc install workflow-dev
 $ kubectl --namespace=deis get pods -w # watch this until all pods show "Running"
 $ kubectl --namespace=deis get svc deis-router
 # note the "EXTERNAL_IP" field for IP address on GKE/GCE/AWS, on Vagrant look for an "IP(S)"
