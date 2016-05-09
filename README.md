@@ -73,30 +73,6 @@ $ deis open
 $ deis scale web=3 -a mytest # to scale up the app
 ```
 
-### Dockerfile for deis/charts e2e tests
-```
-<---SECRET FILE-->
-The secret file is the Google Cloud credentials(helm-credentials.json)  which you will already have for the helm-project. If not found, you can download from the Google cloud platform ( API Manager -> Credentials ). NOTE: Get access to the
-helm-project)
-
-$ docker build .
-
-To call init script
-$ docker run -v YOUR VOLUME WITH SECRET FILE:/root/.secrets/ IMAGE_ID /bin/bash _scripts/tests/init.sh
-
-To call install script
-$ docker run -v YOUR VOLUME WITH SECRET FILE:/root/.secrets/ IMAGE_ID /bin/bash _scripts/tests/install.sh
-
-To call uninstall script
-$ docker run -v YOUR VOLUME WITH SECRET FILE:/root/.secrets/ IMAGE_ID /bin/bash _scripts/tests/uninstall.sh
-
-To call destroy script
-$ docker run -v YOUR VOLUME WITH SECRET FILE:/root/.secrets/ IMAGE_ID /bin/bash _scripts/tests/destroy.sh
-
-To call test script
-$ docker run -v YOUR VOLUME WITH SECRET FILE:/root/.secrets/ IMAGE_ID /bin/bash _scripts/tests/test.sh
-```
-
 ## License
 
 Copyright 2015, 2016 Engine Yard, Inc.
