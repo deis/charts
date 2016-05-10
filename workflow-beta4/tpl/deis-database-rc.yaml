@@ -1,0 +1,45 @@
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-database-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-database-rc.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-database
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    app: deis-database
+  template:
+    metadata:
+      labels:
+        app: deis-database
+    spec:
+      serviceAccount: deis-database
+      containers:
+        - name: deis-database
+          image: quay.io/{{.database.org}}/postgres:{{env "DATABASE_GIT_TAG" | default .database.dockerTag}}
+          imagePullPolicy: {{.database.pullPolicy}}
+          ports:
+            - containerPort: 5432
+          env:
+            - name: DATABASE_STORAGE
+              value: {{default "minio" .storage}}
+          readinessProbe:
+            exec:
+              command:
+                - is_running
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+          volumeMounts:
+            - name: database-creds
+              mountPath: /var/run/secrets/deis/database/creds
+            - name: objectstore-creds
+              mountPath: /var/run/secrets/deis/objectstore/creds
+      volumes:
+        - name: database-creds
+          secret:
+            secretName: database-creds
+        - name: objectstore-creds
+          secret:
+            secretName: objectstorage-keyfile
