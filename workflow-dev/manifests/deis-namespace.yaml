@@ -4,3 +4,5 @@ metadata:
   name: deis
   labels:
     heritage: deis
+  annotations:
+    helm-keep: "true"
