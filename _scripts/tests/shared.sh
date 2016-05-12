@@ -38,13 +38,11 @@ function url_decode {
 }
 
 function download-chart-mate {
-  RERUN_MODULES_REPO="${RERUN_MODULES_REPO:-"rerun-modules"}"
-  CHART_MATE_REPO_URL="https://bintray.com/sgoings/${RERUN_MODULES_REPO}/chart-mate/_latestVersion"
-  CHART_MATE_URL_BASE="https://dl.bintray.com/sgoings/${RERUN_MODULES_REPO}"
+  CHART_MATE_URL_BASE="bintray.com/deis/deis"
 
-  VERSION="$(get_latest_version "chart-mate" "${CHART_MATE_REPO_URL}")"
+  VERSION="$(get_latest_version "chart-mate" "https://${CHART_MATE_URL_BASE}/chart-mate/_latestVersion")"
 
   echo "Downloading chart-mate from Bintray (${VERSION})..."
-  curl -Ls "${CHART_MATE_URL_BASE}/rerun-${VERSION}" > rerun
+  curl -Ls "https://dl.${CHART_MATE_URL_BASE}/rerun-${VERSION}" > rerun
   chmod +x rerun
 }
