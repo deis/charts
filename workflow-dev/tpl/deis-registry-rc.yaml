@@ -38,7 +38,7 @@ spec:
             - name: REGISTRY_LOG_LEVEL
               value: info
             - name: REGISTRY_STORAGE
-              value: {{default "minio" .storage}}
+              value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
           ports:
             - containerPort: 5000
           volumeMounts:

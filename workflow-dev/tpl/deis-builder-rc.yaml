@@ -31,7 +31,7 @@ spec:
             - name: "EXTERNAL_PORT"
               value: "2223"
             - name: BUILDER_STORAGE
-              value: {{default "minio" .storage}}
+              value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
             - name: "SLUGBUILDER_IMAGE_NAME"
               value: "quay.io/{{.slugbuilder.org}}/slugbuilder:{{ env "SLUGBUILDER_GIT_TAG" | default .slugbuilder.dockerTag }}"
             - name: "DOCKERBUILDER_IMAGE_NAME"
