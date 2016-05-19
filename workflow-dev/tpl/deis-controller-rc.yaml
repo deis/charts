@@ -40,7 +40,7 @@ spec:
             - name: KUBERNETES_POD_TERMINATION_GRACE_PERIOD_SECONDS
               value: "5"
             - name: "APP_STORAGE"
-              value: {{default "minio" .storage}}
+              value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
             - name: "SLUGRUNNER_IMAGE_NAME"
               value: "quay.io/{{.slugrunner.org}}/slugrunner:{{env "SLUGRUNNER_GIT_TAG" | default .slugrunner.dockerTag}}"
             - name: DEIS_SECRET_KEY
