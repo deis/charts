@@ -25,19 +25,19 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        - name: WORKFLOW_MANAGER_PORT
+        - name: PORT
           value: "8080"
-        - name: WORKFLOW_MANAGER_VERSIONSAPIURL
+        - name: VERSIONS_API_URL
           value: {{.workflowManager.versionsApiURL}}
-        - name: WORKFLOW_MANAGER_DOCTORAPIURL
-          value: "https://doctor.deis.com"
-        - name: WORKFLOW_MANAGER_POLLING
+        - name: DOCTOR_API_URL
+          value: {{.workflowManager.doctorApiURL}}
+        - name: POLL_INTERVAL_SEC
           value: "43200"
-        - name: WORKFLOW_MANAGER_CHECKVERSIONS
+        - name: CHECK_VERSIONS
           value: "true"
-        - name: WORKFLOW_MANAGER_APIVERSION
+        - name: API_VERSION
           value: "v2"
-        - name: WORKFLOW_MANAGER_DEISNAMESPACE
+        - name: DEIS_NAMESPACE
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
