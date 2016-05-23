@@ -71,6 +71,7 @@ spec:
               readOnly: true
             - name: objectstore-creds
               mountPath: /var/run/secrets/deis/objectstore/creds
+              readonly: true
       volumes:
         - name: builder-key-auth
           secret:
