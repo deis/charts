@@ -1,0 +1,11 @@
+name: workflow-rc1
+home: https://github.com/deis/workflow
+version: v2.0.0-rc1
+description: For testing only!
+maintainers:
+- Deis Team <engineering@deis.com>
+details: |-
+  WARNING: this chart is for testing only! Features may not work, and there are likely to be bugs.
+
+  Workflow is an open source PaaS that makes it easy to deploy and manage applications on your own
+  servers. Workflow builds on Kubernetes to provide a lightweight, Heroku-inspired workflow.
