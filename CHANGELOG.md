@@ -1,3 +1,34 @@
+### v2.0.0-beta4 -> v2.0.0-rc1
+
+#### Features
+
+ - [`137ba7d`](https://github.com/deis/charts/commit/137ba7d0ea5e8d7f38ea93e41a08f4bb24315eb3) workflow-dev: annotate "keeper" manifests
+ - [`20c052d`](https://github.com/deis/charts/commit/20c052dbebd05f08683df7a9afee8e0a70a26854) tpl: template object-store-creds to take environment variables
+ - [`bd67a43`](https://github.com/deis/charts/commit/bd67a43fb406aa17b2d80b2a0a9249c3abf6a36e) minio: install minio only if the storage type is minio
+ - [`3be31cf`](https://github.com/deis/charts/commit/3be31cfa9b0433c415f66c705edf50335c9a05e8) monitor: Add a chart that starts the deis monitoring stack
+ - [`2d6ec15`](https://github.com/deis/charts/commit/2d6ec15d8638ce8bf0948ee5e408878ee0f6b00d) deis-builder-rc: get DEBUG from env or set to false
+ - [`642ac14`](https://github.com/deis/charts/commit/642ac1499c00525868cec4bf85a4daa83c6667ee) workflow-manager-rc: pull versionsApiURL from generate_params.toml
+
+#### Fixes
+
+ - [`2bad9e5`](https://github.com/deis/charts/commit/2bad9e5cf6dd00246aabd5ccd5b1cc139e89945c) templates: adjust templates options accordingly
+ - [`3292359`](https://github.com/deis/charts/commit/3292359e475dbb7759af17f965b2d15b88d4ea93) minio: use the helm classic instead of helm to run template
+ - [`b651824`](https://github.com/deis/charts/commit/b651824497380f0690c643ddd8f349f99bb7f108) controller: change the readiness probe endpoint
+
+#### Documentation
+
+ - [`8e30743`](https://github.com/deis/charts/commit/8e307435d1b9e80912e02f8c03be4d5d55968246) workflow-dev chart: update README
+ - [`8ae5437`](https://github.com/deis/charts/commit/8ae54378c60533b405f32d88cb079f398959cb91) (all): Update docs and comments for helm classic
+ - [`7d2e512`](https://github.com/deis/charts/commit/7d2e512ed79559975bf3c0ab538945584911eb86) README: update with logger repo url
+
+#### Maintenance
+
+ - [`8b1590a`](https://github.com/deis/charts/commit/8b1590aa1059d054e8a7fcfb2d3e675386b099e1) workflow-rc1: releasing workflow-rc1(-e2e
+ - [`f2f962e`](https://github.com/deis/charts/commit/f2f962e94461a97aa4b758990d4a362470b9863e) ci: Download chart-mate from deis bintray
+ - [`abb6feb`](https://github.com/deis/charts/commit/abb6febb25a452bcdfef36de211cbb9f96726c82) workflow-beta4: releasing workflow-beta4(-e2e
+ - [`24493c2`](https://github.com/deis/charts/commit/24493c23d44bcb493ff80e6634606a7d470e9fb3) Dockerfile: Remove unnecessary Dockerfile
+ - [`52c5e58`](https://github.com/deis/charts/commit/52c5e58085f3ad8a0c9c2c26da54d52cea17774d) controller: Add default RESERVED_NAMES to chart
+
 ### v2.0.0-beta2 -> v2.0.0-beta3
 
 #### Features
