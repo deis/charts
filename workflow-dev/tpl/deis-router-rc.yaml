@@ -6,6 +6,10 @@ metadata:
   namespace: deis
   labels:
     heritage: deis
+{{- if ne .router.platformDomain "" }}
+  annotations:
+    router.deis.io/nginx.platformDomain: {{ .router.platformDomain }}
+{{- end }}
 spec:
   replicas: 1
   selector:
