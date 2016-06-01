@@ -32,6 +32,9 @@ spec:
               value: "2223"
             - name: BUILDER_STORAGE
               value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
+            # Set GIT_LOCK_TIMEOUT to number of minutes you want to wait to git push again to the same repository 
+            - name: "GIT_LOCK_TIMEOUT"
+              value: "10"
             - name: "SLUGBUILDER_IMAGE_NAME"
               value: "quay.io/{{.slugbuilder.org}}/slugbuilder:{{ env "SLUGBUILDER_GIT_TAG" | default .slugbuilder.dockerTag }}"
             - name: "DOCKERBUILDER_IMAGE_NAME"
