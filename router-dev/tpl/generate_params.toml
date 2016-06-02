@@ -2,3 +2,4 @@
 org = "deisci"
 dockerTag = "canary"
 pullPolicy = "Always"
+platformDomain = ""
