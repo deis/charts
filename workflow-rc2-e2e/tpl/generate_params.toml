@@ -1,0 +1,4 @@
+[e2e]
+org = "deisci"
+dockerTag = "v2.0.0-rc2"
+pullPolicy = "IfNotPresent"
