@@ -1,5 +1,5 @@
 [router]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 platformDomain = ""

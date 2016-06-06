@@ -1,4 +1,4 @@
 [e2e]
-org = "deisci"
+org = "deis"
 dockerTag = "v2.0.0-rc2"
 pullPolicy = "IfNotPresent"

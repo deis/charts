@@ -46,84 +46,84 @@ database_bucket = "your-database-bucket-name"
 builder_bucket = "your-builder-bucket-name"
 
 [minio]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [builder]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [slugbuilder]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [dockerbuilder]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [controller]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [slugrunner]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [database]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [registry]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [workflowManager]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 versionsApiURL = "https://versions.deis.com"
 doctorApiURL = "https://doctor.deis.com"
 
 [logger]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [router]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 platformDomain = ""
 
 [fluentd]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [grafana]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [influxdb]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [telegraf]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
 
 [stdoutmetrics]
-org = "deisci"
+org = "deis"
 pullPolicy = "IfNotPresent"
 dockerTag = "v2.0.0-rc2"
