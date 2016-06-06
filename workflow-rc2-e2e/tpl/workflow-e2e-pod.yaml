@@ -1,0 +1,32 @@
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/workflow-e2e-pod.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/workflow-e2e-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: workflow-rc2-e2e
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  restartPolicy: Never
+  containers:
+  - name: tests
+    image: quay.io/{{.e2e.org}}/workflow-e2e:{{env "WORKFLOW_E2E_GIT_TAG" | default .e2e.dockerTag}}
+    imagePullPolicy: {{.e2e.pullPolicy}}
+    env:
+      - name: GINKGO_NODES
+        value: "{{env "GINKGO_NODES" | default 15}}"
+      - name: JUNIT
+        value: "true"
+    volumeMounts:
+    - name: artifact-volume
+      mountPath: /root
+  - name: artifacts
+    image: busybox
+    imagePullPolicy: Always
+    command: ["tail", "-f", "/dev/null"]
+    volumeMounts:
+    - name: artifact-volume
+      mountPath: /root
+  volumes:
+  - name: artifact-volume
+    emptyDir: {}
