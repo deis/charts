@@ -1,3 +1,19 @@
+### v2.0.0-rc1 -> v2.0.0-rc2
+
+#### Features
+
+- [`de38946`](https://github.com/deis/charts/commit/de38946c353d9a70fab093523dd96e70feebd20e) router: Make platformDomain configurable thru toml
+- [`4295812`](https://github.com/deis/charts/commit/429581228e26273623e4ff6770027dcbbe83bca2) builder: add git push lock timeout env to builder rc
+
+#### Fixes
+
+- [`dee1f1e`](https://github.com/deis/charts/commit/dee1f1e3167f04c4f544621cd928ff159f0dca28) router-dev: Better parity with workflow-dev chart
+
+#### Maintenance
+
+- [`63ea94e`](https://github.com/deis/charts/commit/63ea94ecb1dbd636ef7f1de6d7567114fe2c00bf) controller: Add grafana as a reserved name
+- [`be9c5eb`](https://github.com/deis/charts/commit/be9c5ebd5186da2fc94ac15631ac48a015cb50dd) workflow-rc2: releasing workflow-rc2(-e2e) and router-rc2
+
 ### v2.0.0-beta4 -> v2.0.0-rc1
 
 #### Features
