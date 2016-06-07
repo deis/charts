@@ -6,9 +6,7 @@ This repository contains Helm Classic Charts for Deis, the open source PaaS comp
 
 For more information about Deis Workflow, please visit the main project page at https://github.com/deis/workflow. For more general-purpose Helm Classic Charts, visit the [Helm Classic Chart repository](https://github.com/helm/charts). To learn more about Helm Classic, visit the [Helm Classic repository](https://github.com/helm/helm-classic).
 
-## Beta Status
-
-Many Deis components are currently in beta status, and we welcome your input! If you have feedback one one of the charts herein, please [submit an issue][issues]. If you'd like to participate in development, please read the "Development" section below and [submit a pull request][prs].
+We welcome your input! If you have feedback one one of the charts herein, please [submit an issue][issues]. If you'd like to participate in development, please read the "Development" section below and [submit a pull request][prs].
 
 # Development
 
