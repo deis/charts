@@ -1,0 +1,129 @@
+#helm:generate $HELM_GENERATE_DIR/tpl/minio.sh
+#
+# This is the main configuration file for Deis object storage. The values in
+# this file are passed into the appropriate services so that they can configure
+# themselves for persisting data in object storage.
+#
+# In general, all object storage credentials must be able to read and write to
+# the container or bucket they are configured to use.
+#
+# When you change values in this file, make sure to re-run 'helmc generate'
+# on this chart.
+
+# Set the storage backend
+#
+# Valid values are:
+# - filesystem: Store persistent data on ephemeral disk
+# - s3: Store persistent data in AWS S3 (configure in S3 section)
+# - azure: Store persistent data in Azure's object storage
+# - gcs: Store persistent data in Google Cloud Storage
+# - minio: Store persistent data on in-cluster Minio server
+storage = "minio"
+
+[s3]
+accesskey = "YOUR KEY HERE"
+secretkey = "YOUR SECRET HERE"
+# Any S3 region
+region = "us-west-1"
+# Your buckets.
+registry_bucket = "your-registry-bucket-name"
+database_bucket = "your-database-bucket-name"
+builder_bucket = "your-builder-bucket-name"
+
+[azure]
+accountname = "YOUR ACCOUNT NAME"
+accountkey = "YOUR ACCOUNT KEY"
+registry_container = "your-registry-container-name"
+database_container = "your-database-container-name"
+builder_container = "your-builder-container-name"
+
+[gcs]
+# key_json is expanded into a JSON file on the remote server. It must be
+# well-formatted JSON data.
+key_json = '''Paste JSON data here.'''
+registry_bucket = "your-registry-bucket-name"
+database_bucket = "your-database-bucket-name"
+builder_bucket = "your-builder-bucket-name"
+
+[minio]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[builder]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[slugbuilder]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[dockerbuilder]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[controller]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[slugrunner]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[database]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[registry]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[workflowManager]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+versionsApiURL = "https://versions.deis.com"
+doctorApiURL = "https://doctor.deis.com"
+
+[logger]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[router]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+platformDomain = ""
+
+[fluentd]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[grafana]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[influxdb]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[telegraf]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
+
+[stdoutmetrics]
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.0.0"
