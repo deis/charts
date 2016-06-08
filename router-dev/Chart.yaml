@@ -1,6 +1,6 @@
 name: router-dev
 home: https://github.com/deis/router
-version: v2-beta
+version: v2.0.0
 description: For testing only!
 maintainers:
 - Deis Team <engineering@deis.com>
