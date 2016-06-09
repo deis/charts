@@ -1,7 +1,7 @@
 name: router-dev
 home: https://github.com/deis/router
 version: v2.0.0
-description: For testing only!
+description: Deis Router (For testing only!)
 maintainers:
 - Deis Team <engineering@deis.com>
 details: |-
@@ -10,8 +10,8 @@ details: |-
   The Deis Router is a simple program that manages Nginx and Nginx configuration for managing
   ingress to web applications in a Kubernetes cluster without requiring each to have their own
   external (to the cluster) load balancer.  Router(s) will require a single external load balancer,
-  handle all ingress, and direct all incoming traffic to appropriate services within the cluster.  
-  
+  handle all ingress, and direct all incoming traffic to appropriate services within the cluster.
+
   Router works by regularly querying the Kubernetes API for services labeled with
   `router.deis.io/routable: "true"`. Such services are compared to known services resident in
   memory. If there are differences, new Nginx configuration is generated and Nginx is reloaded.
