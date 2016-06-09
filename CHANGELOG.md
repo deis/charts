@@ -1,3 +1,20 @@
+### v2.0.0-rc2 -> v2.0.0
+
+#### Fixes
+
+- [`cfdd9ab`](https://github.com/deis/charts/commit/cfdd9ab996a49ca119d954d81fc4569bd52ff89c) deis-dev/tpl/deis-builder-rc.yaml: make the objectstore-creds secret read-only in builder
+
+#### Documentation
+
+- [`492d25e`](https://github.com/deis/charts/commit/492d25ed32026db10a18fb750bd54f978c904163) CHANGELOG.md: add entry for v2.0.0-rc2
+
+#### Maintenance
+
+- [`15d5ce7`](https://github.com/deis/charts/commit/15d5ce7e19597fc80ec9f315ebb87a83790ab9fe) workflow-rc2: releasing workflow-rc2(-e2e) and router-rc2
+- [`4e06347`](https://github.com/deis/charts/commit/4e0634712ad6293c1426c74c9ddf92916cbc1498) workflow-rc2: releasing workflow-rc2(-e2e) and router-rc2- final images
+- [`7933ec4`](https://github.com/deis/charts/commit/7933ec4e5b741077513c7d9b2813018fd155d74e) various: remove beta status
+- [`0301216`](https://github.com/deis/charts/commit/030121653f31982b161822b2cf212c5d89026fc7) workflow-v2.0.0: releasing workflow-v2.0.0
+
 ### v2.0.0-rc1 -> v2.0.0-rc2
 
 #### Features
