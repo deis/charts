@@ -1,4 +1,4 @@
-#helm:generate $HELM_GENERATE_DIR/tpl/minio.sh
+#helm:generate $HELM_GENERATE_DIR/tpl/storage.sh
 #
 # This is the main configuration file for Deis object storage. The values in
 # this file are passed into the appropriate services so that they can configure
@@ -18,6 +18,15 @@
 # - gcs: Store persistent data in Google Cloud Storage
 # - minio: Store persistent data on in-cluster Minio server
 storage = "minio"
+
+# Set the location of Workflow's PostgreSQL database
+#
+# Valid values are:
+# - on-cluster: Run PostgreSQL within the Kubernetes cluster (credentials are generated
+#   automatically; backups are sent to object storage
+#   configured above)
+# - off-cluster: Run PostgreSQL outside the Kubernetes cluster (configure in database section)
+database_location = "on-cluster"
 
 [minio]
 org = "deisci"
@@ -78,6 +87,12 @@ dockerTag = "canary"
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+# Configure the following ONLY if using an off-cluster PostgreSQL database
+name = "database name"
+username = "database username"
+password = "database password"
+host = "database host"
+port = "database port"
 
 [registry]
 org = "deisci"

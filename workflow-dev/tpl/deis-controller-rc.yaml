@@ -53,6 +53,14 @@ spec:
                 secretKeyRef:
                   name: builder-key-auth
                   key: builder-key
+{{- if or (eq (env "DATABASE_LOCATION") "off-cluster") (eq .database_location "off-cluster") }}
+            - name: DEIS_DATABASE_NAME
+              value: "{{ or (env "DATABASE_NAME") .database.name }}"
+            - name: DEIS_DATABASE_SERVICE_HOST
+              value: "{{ or (env "DATABASE_HOST") .database.host }}"
+            - name: DEIS_DATABASE_SERVICE_PORT
+              value: "{{ or (env "DATABASE_PORT") .database.port }}"
+{{- end }}
             - name: DEIS_DATABASE_USER
               valueFrom:
                 secretKeyRef:
