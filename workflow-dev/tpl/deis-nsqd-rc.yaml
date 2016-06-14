@@ -18,7 +18,7 @@ spec:
       serviceAccount: deis-nsqd
       containers:
         - name: deis-nsqd
-          image: quay.io/{{.nsqd.org}}/nsqd:{{env "NSQ_GIT_TAG" | default .nsqd.dockerTag}}
+          image: quay.io/{{.nsqd.org}}/nsq:{{env "NSQ_GIT_TAG" | default .nsqd.dockerTag}}
           imagePullPolicy: {{.nsqd.pullPolicy}}
           command:
           - /opt/nsq/bin/start-nsqd
