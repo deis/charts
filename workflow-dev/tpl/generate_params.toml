@@ -128,3 +128,8 @@ dockerTag = "canary"
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+
+[nsqd]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"

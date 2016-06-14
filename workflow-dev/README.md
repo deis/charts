@@ -12,6 +12,7 @@ Please report any issues you find in testing Workflow to the appropriate GitHub 
 - logger: https://github.com/deis/logger
 - minio: https://github.com/deis/minio
 - monitor: https://github.com/deis/monitor
+- nsq: https://github.com/deis/nsq
 - registry: https://github.com/deis/registry
 - router: https://github.com/deis/router
 - stdout-metrics: https://github.com/deis/stdout-metrics
