@@ -28,6 +28,13 @@ storage = "minio"
 # - off-cluster: Run PostgreSQL outside the Kubernetes cluster (configure in database section)
 database_location = "on-cluster"
 
+# Set the location of Workflow's logger-specific Redis instance
+#
+# Valid values are:
+# - on-cluster: Run Redis within the Kubernetes cluster
+# - off-cluster: Run Redis outside the Kubernetes cluster (configure in loggerRedis section)
+logger_redis_location = "on-cluster"
+
 [minio]
 org = "deisci"
 pullPolicy = "Always"
@@ -112,6 +119,16 @@ doctorApiURL = "https://doctor-staging.deis.com"
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+
+[loggerRedis]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+# Configure the following ONLY if using an off-cluster Redis instance for logger
+db = "0"
+host = "redis host"
+port = "redis port"
+password = "redis password" # "" == no password
 
 [router]
 org = "deisci"
