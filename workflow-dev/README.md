@@ -15,4 +15,5 @@ Please report any issues you find in testing Workflow to the appropriate GitHub 
 - nsq: https://github.com/deis/nsq
 - registry: https://github.com/deis/registry
 - router: https://github.com/deis/router
+- stdout-metrics: https://github.com/deis/stdout-metrics
 - workflow manager: https://github.com/deis/workflow-manager
