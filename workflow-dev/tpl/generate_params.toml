@@ -124,11 +124,6 @@ org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
 
-[stdoutmetrics]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "canary"
-
 [nsqd]
 org = "deisci"
 pullPolicy = "Always"
