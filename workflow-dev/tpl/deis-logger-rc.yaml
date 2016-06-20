@@ -22,9 +22,6 @@ spec:
         ports:
         - containerPort: 8088
           name: http
-        - containerPort: 1514
-          name: transport
-          protocol: UDP
         livenessProbe:
           httpGet:
             path: /healthz
