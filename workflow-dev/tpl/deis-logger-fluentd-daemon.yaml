@@ -30,14 +30,10 @@ spec:
           mountPath: /var/lib/docker/containers
           readOnly: true
         env:
-        - name: SYSLOG_HOST_1
+        - name: SYSLOG_HOST
           value: $(DEIS_LOGGER_SERVICE_HOST)
-        - name: SYSLOG_PORT_1
+        - name: SYSLOG_PORT
           value: $(DEIS_LOGGER_SERVICE_PORT_TRANSPORT)
-        - name: SYSLOG_HOST_2
-          value: $(DEIS_MONITOR_STDOUT_SERVICE_HOST)
-        - name: SYSLOG_PORT_2
-          value: $(DEIS_MONITOR_STDOUT_SERVICE_PORT_TRANSPORT)
       volumes:
       - name: varlog
         hostPath:
