@@ -11,10 +11,6 @@ spec:
   - port: 80
     name: http
     targetPort: http
-  - port: 514
-    name: transport
-    targetPort: 1514
-    protocol: UDP
   selector:
     app: deis-logger
     
