@@ -21,6 +21,3 @@ spec:
     - name: builder
       port: 2222
       targetPort: 2222
-    - name: healthz
-      port: 9090
-      targetPort: 9090
