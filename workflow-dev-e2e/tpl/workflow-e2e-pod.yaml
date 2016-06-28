@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: workflow-dev-e2e
+  name: {{.e2e.podName}}
   namespace: deis
   labels:
     heritage: deis
