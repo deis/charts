@@ -66,18 +66,12 @@ database_bucket = "your-database-bucket-name"
 builder_bucket = "your-builder-bucket-name"
 
 [builder]
-org = "deis"
-pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 
 [slugbuilder]
-org = "deis"
-pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 
 [dockerbuilder]
-org = "deis"
-pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 
 [controller]
@@ -86,8 +80,6 @@ pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 
 [slugrunner]
-org = "deis"
-pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 
 [database]

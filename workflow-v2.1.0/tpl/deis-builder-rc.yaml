@@ -18,8 +18,8 @@ spec:
       serviceAccount: deis-builder
       containers:
         - name: deis-builder
-          image: quay.io/{{.builder.org}}/builder:{{ env "BUILDER_GIT_TAG" | default .builder.dockerTag}}
-          imagePullPolicy: {{.builder.pullPolicy}}
+          image: {{.builder.registry | default .images.registry}}/{{.builder.org | default .images.org}}/builder:{{env "BUILDER_GIT_TAG" | default .builder.dockerTag}}
+          imagePullPolicy: {{.builder.pullPolicy | default .images.pullPolicy}}
           ports:
             - containerPort: 2223
               name: ssh
@@ -36,9 +36,9 @@ spec:
             - name: "GIT_LOCK_TIMEOUT"
               value: "10"
             - name: "SLUGBUILDER_IMAGE_NAME"
-              value: "quay.io/{{.slugbuilder.org}}/slugbuilder:{{ env "SLUGBUILDER_GIT_TAG" | default .slugbuilder.dockerTag }}"
+              value: "{{.slugbuilder.registry | default .images.registry}}/{{.slugbuilder.org | default .images.org}}/slugbuilder:{{env "SLUGBUILDER_GIT_TAG" | default .slugbuilder.dockerTag }}"
             - name: "DOCKERBUILDER_IMAGE_NAME"
-              value: "quay.io/{{.dockerbuilder.org}}/dockerbuilder:{{ env "DOCKERBUILDER_GIT_TAG" | default .dockerbuilder.dockerTag}}"
+              value: "{{.dockerbuilder.registry | default .images.registry}}/{{.dockerbuilder.org | default .images.org}}/dockerbuilder:{{env "DOCKERBUILDER_GIT_TAG" | default .dockerbuilder.dockerTag}}"
             # This var needs to be passed so that the minio client (https://github.com/minio/mc) will work in Alpine linux
             - name: "DOCKERIMAGE"
               value: "1"
