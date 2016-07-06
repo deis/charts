@@ -28,6 +28,11 @@ storage = "minio"
 # - off-cluster: Run PostgreSQL outside the Kubernetes cluster (configure in database section)
 database_location = "on-cluster"
 
+[images]
+registry = "quay.io"
+org = "deis"
+pullPolicy = "IfNotPresent"
+
 [minio]
 org = "deis"
 pullPolicy = "IfNotPresent"
