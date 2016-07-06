@@ -75,8 +75,6 @@ dockerTag = "v2.1.0"
 dockerTag = "v2.1.0"
 
 [controller]
-org = "deis"
-pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 
 [slugrunner]
