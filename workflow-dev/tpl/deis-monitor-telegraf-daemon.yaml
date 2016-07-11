@@ -42,6 +42,15 @@ spec:
             value: "metrics"
           - name: "NSQ_ENDPOINTS"
             value: http://$(DEIS_NSQD_SERVICE_HOST):$(DEIS_NSQD_SERVICE_PORT_HTTP)
+{{- if env "LOGGER_REDIS_LOCATION" | default .logger_redis_location | ne "off-cluster" }}
+          - name: DEIS_LOGGER_REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: logger-redis-creds
+                key: password
+          - name: "REDIS_SERVERS"
+            value: tcp://:$(DEIS_LOGGER_REDIS_PASSWORD)@$(DEIS_LOGGER_REDIS_SERVICE_HOST):$(DEIS_LOGGER_REDIS_SERVICE_PORT)
+{{- end }}
           volumeMounts:
           - mountPath: /var/run/docker.sock
             name: docker-socket
@@ -54,6 +63,8 @@ spec:
           - name: varrunutmpro
             mountPath: /var/run/utmp
             readOnly: true
+          - name: logger-redis-creds
+            mountPath: /var/run/secrets/deis/redis/creds
       volumes:
       - name: docker-socket
         hostPath:
@@ -67,3 +78,6 @@ spec:
       - name: varrunutmpro
         hostPath:
           path: /var/run/utmp
+      - name: logger-redis-creds
+        secret:
+          secretName: logger-redis-creds
