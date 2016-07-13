@@ -112,6 +112,7 @@ port = "database port"
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+hostProxyPort = 5555
 
 [workflowManager]
 org = "deisci"

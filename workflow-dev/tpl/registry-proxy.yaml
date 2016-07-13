@@ -1,0 +1,38 @@
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/registry-proxy.yaml $HELM_GENERATE_FILE
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: registry-proxy
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  selector:
+    matchLabels:
+      app: registry-proxy
+      heritage: deis
+  template:
+    metadata:
+      name: registry-proxy
+      labels:
+        heritage: deis
+        app: registry-proxy
+    spec:
+      containers:
+      - name: registry-proxy
+        image: gcr.io/google_containers/kube-registry-proxy:0.3
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
+        env:
+        - name: REGISTRY_HOST
+          value: deis-registry.deis.svc.cluster.local
+        - name: REGISTRY_PORT
+          value: "80"
+        - name: FORWARD_PORT
+          value: "5555"
+        ports:
+        - name: registry
+          containerPort: 5555
+          hostPort: {{.registry.hostProxyPort}}
