@@ -1,6 +1,6 @@
 name: workflow-dev
 home: https://github.com/deis/workflow
-version: v2.0.0
+version: dev
 description: Deis Workflow (For testing only!)
 maintainers:
 - Deis Team <engineering@deis.com>
