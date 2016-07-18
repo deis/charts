@@ -17,6 +17,8 @@ spec:
         value: "{{env "GINKGO_NODES" | default 15}}"
       - name: JUNIT
         value: "true"
+      - name: CLI_VERSION
+        value: "{{env "CLI_VERSION" | default "latest"}}"
     volumeMounts:
     - name: artifact-volume
       mountPath: /root
