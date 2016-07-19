@@ -19,6 +19,9 @@ spec:
         value: "true"
       - name: CLI_VERSION
         value: "{{env "CLI_VERSION" | default "latest"}}"
+       # set TEST env variable to run appropriate tests in e2e suite
+      - name: TEST
+        value: "{{env "TEST" | default "e2e"}}"
     volumeMounts:
     - name: artifact-volume
       mountPath: /root
