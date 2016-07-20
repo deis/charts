@@ -1,0 +1,5 @@
+[e2e]
+org = "deisci"
+dockerTag = "git-4db0fe3"
+pullPolicy = "Always"
+podName = "workflow-v2.2.0-e2e"
