@@ -37,9 +37,9 @@ database_location = "on-cluster"
 logger_redis_location = "on-cluster"
 
 [minio]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-ba66283"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [s3]
 # Your AWS access key. Leave it empty if you want to use IAM credentials.
@@ -80,34 +80,34 @@ database_container = "your-database-container-name"
 builder_container = "your-builder-container-name"
 
 [builder]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-b583180"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [slugbuilder]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-b55c74c"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [dockerbuilder]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-453a29a"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [controller]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-6454774"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [slugrunner]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-624d8a3"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [database]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-b66069b"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 # Configure the following ONLY if using an off-cluster PostgreSQL database
 name = "database name"
 username = "database username"
@@ -116,26 +116,26 @@ host = "database host"
 port = "database port"
 
 [registry]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-8528182"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [workflowManager]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-e010f7a"
-versionsApiURL = "https://versions-staging.deis.com"
-doctorApiURL = "https://doctor-staging.deis.com"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
+versionsApiURL = "https://versions.deis.com"
+doctorApiURL = "https://doctor.deis.com"
 
 [logger]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-b3ae65e"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [loggerRedis]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-6d091c3"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 # Configure the following ONLY if using an off-cluster Redis instance for logger
 db = "0"
 host = "redis host"
@@ -143,32 +143,32 @@ port = "redis port"
 password = "redis password" # "" == no password
 
 [router]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-4024db4"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 platformDomain = ""
 
 [fluentd]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-1e51e75"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [grafana]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-7dd5da8"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [influxdb]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-7dd5da8"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [telegraf]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-7dd5da8"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
 
 [nsqd]
-org = "deisci"
-pullPolicy = "Always"
-dockerTag = "git-2157129"
+org = "deis"
+pullPolicy = "IfNotPresent"
+dockerTag = "v2.2.0"
