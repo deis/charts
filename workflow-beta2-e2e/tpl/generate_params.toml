@@ -1,4 +1,0 @@
-[e2e]
-org = "deis"
-dockerTag = "v2.0.0-beta2"
-pullPolicy = "IfNotPresent"
