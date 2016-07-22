@@ -1,4 +1,3 @@
-#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-registry-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-registry-rc.yaml
 apiVersion: v1
 kind: ReplicationController
 metadata:
