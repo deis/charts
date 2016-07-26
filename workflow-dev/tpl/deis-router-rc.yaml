@@ -11,13 +11,13 @@ metadata:
     router.deis.io/nginx.platformDomain: {{ .router.platformDomain }}
 {{- end }}
 spec:
-  replicas: 1
+  replicas: 0
   selector:
-    app: deis-router
+    app: deis-router-deprecated
   template:
     metadata:
       labels:
-        app: deis-router
+        app: deis-router-deprecated
     spec:
       serviceAccount: deis-router
       containers:

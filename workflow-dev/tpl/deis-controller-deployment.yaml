@@ -1,19 +1,25 @@
-#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-controller-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-controller-rc.yaml
-apiVersion: v1
-kind: ReplicationController
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-controller-deployment.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-controller-deployment.yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
   name: deis-controller
   namespace: deis
   labels:
     heritage: deis
 spec:
-  replicas: 0
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
   selector:
-    app: deis-controller-deprecated
+    matchLabels:
+      app: deis-controller
   template:
     metadata:
       labels:
-        app: deis-controller-deprecated
+        app: deis-controller
     spec:
       serviceAccount: deis-controller
       containers:
