@@ -120,6 +120,11 @@ org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
 
+[registry_proxy]
+org = "deisci"
+pullPolicy = "Always"
+dockerTag = "canary"
+
 [workflowManager]
 org = "deisci"
 pullPolicy = "Always"
