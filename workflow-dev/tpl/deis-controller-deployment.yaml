@@ -43,6 +43,11 @@ spec:
             - containerPort: 8000
               name: http
           env:
+            # NOTE(bacongobbler): use deis/registry-proxy to work around Docker --insecure-registry requirements
+            - name: "DEIS_REGISTRY_SERVICE_HOST"
+              value: "localhost"
+            - name: "DEIS_REGISTRY_SERVICE_PORT"
+              value: "5555"
             - name: KUBERNETES_POD_TERMINATION_GRACE_PERIOD_SECONDS
               value: "5"
             - name: "APP_STORAGE"
