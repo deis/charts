@@ -36,7 +36,7 @@ spec:
             - name: "DEIS_REGISTRY_SERVICE_HOST"
               value: "localhost"
             - name: "DEIS_REGISTRY_SERVICE_PORT"
-              value: "5555"
+              value: "{{.registry_proxy.hostPort}}"
             - name: "HEALTH_SERVER_PORT"
               value: "8092"
             - name: "EXTERNAL_PORT"

@@ -124,6 +124,7 @@ dockerTag = "canary"
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+hostPort = 5555
 
 [workflowManager]
 org = "deisci"
