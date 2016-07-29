@@ -33,4 +33,4 @@ spec:
           value: $(DEIS_REGISTRY_SERVICE_PORT)
         ports:
         - containerPort: 80
-          hostPort: 5555
+          hostPort: {{.registry_proxy.hostPort}}

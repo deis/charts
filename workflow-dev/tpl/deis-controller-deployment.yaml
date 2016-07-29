@@ -47,7 +47,7 @@ spec:
             - name: "DEIS_REGISTRY_SERVICE_HOST"
               value: "localhost"
             - name: "DEIS_REGISTRY_SERVICE_PORT"
-              value: "5555"
+              value: "{{.registry_proxy.hostPort}}"
             - name: KUBERNETES_POD_TERMINATION_GRACE_PERIOD_SECONDS
               value: "5"
             - name: "APP_STORAGE"
