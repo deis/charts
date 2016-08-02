@@ -52,6 +52,10 @@ spec:
               value: "5"
             - name: "APP_STORAGE"
               value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
+            - name: "DEIS_REGISTRY_LOCATION"
+              value: "{{ .registry_location }}"
+            - name: "DEIS_REGISTRY_SECRET_PREFIX"
+              value: "{{ .registry_token_refresher.secretPrefix }}"
             - name: "SLUGRUNNER_IMAGE_NAME"
               value: "quay.io/{{.slugrunner.org}}/slugrunner:{{env "SLUGRUNNER_GIT_TAG" | default .slugrunner.dockerTag}}"
             - name: DEIS_SECRET_KEY
