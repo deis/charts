@@ -1,0 +1,52 @@
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-logger-rc.yaml $HELM_GENERATE_DIR/tpl/deis-logger-rc.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-logger
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    app: deis-logger
+  template:
+    metadata:
+      labels:
+        app: deis-logger
+    spec:
+      containers:
+      - name: deis-logger
+        image: quay.io/{{.logger.org}}/logger:{{env "LOGGER_GIT_TAG" | default .logger.dockerTag}}
+        imagePullPolicy: {{.logger.pullPolicy}}
+        env:
+        - name: STORAGE_ADAPTER
+          value: redis
+{{- if env "LOGGER_REDIS_LOCATION" | default .logger_redis_location | eq "off-cluster" }}
+        - name: DEIS_LOGGER_REDIS_DB
+          value: "{{ env "LOGGER_REDIS_DB" | default .loggerRedis.db }}"
+        - name: DEIS_LOGGER_REDIS_SERVICE_HOST
+          value: "{{ env "LOGGER_REDIS_HOST" | default .loggerRedis.host }}"
+        - name: DEIS_LOGGER_REDIS_SERVICE_PORT
+          value: "{{ env "LOGGER_REDIS_PORT" | default .loggerRedis.port }}"
+{{- end }}
+        - name: DEIS_LOGGER_REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: logger-redis-creds
+              key: password
+        ports:
+        - containerPort: 8088
+          name: http
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8088
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8088
+          initialDelaySeconds: 1
+          timeoutSeconds: 1

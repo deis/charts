@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-registry
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 0
+  selector:
+    app: deis-registry-deprecated
+  template:
+    metadata:
+      labels:
+        app: deis-registry-deprecated
+    spec:
+      serviceAccount: deis-registry
+      containers:
+        - name: deis-registry
+          image: quay.io/{{.registry.org}}/registry:{{env "REGISTRY_GIT_TAG" | default .registry.dockerTag}}
+          imagePullPolicy: {{.registry.pullPolicy}}
+          livenessProbe:
+            httpGet:
+              path: /v2/
+              port: 5000
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /v2/
+              port: 5000
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+          env:
+            - name: REGISTRY_STORAGE_DELETE_ENABLED
+              value: "true"
+            - name: REGISTRY_LOG_LEVEL
+              value: info
+            - name: REGISTRY_STORAGE
+              value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: registry-storage
+              mountPath: /var/lib/registry
+            - name: registry-creds
+              mountPath: /var/run/secrets/deis/registry/creds
+      volumes:
+        - name: registry-storage
+          emptyDir: {}
+        - name: registry-creds
+          secret:
+            secretName: objectstorage-keyfile
