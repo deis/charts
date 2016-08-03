@@ -26,16 +26,15 @@ fi
 helmc tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-logger-redis-secret-creds.yaml $HELM_GENERATE_DIR/tpl/deis-logger-redis-secret-creds.yaml
 
 registry_location=`grep "registry_location\s*=\s*" $HELM_GENERATE_DIR/tpl/generate_params.toml | cut -d "=" -f2 | tr -dc '[:alnum:]-\n\r'`
+rm -rf $HELM_GENERATE_DIR/manifests/deis-registry-*
 if [ "$REGISTRY_LOCATION" = "on-cluster" ] || ( [ -z "$REGISTRY_LOCATION" ] && [ "$registry_location" = "on-cluster" ] ); then
   helmc tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-registry-rc.yaml $HELM_GENERATE_DIR/tpl/deis-registry-rc.yaml
   helmc tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-registry-deployment.yaml $HELM_GENERATE_DIR/tpl/deis-registry-deployment.yaml
   helmc tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-registry-proxy.yaml $HELM_GENERATE_DIR/tpl/deis-registry-proxy-daemon.yaml
   cp $HELM_GENERATE_DIR/tpl/deis-registry-service* $HELM_GENERATE_DIR/manifests/
-  rm -rf $HELM_GENERATE_DIR/manifests/deis-registry-secret.yaml
 else
-  rm -rf $HELM_GENERATE_DIR/manifests/deis-registry-*
   helmc tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-registry-secret.yaml $HELM_GENERATE_DIR/tpl/deis-registry-secret.yaml
-  if [ "$REGISTRY_LOCATION" != "off-cluster" ] || ( [ -z "$REGISTRY_LOCATION" ] && [ "$registry_location" != "off-cluster" ] ); then
+  if ([ "$REGISTRY_LOCATION" != "" ] && [ "$REGISTRY_LOCATION" != "off-cluster" ] ) || ( [ -z "$REGISTRY_LOCATION" ] && [ "$registry_location" != "off-cluster" ] ); then
     helmc tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-registry-token-refresher.yaml $HELM_GENERATE_DIR/tpl/deis-registry-token-refresher.yaml
   fi
 fi
