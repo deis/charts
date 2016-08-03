@@ -5,6 +5,8 @@ metadata:
   namespace: deis
   labels:
     heritage: deis
+  annotations:
+    helm-keep: "true"
 spec:
   replicas: 1
   strategy:
