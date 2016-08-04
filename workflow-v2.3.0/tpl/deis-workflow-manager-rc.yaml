@@ -1,0 +1,45 @@
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-workflow-manager-rc.yaml $HELM_GENERATE_DIR/tpl/deis-workflow-manager-rc.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-workflow-manager
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 0
+  selector:
+    app: deis-workflow-manager-deprecated
+  template:
+    metadata:
+      labels:
+        app: deis-workflow-manager-deprecated
+    spec:
+      serviceAccount: deis-workflow-manager
+      containers:
+      - name: deis-workflow-manager
+        image: quay.io/{{.workflowManager.org}}/workflow-manager:{{env "WORKFLOW_MANAGER_GIT_TAG" | default .workflowManager.dockerTag}}
+        imagePullPolicy: {{.workflowManager.pullPolicy}}
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: PORT
+          value: "8080"
+        - name: VERSIONS_API_URL
+          value: {{.workflowManager.versionsApiURL}}
+        - name: DOCTOR_API_URL
+          value: {{.workflowManager.doctorApiURL}}
+        - name: POLL_INTERVAL_SEC
+          value: "43200"
+        - name: CHECK_VERSIONS
+          value: "true"
+        - name: API_VERSION
+          value: "v2"
+        - name: DEIS_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        ports:
+        - containerPort: 8080

@@ -1,0 +1,98 @@
+#helm:generate helm template -o $HELM_GENERATE_DIR/manifests/deis-controller-rc.yaml -d $HELM_GENERATE_DIR/tpl/generate_params.toml $HELM_GENERATE_DIR/tpl/deis-controller-rc.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-controller
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 0
+  selector:
+    app: deis-controller-deprecated
+  template:
+    metadata:
+      labels:
+        app: deis-controller-deprecated
+    spec:
+      serviceAccount: deis-controller
+      containers:
+        - name: deis-controller
+          image: quay.io/{{.controller.org}}/controller:{{env "CONTROLLER_GIT_TAG" | default .controller.dockerTag}}
+          imagePullPolicy: {{.controller.pullPolicy}}
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 8000
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+            periodSeconds: 5
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            - name: "APP_STORAGE"
+              value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
+            - name: "SLUGRUNNER_IMAGE_NAME"
+              value: "quay.io/{{.slugrunner.org}}/slugrunner:{{env "SLUGRUNNER_GIT_TAG" | default .slugrunner.dockerTag}}"
+            - name: DEIS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: django-secret-key
+                  key: secret-key
+            - name: DEIS_BUILDER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: builder-key-auth
+                  key: builder-key
+{{- if env "DATABASE_LOCATION" | default .database_location | eq "off-cluster" }}
+            - name: DEIS_DATABASE_NAME
+              value: "{{ env "DATABASE_NAME" | default .database.name }}"
+            - name: DEIS_DATABASE_SERVICE_HOST
+              value: "{{ env "DATABASE_HOST" | default .database.host }}"
+            - name: DEIS_DATABASE_SERVICE_PORT
+              value: "{{ env "DATABASE_PORT" | default .database.port }}"
+{{- end }}
+            - name: DEIS_DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: database-creds
+                  key: user
+            - name: DEIS_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: database-creds
+                  key: password
+            - name: RESERVED_NAMES
+              value: "deis, deis-builder, deis-workflow-manager, grafana"
+          volumeMounts:
+            - mountPath: /var/run/docker.sock
+              name: docker-socket
+            - name: builder-key-auth
+              mountPath: /var/run/secrets/api/builder/auth
+              readOnly: true
+            - name: django-secret-key
+              mountPath: /var/run/secrets/api/django
+              readOnly: true
+            - name: database-creds
+              mountPath: /var/run/secrets/deis/database/creds
+              readOnly: true
+      volumes:
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
+        - name: django-secret-key
+          secret:
+            secretName: django-secret-key
+        - name: builder-key-auth
+          secret:
+            secretName: builder-key-auth
+        - name: database-creds
+          secret:
+            secretName: database-creds
