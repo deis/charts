@@ -55,7 +55,7 @@ spec:
             - name: "APP_STORAGE"
               value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
             - name: "DEIS_REGISTRY_LOCATION"
-              value: "{{ .registry_location }}"
+              value: "{{ or (env "REGISTRY_LOCATION") (.registry_location) }}"
             - name: "DEIS_REGISTRY_SECRET_PREFIX"
               value: "{{ .registry_token_refresher.secretPrefix }}"
             - name: "SLUGRUNNER_IMAGE_NAME"
