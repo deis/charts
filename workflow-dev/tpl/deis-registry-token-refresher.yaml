@@ -26,7 +26,7 @@ spec:
           imagePullPolicy: {{.registry_token_refresher.pullPolicy}}
           env:
             - name: "DEIS_REGISTRY_LOCATION"
-              value: "{{ .registry_location }}"
+              value: "{{ or (env "REGISTRY_LOCATION") (.registry_location) }}"
             - name: "DEIS_REGISTRY_SECRET_PREFIX"
               value: "{{ .registry_token_refresher.secretPrefix }}"
             - name: DEIS_NAMESPACE_REFRESH_TIME
