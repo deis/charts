@@ -62,7 +62,7 @@ registryid = ""
 hostname = ""
 
 [gcr]
-key_json = ''''''
+key_json = '''Paste JSON data here.'''
 hostname = ""
 
 [minio]
