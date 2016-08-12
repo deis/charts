@@ -8,9 +8,10 @@ metadata:
     heritage: deis
   annotations:
     helm-keep: "true"
-{{- if ne .router.platformDomain "" }}
+    {{- if ne .router.platformDomain "" }}
     router.deis.io/nginx.platformDomain: {{ .router.platformDomain }}
-{{- end }}
+    {{- end }}
+    component.deis.io/version: {{env "ROUTER_GIT_TAG" | default .router.dockerTag}}
 spec:
   replicas: 1
   strategy:

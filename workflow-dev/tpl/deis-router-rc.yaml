@@ -6,10 +6,11 @@ metadata:
   namespace: deis
   labels:
     heritage: deis
-{{- if ne .router.platformDomain "" }}
   annotations:
+    {{- if ne .router.platformDomain "" }}
     router.deis.io/nginx.platformDomain: {{ .router.platformDomain }}
-{{- end }}
+    {{- end }}
+    component.deis.io/version: {{env "ROUTER_GIT_TAG" | default .router.dockerTag}}
 spec:
   replicas: 0
   selector:

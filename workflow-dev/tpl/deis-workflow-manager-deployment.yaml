@@ -8,6 +8,7 @@ metadata:
     heritage: deis
   annotations:
     helm-keep: "true"
+    component.deis.io/version: {{env "WORKFLOW_MANAGER_GIT_TAG" | default .workflowManager.dockerTag}}
 spec:
   replicas: 1
   strategy:
