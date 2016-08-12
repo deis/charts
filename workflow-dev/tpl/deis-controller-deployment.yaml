@@ -45,6 +45,16 @@ spec:
           ports:
             - containerPort: 8000
               name: http
+{{- if or (.controller.limits_cpu) (.controller.limits_memory)}}
+          resources:
+            limits:
+{{- if (.controller.limits_cpu) }}
+              cpu: {{.controller.limits_cpu}}
+{{- end}}
+{{- if (.controller.limits_memory) }}
+              memory: {{.controller.limits_memory}}
+{{- end}}
+{{- end}}
           env:
             # NOTE(bacongobbler): use deis/registry-proxy to work around Docker --insecure-registry requirements
             - name: "DEIS_REGISTRY_SERVICE_HOST"

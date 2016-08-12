@@ -22,6 +22,16 @@ spec:
         - name: deis-nsqd
           image: quay.io/{{.nsqd.org}}/nsq:{{env "NSQ_GIT_TAG" | default .nsqd.dockerTag}}
           imagePullPolicy: {{.nsqd.pullPolicy}}
+{{- if or (.nsqd.limits_cpu) (.nsqd.limits_memory)}}
+          resources:
+            limits:
+{{- if (.nsqd.limits_cpu) }}
+              cpu: {{.nsqd.limits_cpu}}
+{{- end}}
+{{- if (.nsqd.limits_memory) }}
+              memory: {{.nsqd.limits_memory}}
+{{- end}}
+{{- end}}
           command:
           - /opt/nsq/bin/start-nsqd
           ports:

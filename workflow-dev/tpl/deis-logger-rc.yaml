@@ -40,6 +40,16 @@ spec:
         ports:
         - containerPort: 8088
           name: http
+{{- if or (.logger.limits_cpu) (.logger.limits_memory)}}
+        resources:
+          limits:
+{{- if (.logger.limits_cpu) }}
+            cpu: {{.logger.limits_cpu}}
+{{- end}}
+{{- if (.logger.limits_memory) }}
+            memory: {{.logger.limits_memory}}
+{{- end}}
+{{- end}}
         livenessProbe:
           httpGet:
             path: /healthz

@@ -29,6 +29,16 @@ spec:
       - name: deis-workflow-manager
         image: quay.io/{{.workflowManager.org}}/workflow-manager:{{env "WORKFLOW_MANAGER_GIT_TAG" | default .workflowManager.dockerTag}}
         imagePullPolicy: {{.workflowManager.pullPolicy}}
+{{- if or (.workflowManager.limits_cpu) (.workflowManager.limits_memory)}}
+        resources:
+          limits:
+{{- if (.workflowManager.limits_cpu) }}
+            cpu: {{.workflowManager.limits_cpu}}
+{{- end}}
+{{- if (.workflowManager.limits_memory) }}
+            memory: {{.workflowManager.limits_memory}}
+{{- end}}
+{{- end}}
         env:
         - name: POD_NAMESPACE
           valueFrom:

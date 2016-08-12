@@ -21,6 +21,16 @@ spec:
       - name: deis-monitor-influxdb
         image: quay.io/{{.influxdb.org}}/influxdb:{{env "INFLUXDB_GIT_TAG" | default .influxdb.dockerTag}}
         imagePullPolicy: {{.influxdb.pullPolicy}}
+{{- if or (.influxdb.limits_cpu) (.influxdb.limits_memory)}}
+        resources:
+          limits:
+{{- if (.influxdb.limits_cpu) }}
+            cpu: {{.influxdb.limits_cpu}}
+{{- end}}
+{{- if (.influxdb.limits_memory) }}
+            memory: {{.influxdb.limits_memory}}
+{{- end}}
+{{- end}}
         ports:
         - containerPort: 8083
           name: admin

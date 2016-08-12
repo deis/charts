@@ -39,6 +39,16 @@ spec:
               port: 8082
             initialDelaySeconds: 30
             timeoutSeconds: 1
+{{- if or (.minio.limits_cpu) (.minio.limits_memory)}}
+          resources:
+            limits:
+{{- if (.minio.limits_cpu) }}
+              cpu: {{.minio.limits_cpu}}
+{{- end}}
+{{- if (.minio.limits_memory) }}
+              memory: {{.minio.limits_memory}}
+{{- end}}
+{{- end}}
           command:
             - boot
           args:
