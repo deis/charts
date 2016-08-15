@@ -6,6 +6,8 @@ metadata:
   namespace: deis
   labels:
     heritage: deis
+  annotations:
+    component.deis.io/version: {{env "WORKFLOW_MANAGER_GIT_TAG" | default .workflowManager.dockerTag}}
 spec:
   replicas: 0
   selector:

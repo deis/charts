@@ -6,6 +6,8 @@ metadata:
   namespace: deis
   labels:
     heritage: deis
+  annotations:
+    component.deis.io/version: {{env "TELEGRAF_GIT_TAG" | default .telegraf.dockerTag}}
 spec:
   template:
     metadata:

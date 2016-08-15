@@ -6,6 +6,8 @@ metadata:
   namespace: deis
   labels:
     heritage: deis
+  annotations:
+    component.deis.io/version: {{env "CONTROLLER_GIT_TAG" | default .controller.dockerTag}}
 spec:
   replicas: 0
   selector:

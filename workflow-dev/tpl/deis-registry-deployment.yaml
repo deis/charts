@@ -7,6 +7,7 @@ metadata:
     heritage: deis
   annotations:
     helm-keep: "true"
+    component.deis.io/version: {{env "REGISTRY_GIT_TAG" | default .registry.dockerTag}}
 spec:
   replicas: 1
   strategy:
