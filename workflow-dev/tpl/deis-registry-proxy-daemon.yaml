@@ -23,10 +23,16 @@ spec:
       - name: deis-registry-proxy
         image: quay.io/{{.registry_proxy.org}}/registry-proxy:{{env "REGISTRY_PROXY_GIT_TAG" | default .registry_proxy.dockerTag}}
         imagePullPolicy: {{.registry_proxy.pullPolicy}}
+{{- if or (.registry_proxy.limits_cpu) (.registry_proxy.limits_memory)}}
         resources:
           limits:
-            cpu: 100m
-            memory: 50Mi
+{{- if (.registry_proxy.limits_cpu) }}
+            cpu: {{.registry_proxy.limits_cpu }}
+{{- end}}
+{{- if (.registry_proxy.limits_memory) }}
+            memory: {{.registry_proxy.limits_memory }}
+{{- end}}
+{{- end}}
         env:
         - name: REGISTRY_HOST
           value: $(DEIS_REGISTRY_SERVICE_HOST)

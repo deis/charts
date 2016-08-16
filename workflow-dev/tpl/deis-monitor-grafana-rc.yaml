@@ -21,6 +21,16 @@ spec:
       - name: deis-monitor-grafana
         image: quay.io/{{.grafana.org}}/grafana:{{env "GRAFANA_GIT_TAG" | default .grafana.dockerTag}}
         imagePullPolicy: {{.grafana.pullPolicy}}
+{{- if or (.grafana.limits_cpu) (.grafana.limits_memory)}}
+        resources:
+          limits:
+{{- if (.grafana.limits_cpu) }}
+            cpu: {{.grafana.limits_cpu}}
+{{- end}}
+{{- if (.grafana.limits_memory) }}
+            memory: {{.grafana.limits_memory}}
+{{- end}}
+{{- end}}
         env:
         - name: "INFLUXDB_URLS"
           value: http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)

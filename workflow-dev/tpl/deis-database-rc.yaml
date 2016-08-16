@@ -26,6 +26,16 @@ spec:
           env:
             - name: DATABASE_STORAGE
               value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
+{{- if or (.database.limits_cpu) (.database.limits_memory)}}
+          resources:
+            limits:
+{{- if (.database.limits_cpu) }}
+              cpu: {{.database.limits_cpu}}
+{{- end}}
+{{- if (.database.limits_memory) }}
+              memory: {{.database.limits_memory}}
+{{- end}}
+{{- end}}
           readinessProbe:
             exec:
               command:

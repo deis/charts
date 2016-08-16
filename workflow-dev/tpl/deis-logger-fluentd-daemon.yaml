@@ -25,6 +25,16 @@ spec:
       - name: deis-logger-fluentd
         image: quay.io/{{ .fluentd.org }}/fluentd:{{env "FLUENTD_GIT_TAG" | default .fluentd.dockerTag}}
         imagePullPolicy: {{.fluentd.pullPolicy}}
+{{- if or (.fluentd.limits_cpu) (.fluentd.limits_memory)}}
+        resources:
+          limits:
+{{- if (.fluentd.limits_cpu) }}
+            cpu: {{.fluentd.limits_cpu}}
+{{- end}}
+{{- if (.fluentd.limits_memory) }}
+            memory: {{.fluentd.limits_memory}}
+{{- end}}
+{{- end}}
         volumeMounts:
         - name: varlog
           mountPath: /var/log

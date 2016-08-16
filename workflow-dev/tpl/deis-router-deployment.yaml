@@ -32,6 +32,16 @@ spec:
       - name: deis-router
         image: quay.io/{{.router.org}}/router:{{env "ROUTER_GIT_TAG" | default .router.dockerTag}}
         imagePullPolicy: {{.router.pullPolicy}}
+{{- if or (.router.limits_cpu) (.router.limits_memory)}}
+        resources:
+          limits:
+{{- if (.router.limits_cpu) }}
+            cpu: {{.router.limits_cpu}}
+{{- end}}
+{{- if (.router.limits_memory) }}
+            memory: {{.router.limits_memory}}
+{{- end}}
+{{- end}}
         env:
         - name: POD_NAMESPACE
           valueFrom:

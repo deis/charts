@@ -28,6 +28,16 @@ spec:
         - name: deis-registry
           image: quay.io/{{.registry.org}}/registry:{{env "REGISTRY_GIT_TAG" | default .registry.dockerTag}}
           imagePullPolicy: {{.registry.pullPolicy}}
+{{- if or (.registry.limits_cpu) (.registry.limits_memory)}}
+          resources:
+            limits:
+{{- if (.registry.limits_cpu) }}
+              cpu: {{.registry.limits_cpu}}
+{{- end}}
+{{- if (.registry.limits_memory) }}
+              memory: {{.registry.limits_memory}}
+{{- end}}
+{{- end}}
           livenessProbe:
             httpGet:
               path: /v2/

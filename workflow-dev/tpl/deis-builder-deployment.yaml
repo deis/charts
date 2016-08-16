@@ -34,6 +34,16 @@ spec:
               name: ssh
             - containerPort: 8092
               name: healthsrv
+{{- if or (.builder.limits_cpu) (.builder.limits_memory)}}
+          resources:
+            limits:
+{{- if (.builder.limits_cpu) }}
+              cpu: {{.builder.limits_cpu}}
+{{- end}}
+{{- if (.builder.limits_memory) }}
+              memory: {{.builder.limits_memory}}
+{{- end}}
+{{- end}}
           env:
             # NOTE(bacongobbler): use deis/registry-proxy to work around Docker --insecure-registry requirements
             - name: "DEIS_REGISTRY_SERVICE_HOST"

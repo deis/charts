@@ -112,6 +112,8 @@ builder_container = "your-builder-container-name"
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [slugbuilder]
 org = "deisci"
@@ -127,6 +129,8 @@ dockerTag = "canary"
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [slugrunner]
 org = "deisci"
@@ -143,11 +147,15 @@ username = "database username"
 password = "database password"
 host = "database host"
 port = "database port"
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [registry]
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [registry_token_refresher]
 org = "deis"
@@ -158,12 +166,16 @@ secretPrefix = "private-registry"
 # Time in minutes after which the token should be refreshed.
 # Leave it empty to use the default provider time.
 tokenRefreshTime = ""
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [registry_proxy]
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
 hostPort = 5555
+limits_cpu = "100m"
+limits_memory = "50Mi"
 
 [workflowManager]
 org = "deisci"
@@ -171,11 +183,15 @@ pullPolicy = "Always"
 dockerTag = "canary"
 versionsApiURL = "https://versions-staging.deis.com"
 doctorApiURL = "https://doctor-staging.deis.com"
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [logger]
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [loggerRedis]
 org = "deisci"
@@ -186,34 +202,48 @@ db = "0"
 host = "redis host"
 port = "redis port"
 password = "redis password" # "" == no password
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [router]
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
 platformDomain = ""
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [fluentd]
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [grafana]
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [influxdb]
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [telegraf]
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+# limits_cpu = "100m"
+# limits_memory = "50Mi"
 
 [nsqd]
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+# limits_cpu = "100m"
+# limits_memory = "50Mi"

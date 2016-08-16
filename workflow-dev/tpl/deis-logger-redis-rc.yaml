@@ -21,6 +21,16 @@ spec:
       - name: deis-logger-redis
         image: quay.io/{{.loggerRedis.org}}/redis:{{env "LOGGER_REDIS_GIT_TAG" | default .loggerRedis.dockerTag}}
         imagePullPolicy: {{.loggerRedis.pullPolicy}}
+{{- if or (.loggerRedis.limits_cpu ) (.loggerRedis.limits_memory)}}
+        resources:
+          limits:
+{{- if (.loggerRedis.limits_cpu) }}
+            cpu: {{.loggerRedis.limits_cpu}}
+{{- end}}
+{{- if (.loggerRedis.limits_memory) }}
+            memory: {{.loggerRedis.limits_memory}}
+{{- end}}
+{{- end}}
         ports:
         - containerPort: 6379
         volumeMounts:
