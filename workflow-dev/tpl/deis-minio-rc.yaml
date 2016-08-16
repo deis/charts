@@ -44,10 +44,19 @@ spec:
           args:
             - "server /home/minio/"
           volumeMounts:
+{{- if ne .minio.hostPath ""}}
+            - name: minio-home
+              mountPath: /home/minio
+{{- end }}
             - name: minio-user
               mountPath: /var/run/secrets/deis/minio/user
               readOnly: true
       volumes:
+{{- if ne .minio.hostPath ""}}
+        - name: minio-home
+          hostPath:
+            path: {{ .minio.hostPath }}
+{{- end }}
         - name: minio-user
           secret:
             secretName: objectstorage-keyfile

@@ -69,6 +69,7 @@ hostname = ""
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+hostPath = ""
 
 [s3]
 # Your AWS access key. Leave it empty if you want to use IAM credentials.
