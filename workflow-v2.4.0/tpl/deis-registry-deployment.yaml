@@ -1,0 +1,72 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: deis-registry
+  namespace: deis
+  labels:
+    heritage: deis
+  annotations:
+    helm-keep: "true"
+    component.deis.io/version: {{env "REGISTRY_GIT_TAG" | default .registry.dockerTag}}
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: deis-registry
+  template:
+    metadata:
+      labels:
+        app: deis-registry
+    spec:
+      serviceAccount: deis-registry
+      containers:
+        - name: deis-registry
+          image: quay.io/{{.registry.org}}/registry:{{env "REGISTRY_GIT_TAG" | default .registry.dockerTag}}
+          imagePullPolicy: {{.registry.pullPolicy}}
+{{- if or (.registry.limits_cpu) (.registry.limits_memory)}}
+          resources:
+            limits:
+{{- if (.registry.limits_cpu) }}
+              cpu: {{.registry.limits_cpu}}
+{{- end}}
+{{- if (.registry.limits_memory) }}
+              memory: {{.registry.limits_memory}}
+{{- end}}
+{{- end}}
+          livenessProbe:
+            httpGet:
+              path: /v2/
+              port: 5000
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /v2/
+              port: 5000
+            initialDelaySeconds: 1
+            timeoutSeconds: 1
+          env:
+            - name: REGISTRY_STORAGE_DELETE_ENABLED
+              value: "true"
+            - name: REGISTRY_LOG_LEVEL
+              value: info
+            - name: REGISTRY_STORAGE
+              value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: registry-storage
+              mountPath: /var/lib/registry
+            - name: registry-creds
+              mountPath: /var/run/secrets/deis/registry/creds
+      volumes:
+        - name: registry-storage
+          emptyDir: {}
+        - name: registry-creds
+          secret:
+            secretName: objectstorage-keyfile
