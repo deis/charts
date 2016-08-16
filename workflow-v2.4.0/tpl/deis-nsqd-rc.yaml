@@ -1,0 +1,60 @@
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-nsqd-rc.yaml $HELM_GENERATE_FILE
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-nsqd
+  namespace: deis
+  labels:
+    heritage: deis
+  annotations:
+    component.deis.io/version: {{env "NSQ_GIT_TAG" | default .nsqd.dockerTag}}
+spec:
+  replicas: 1
+  selector:
+    app: deis-nsqd
+  template:
+    metadata:
+      labels:
+        app: deis-nsqd
+    spec:
+      serviceAccount: deis-nsqd
+      containers:
+        - name: deis-nsqd
+          image: quay.io/{{.nsqd.org}}/nsq:{{env "NSQ_GIT_TAG" | default .nsqd.dockerTag}}
+          imagePullPolicy: {{.nsqd.pullPolicy}}
+{{- if or (.nsqd.limits_cpu) (.nsqd.limits_memory)}}
+          resources:
+            limits:
+{{- if (.nsqd.limits_cpu) }}
+              cpu: {{.nsqd.limits_cpu}}
+{{- end}}
+{{- if (.nsqd.limits_memory) }}
+              memory: {{.nsqd.limits_memory}}
+{{- end}}
+{{- end}}
+          command:
+          - /opt/nsq/bin/start-nsqd
+          ports:
+          - containerPort: 4151
+            name: http
+            protocol: TCP
+          - containerPort: 4150
+            name: transport
+            protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: 4151
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: 4151
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          env:
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
