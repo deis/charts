@@ -22,6 +22,10 @@ spec:
        # set TEST env variable to run appropriate tests in e2e suite
       - name: TEST
         value: "{{env "TEST" | default "e2e"}}"
+{{ if env "DEBUG_MODE" }}
+      - name: DEBUG_MODE
+        value: "true"
+{{ end }}
     volumeMounts:
     - name: artifact-volume
       mountPath: /root
