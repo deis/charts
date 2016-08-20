@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: deis-monitor-influxapi
+  namespace: deis
+  labels:
+    heritage: deis
+    app: deis-monitor-influxapi
+    router.deis.io/routable: "true"
+  annotations:
+    router.deis.io/domains: influxapi
+    router.deis.io/connectTimeout: "10"
+    router.deis.io/tcpTimeout: "1200"
+spec:
+  ports:
+  - port: 80
+    name: transport
+    targetPort: transport
+  selector:
+    app: deis-monitor-influxdb
