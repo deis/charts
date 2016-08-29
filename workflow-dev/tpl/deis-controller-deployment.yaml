@@ -63,6 +63,8 @@ spec:
               value: "{{.registry_proxy.hostPort}}"
             - name: KUBERNETES_POD_TERMINATION_GRACE_PERIOD_SECONDS
               value: "5"
+            - name: SLUG_RUNNER_IMAGE_PULL_POLICY
+              value: {{ .slugrunner.pullPolicy }}
             - name: "APP_STORAGE"
               value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
             - name: "DEIS_REGISTRY_LOCATION"
