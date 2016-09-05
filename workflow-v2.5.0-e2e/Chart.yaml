@@ -1,0 +1,13 @@
+name: workflow-v2.5.0-e2e
+home: https://github.com/deis/workflow-e2e
+version: v2.5.0
+description: |-
+  End-to-end tests for Deis Workflow, executed in parallel
+maintainers:
+- Deis Team <engineering@deis.com>
+details: |-
+  End-to-end tests for the Deis Workflow open source PaaS, executed in parallel.
+
+  Deis (pronounced DAY-iss) Workflow is an open source PaaS that makes it easy to deploy
+  and manage applications on your own servers. Workflow builds on Kubernetes to provide a
+  lightweight, Heroku-inspired workflow.
