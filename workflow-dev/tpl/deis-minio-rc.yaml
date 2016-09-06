@@ -24,6 +24,10 @@ spec:
           env:
             - name: HEALTH_SERVER_PORT
               value: "8082"
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
           ports:
             - containerPort: 9000
             - containerPort: 8082
