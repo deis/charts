@@ -132,9 +132,19 @@ dockerTag = "canary"
 # limits_cpu = "100m"
 # limits_memory = "50Mi"
 
+# Set the default (global) way of how Application (your own) images are
+# pulled from within the Controller.
+# This can be configured per Application as well in the Controller.
+#
+# This affects pull apps and git push (slugrunner images) apps
+#
+# Values values are:
+# - Always
+# - IfNotPresent
+app_pull_policy = "Always"
+
 [slugrunner]
 org = "deisci"
-pullPolicy = "Always"
 dockerTag = "canary"
 
 [database]
