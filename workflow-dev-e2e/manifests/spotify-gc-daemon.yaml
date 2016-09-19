@@ -17,7 +17,6 @@ spec:
         heritage: deis
         app: deis-spotify-gc
     spec:
-      serviceAccount: deis-spotify-gc
       containers:
       - name: deis-spotify-gc
         image: spotify/docker-gc:latest
