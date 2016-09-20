@@ -35,7 +35,9 @@ spec:
               fieldRef:
                 fieldPath: metadata.namespace
           - name: "INFLUXDB_URLS"
-            value: http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)
+            value: "\"http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)\""
+          - name: "INFLUXDB_INPUT_URLS"
+            value: "\"http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)/debug/vars\""
           - name: "HOST_PROC"
             value: "/rootfs/proc"
           - name: "HOST_SYS"
@@ -49,20 +51,20 @@ spec:
           - name: "ENABLE_PROMETHEUS"
             value: "true"
           - name: "NSQ_CONSUMER_SERVER"
-            value: $(DEIS_NSQD_SERVICE_HOST):$(DEIS_NSQD_SERVICE_PORT_TRANSPORT)
+            value: "$(DEIS_NSQD_SERVICE_HOST):$(DEIS_NSQD_SERVICE_PORT_TRANSPORT)"
           - name: "NSQ_CONSUMER_TOPIC"
             value: "metrics"
           - name: "NSQ_ENDPOINTS"
-            value: http://$(DEIS_NSQD_SERVICE_HOST):$(DEIS_NSQD_SERVICE_PORT_HTTP)
-{{- if env "LOGGER_REDIS_LOCATION" | default .logger_redis_location | ne "off-cluster" }}
+            value: "\"http://$(DEIS_NSQD_SERVICE_HOST):$(DEIS_NSQD_SERVICE_PORT_HTTP)\""
+          {{- if env "LOGGER_REDIS_LOCATION" | default .logger_redis_location | ne "off-cluster" }}
           - name: DEIS_LOGGER_REDIS_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: logger-redis-creds
                 key: password
           - name: "REDIS_SERVERS"
-            value: tcp://:$(DEIS_LOGGER_REDIS_PASSWORD)@$(DEIS_LOGGER_REDIS_SERVICE_HOST):$(DEIS_LOGGER_REDIS_SERVICE_PORT)
-{{- end }}
+            value: "\"tcp://:$(DEIS_LOGGER_REDIS_PASSWORD)@$(DEIS_LOGGER_REDIS_SERVICE_HOST):$(DEIS_LOGGER_REDIS_SERVICE_PORT)\""
+          {{- end }}
           volumeMounts:
           - mountPath: /var/run/docker.sock
             name: docker-socket
