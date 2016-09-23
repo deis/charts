@@ -236,6 +236,8 @@ pullPolicy = "Always"
 dockerTag = "canary"
 # limits_cpu = "100m"
 # limits_memory = "50Mi"
+user = "admin"
+password = "admin"
 
 [influxdb]
 org = "deisci"

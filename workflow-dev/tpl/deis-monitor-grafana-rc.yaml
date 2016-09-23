@@ -35,6 +35,10 @@ spec:
           value: http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)
         - name: "BIND_PORT"
           value: "3500"
+        - name: "DEFAULT_USER"
+          value: {{env "GRAFANA_USER" | default .grafana.user}}
+        - name: "DEFAULT_USER_PASSWORD"
+          value: {{env "GRAFANA_PASSWD" | default .grafana.password}}
         ports:
         - containerPort: 3500
           name: ui
