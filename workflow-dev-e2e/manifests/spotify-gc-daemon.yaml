@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: deis-spotify-gc
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  selector:
+    matchLabels:
+      app: deis-spotify-gc
+      heritage: deis
+  template:
+    metadata:
+      name: deis-spotify-gc
+      labels:
+        heritage: deis
+        app: deis-spotify-gc
+    spec:
+      containers:
+      - name: deis-spotify-gc
+        image: spotify/docker-gc:latest
+        imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /var/run/docker.sock
+          name: docker-socket
+      volumes:
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
