@@ -1,4 +1,4 @@
-# Deis Router 2.0.0-dev
+# Deis Router dev
 
 WARNING: this chart is for testing only! Features may not work and there are likely to be bugs.
 

@@ -1,4 +1,4 @@
-# Workflow 2.0.0-dev e2e Tests (parallel)
+# Workflow dev e2e Tests (parallel)
 
 End-to-end tests for the Deis Workflow open source PaaS, executed in parallel.
 
