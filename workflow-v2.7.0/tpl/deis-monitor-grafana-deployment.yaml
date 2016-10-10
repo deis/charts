@@ -1,0 +1,52 @@
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-monitor-grafana-deployment.yaml $HELM_GENERATE_FILE
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: deis-monitor-grafana
+  namespace: deis
+  labels:
+    heritage: deis
+  annotations:
+    helm-keep: "true"
+    component.deis.io/version: {{env "GRAFANA_GIT_TAG" | default .grafana.dockerTag}}
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: deis-monitor-grafana
+  template:
+    metadata:
+      labels:
+        app: deis-monitor-grafana
+    spec:
+      containers:
+      - name: deis-monitor-grafana
+        image: quay.io/{{.grafana.org}}/grafana:{{env "GRAFANA_GIT_TAG" | default .grafana.dockerTag}}
+        imagePullPolicy: {{.grafana.pullPolicy}}
+{{- if or (.grafana.limits_cpu) (.grafana.limits_memory)}}
+        resources:
+          limits:
+{{- if (.grafana.limits_cpu) }}
+            cpu: {{.grafana.limits_cpu}}
+{{- end}}
+{{- if (.grafana.limits_memory) }}
+            memory: {{.grafana.limits_memory}}
+{{- end}}
+{{- end}}
+        env:
+        - name: "INFLUXDB_URLS"
+          value: http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)
+        - name: "BIND_PORT"
+          value: "3500"
+        - name: "DEFAULT_USER"
+          value: {{env "GRAFANA_USER" | default .grafana.user}}
+        - name: "DEFAULT_USER_PASSWORD"
+          value: {{env "GRAFANA_PASSWD" | default .grafana.password}}
+        ports:
+        - containerPort: 3500
+          name: ui
