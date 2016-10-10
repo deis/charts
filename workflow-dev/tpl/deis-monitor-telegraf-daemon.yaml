@@ -48,7 +48,7 @@ spec:
             value: "100000"
           - name: "ENABLE_INFLUXDB_INPUT"
             value: "true"
-          - name: "ENABLE_PROMETHEUS"
+          - name: "ENABLE_KUBERNETES"
             value: "true"
           - name: "NSQ_CONSUMER_SERVER"
             value: "$(DEIS_NSQD_SERVICE_HOST):$(DEIS_NSQD_SERVICE_PORT_TRANSPORT)"
