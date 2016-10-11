@@ -11,6 +11,7 @@ metadata:
     router.deis.io/domains: influx
     router.deis.io/connectTimeout: "10"
     router.deis.io/tcpTimeout: "1200"
+    helm-keep: "true"
 spec:
   ports:
   - port: 80
