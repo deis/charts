@@ -6,6 +6,8 @@ metadata:
   labels:
     heritage: deis
     app: deis-logger
+  annotations:
+    helm-keep: "true"
 spec:
   ports:
   - port: 80
@@ -13,4 +15,3 @@ spec:
     targetPort: http
   selector:
     app: deis-logger
-    

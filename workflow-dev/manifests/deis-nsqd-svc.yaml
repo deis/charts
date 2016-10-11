@@ -6,6 +6,8 @@ metadata:
   labels:
     heritage: deis
     app: deis-nsqd
+  annotations:
+    helm-keep: "true"
 spec:
   ports:
   - port: 4151
