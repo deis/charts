@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: deis-registry-proxy
+  namespace: deis
+  labels:
+    heritage: deis
+  annotations:
+    component.deis.io/version: {{env "REGISTRY_PROXY_GIT_TAG" | default .registry_proxy.dockerTag}}
+spec:
+  selector:
+    matchLabels:
+      app: deis-registry-proxy
+      heritage: deis
+  template:
+    metadata:
+      name: deis-registry-proxy
+      labels:
+        heritage: deis
+        app: deis-registry-proxy
+    spec:
+      containers:
+      - name: deis-registry-proxy
+        image: quay.io/{{.registry_proxy.org}}/registry-proxy:{{env "REGISTRY_PROXY_GIT_TAG" | default .registry_proxy.dockerTag}}
+        imagePullPolicy: {{.registry_proxy.pullPolicy}}
+{{- if or (.registry_proxy.limits_cpu) (.registry_proxy.limits_memory)}}
+        resources:
+          limits:
+{{- if (.registry_proxy.limits_cpu) }}
+            cpu: {{.registry_proxy.limits_cpu }}
+{{- end}}
+{{- if (.registry_proxy.limits_memory) }}
+            memory: {{.registry_proxy.limits_memory }}
+{{- end}}
+{{- end}}
+        env:
+        - name: REGISTRY_HOST
+          value: $(DEIS_REGISTRY_SERVICE_HOST)
+        - name: REGISTRY_PORT
+          value: $(DEIS_REGISTRY_SERVICE_PORT)
+        ports:
+        - containerPort: 80
+          hostPort: {{.registry_proxy.hostPort}}
