@@ -38,3 +38,19 @@ else
     helmc tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-registry-token-refresher.yaml $HELM_GENERATE_DIR/tpl/deis-registry-token-refresher.yaml
   fi
 fi
+
+influxdb_location=`grep "influxdb_location\s*=\s*" $HELM_GENERATE_DIR/tpl/generate_params.toml | cut -d "=" -f2 | tr -dc '[:alnum:]-\n\r'`
+if [ "$INFLUXDB_LOCATION" = "on-cluster" ] || ( [ -z "$INFLUXDB_LOCATION" ] && [ "$influxdb_location" = "on-cluster" ] ); then
+  helmc tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-monitor-influxdb-deployment.yaml $HELM_GENERATE_DIR/tpl/deis-monitor-influxdb-deployment.yaml
+  cp $HELM_GENERATE_DIR/tpl/deis-monitor-influxdb-svc* $HELM_GENERATE_DIR/manifests/
+else
+  rm -rf $HELM_GENERATE_DIR/manifests/deis-monitor-influxdb-*
+fi
+
+grafana_location=`grep "grafana_location\s*=\s*" $HELM_GENERATE_DIR/tpl/generate_params.toml | cut -d "=" -f2 | tr -dc '[:alnum:]-\n\r'`
+if [ "$GRAFANA_LOCATION" = "on-cluster" ] || ( [ -z "$GRAFANA_LOCATION" ] && [ "$grafana_location" = "on-cluster" ] ); then
+  helmc tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-monitor-grafana-deployment.yaml $HELM_GENERATE_DIR/tpl/deis-monitor-grafana-deployment.yaml
+  cp $HELM_GENERATE_DIR/tpl/deis-monitor-grafana-svc* $HELM_GENERATE_DIR/manifests/
+else
+  rm -rf $HELM_GENERATE_DIR/manifests/deis-monitor-grafana-*
+fi

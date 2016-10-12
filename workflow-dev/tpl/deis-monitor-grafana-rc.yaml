@@ -31,8 +31,19 @@ spec:
 {{- end}}
 {{- end}}
         env:
+        {{- if env "INFLUXDB_LOCATION" | default .influxdb_location | eq "off-cluster" }}
+        - name: "INFLUXDB_SERVICE_URL"
+          value: "{{ env "INFLUXDB_SERVICE_URL" | default .influxdb.url }}"
+        - name: "INFLUXDB_DATABASE"
+          value: "{{ env "INFLUXDB_DATABASE" | default .influxdb.database }}"
+        - name: "INFLUXDB_USER"
+          value: "{{ env "INFLUXDB_USER" | default .influxdb.user }}"
+        - name: "INFLUXDB_PASSWORD"
+          value: "{{ env "INFLUXDB_PASSWORD" | default .influxdb.password }}"
+        {{- else }}
         - name: "INFLUXDB_URLS"
           value: http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)
+        {{- end }}
         - name: "BIND_PORT"
           value: "3500"
         - name: "DEFAULT_USER"

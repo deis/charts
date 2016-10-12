@@ -45,6 +45,20 @@ logger_redis_location = "on-cluster"
 # - gcr: Use Google's GCR
 registry_location = "on-cluster"
 
+# Set the location of Workflow's influxdb cluster
+#
+# Valid values are:
+# - on-cluster: Run Influxdb within the Kubernetes cluster
+# - off-cluster: Influxdb is running outside of the cluster and credentials and connection information will be provided.
+influxdb_location = "on-cluster"
+
+# Set the location of Workflow's grafana instance
+#
+# Valid values are:
+# - on-cluster: Run Grafan within the Kubernetes cluster
+# - off-cluster: Grafana is running outside of the cluster
+grafana_location = "on-cluster"
+
 [off_cluster_registry]
 hostname = ""
 organization = ""
@@ -243,6 +257,10 @@ password = "admin"
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+url = "my.influx.url"
+database = "kubernetes"
+user = "user"
+password = "password"
 # limits_cpu = "100m"
 # limits_memory = "50Mi"
 
