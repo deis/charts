@@ -56,6 +56,9 @@ spec:
 {{- end}}
 {{- end}}
           env:
+            # NOTE(jchauncey): see tpl/generate_params.toml for possible values
+            - name: REGISTRATION_MODE
+              value: {{ .controller.registrationMode }}
             # NOTE(bacongobbler): use deis/registry-proxy to work around Docker --insecure-registry requirements
             - name: "DEIS_REGISTRY_SERVICE_HOST"
               value: "localhost"

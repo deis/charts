@@ -39,6 +39,9 @@ spec:
             - containerPort: 8000
               name: http
           env:
+            # NOTE(jchauncey): see tpl/generate_params.toml for possible values
+            - name: REGISTRATION_MODE
+              value: {{ .controller.registrationMode }}
             - name: KUBERNETES_POD_TERMINATION_GRACE_PERIOD_SECONDS
               value: "5"
             - name: "APP_STORAGE"
