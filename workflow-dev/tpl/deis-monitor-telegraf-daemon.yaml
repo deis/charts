@@ -34,10 +34,23 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
+          {{- if env "INFLUXDB_LOCATION" | default .influxdb_location | eq "off-cluster" }}
+          - name: "INFLUXDB_URLS"
+            value: "\"{{ env "INFLUXDB_URLS" | default .influxdb.url }}\""
+          - name: "INFLUXDB_DATABASE"
+            value: "{{ env "INFLUXDB_DATABASE" | default .influxdb.database }}"
+          - name: "INFLUXDB_USERNAME"
+            value: "{{ env "INFLUXDB_USERNAME" | default .influxdb.user }}"
+          - name: "INFLUXDB_PASSWORD"
+            value: "{{ env "INFLUXDB_PASSWORD" | default .influxdb.password }}"
+          {{- else }}
           - name: "INFLUXDB_URLS"
             value: "\"http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)\""
           - name: "INFLUXDB_INPUT_URLS"
             value: "\"http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)/debug/vars\""
+          - name: "ENABLE_INFLUXDB_INPUT"
+            value: "true"
+          {{- end }}
           - name: "HOST_PROC"
             value: "/rootfs/proc"
           - name: "HOST_SYS"
@@ -46,8 +59,6 @@ spec:
             value: "true"
           - name: "AGENT_BUFFER_LIMIT"
             value: "100000"
-          - name: "ENABLE_INFLUXDB_INPUT"
-            value: "true"
           - name: "ENABLE_KUBERNETES"
             value: "true"
           - name: "NSQ_CONSUMER_SERVER"
