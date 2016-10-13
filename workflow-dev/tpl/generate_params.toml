@@ -129,6 +129,11 @@ dockerTag = "canary"
 org = "deisci"
 pullPolicy = "Always"
 dockerTag = "canary"
+# NOTE(jchauncey): Possible values are:
+# enabled - allows for open registration
+# disabled - turns off open registration
+# admin_only - allows for registration by an admin only.
+registrationMode = "enabled"
 # limits_cpu = "100m"
 # limits_memory = "50Mi"
 
