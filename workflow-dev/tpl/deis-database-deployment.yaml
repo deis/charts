@@ -30,6 +30,8 @@ spec:
           env:
             - name: DATABASE_STORAGE
               value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
+            - name: PGCTLTIMEOUT
+              value: "1200"
 {{- if or (.database.limits_cpu) (.database.limits_memory)}}
           resources:
             limits:
