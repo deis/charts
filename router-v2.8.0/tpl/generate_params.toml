@@ -1,0 +1,5 @@
+[router]
+org = "deis"
+dockerTag = "v2.6.5"
+pullPolicy = "IfNotPresent"
+platformDomain = ""
