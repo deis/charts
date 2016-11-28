@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: deis-logger-redis
+  namespace: deis
+  labels:
+    heritage: deis
+  annotations:
+    helm-keep: "true"
+    component.deis.io/version: {{env "LOGGER_REDIS_GIT_TAG" | default .loggerRedis.dockerTag}}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: deis-logger-redis
+  template:
+    metadata:
+      labels:
+        app: deis-logger-redis
+    spec:
+      serviceAccount: deis-logger
+      containers:
+      - name: deis-logger-redis
+        image: quay.io/{{.loggerRedis.org}}/redis:{{env "LOGGER_REDIS_GIT_TAG" | default .loggerRedis.dockerTag}}
+        imagePullPolicy: {{.loggerRedis.pullPolicy}}
+{{- if or (.loggerRedis.limits_cpu ) (.loggerRedis.limits_memory)}}
+        resources:
+          limits:
+{{- if (.loggerRedis.limits_cpu) }}
+            cpu: {{.loggerRedis.limits_cpu}}
+{{- end}}
+{{- if (.loggerRedis.limits_memory) }}
+            memory: {{.loggerRedis.limits_memory}}
+{{- end}}
+{{- end}}
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - name: logger-redis-creds
+          mountPath: /var/run/secrets/deis/redis/creds
+      volumes:
+      - name: logger-redis-creds
+        secret:
+          secretName: logger-redis-creds

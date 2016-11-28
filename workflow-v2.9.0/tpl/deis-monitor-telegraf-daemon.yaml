@@ -1,0 +1,108 @@
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-monitor-telegraf-daemon.yaml $HELM_GENERATE_FILE
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: deis-monitor-telegraf
+  namespace: deis
+  labels:
+    heritage: deis
+  annotations:
+    component.deis.io/version: {{env "TELEGRAF_GIT_TAG" | default .telegraf.dockerTag}}
+spec:
+  template:
+    metadata:
+      labels:
+        app: deis-monitor-telegraf
+    spec:
+      serviceAccount: deis-monitor-telegraf
+      containers:
+        - name: deis-monitor-telegraf
+          image: quay.io/{{.telegraf.org}}/telegraf:{{env "TELEGRAF_GIT_TAG" | default .telegraf.dockerTag}}
+          imagePullPolicy: {{.telegraf.pullPolicy}}
+{{- if or (.telegraf.limits_cpu) (.telegraf.limits_memory)}}
+          resources:
+            limits:
+{{- if (.telegraf.limits_cpu) }}
+              cpu: {{.telegraf.limits_cpu}}
+{{- end}}
+{{- if (.telegraf.limits_memory) }}
+              memory: {{.telegraf.limits_memory}}
+{{- end}}
+{{- end}}
+          env:
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          {{- if env "INFLUXDB_LOCATION" | default .influxdb_location | eq "off-cluster" }}
+          - name: "INFLUXDB_URLS"
+            value: "\"{{ env "INFLUXDB_URLS" | default .influxdb.url }}\""
+          - name: "INFLUXDB_DATABASE"
+            value: "{{ env "INFLUXDB_DATABASE" | default .influxdb.database }}"
+          - name: "INFLUXDB_USERNAME"
+            value: "{{ env "INFLUXDB_USERNAME" | default .influxdb.user }}"
+          - name: "INFLUXDB_PASSWORD"
+            value: "{{ env "INFLUXDB_PASSWORD" | default .influxdb.password }}"
+          {{- else }}
+          - name: "INFLUXDB_URLS"
+            value: "\"http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)\""
+          - name: "INFLUXDB_INPUT_URLS"
+            value: "\"http://$(DEIS_MONITOR_INFLUXAPI_SERVICE_HOST):$(DEIS_MONITOR_INFLUXAPI_SERVICE_PORT_TRANSPORT)/debug/vars\""
+          - name: "ENABLE_INFLUXDB_INPUT"
+            value: "true"
+          {{- end }}
+          - name: "HOST_PROC"
+            value: "/rootfs/proc"
+          - name: "HOST_SYS"
+            value: "/rootfs/sys"
+          - name: "AGENT_QUIET"
+            value: "true"
+          - name: "AGENT_BUFFER_LIMIT"
+            value: "100000"
+          - name: "ENABLE_KUBERNETES"
+            value: "true"
+          - name: "NSQ_CONSUMER_SERVER"
+            value: "$(DEIS_NSQD_SERVICE_HOST):$(DEIS_NSQD_SERVICE_PORT_TRANSPORT)"
+          - name: "NSQ_CONSUMER_TOPIC"
+            value: "metrics"
+          - name: "NSQ_ENDPOINTS"
+            value: "\"http://$(DEIS_NSQD_SERVICE_HOST):$(DEIS_NSQD_SERVICE_PORT_HTTP)\""
+          {{- if env "LOGGER_REDIS_LOCATION" | default .logger_redis_location | ne "off-cluster" }}
+          - name: DEIS_LOGGER_REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: logger-redis-creds
+                key: password
+          - name: "REDIS_SERVERS"
+            value: "\"tcp://:$(DEIS_LOGGER_REDIS_PASSWORD)@$(DEIS_LOGGER_REDIS_SERVICE_HOST):$(DEIS_LOGGER_REDIS_SERVICE_PORT)\""
+          {{- end }}
+          volumeMounts:
+          - mountPath: /var/run/docker.sock
+            name: docker-socket
+          - name: sysro
+            mountPath: /rootfs/sys
+            readOnly: true
+          - name: procro
+            mountPath: /rootfs/proc
+            readOnly: true
+          - name: varrunutmpro
+            mountPath: /var/run/utmp
+            readOnly: true
+          - name: logger-redis-creds
+            mountPath: /var/run/secrets/deis/redis/creds
+      volumes:
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
+      - name: sysro
+        hostPath:
+          path: /sys
+      - name: procro
+        hostPath:
+          path: /proc
+      - name: varrunutmpro
+        hostPath:
+          path: /var/run/utmp
+      - name: logger-redis-creds
+        secret:
+          secretName: logger-redis-creds

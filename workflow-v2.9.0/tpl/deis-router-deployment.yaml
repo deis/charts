@@ -1,0 +1,70 @@
+#helm:generate helm tpl -d $HELM_GENERATE_DIR/tpl/generate_params.toml -o $HELM_GENERATE_DIR/manifests/deis-router-deployment.yaml $HELM_GENERATE_DIR/tpl/deis-router-deployment.yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: deis-router
+  namespace: deis
+  labels:
+    heritage: deis
+  annotations:
+    helm-keep: "true"
+    {{- if ne .router.platformDomain "" }}
+    router.deis.io/nginx.platformDomain: {{ .router.platformDomain }}
+    {{- end }}
+    component.deis.io/version: {{env "ROUTER_GIT_TAG" | default .router.dockerTag}}
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: deis-router
+  template:
+    metadata:
+      labels:
+        app: deis-router
+    spec:
+      serviceAccount: deis-router
+      containers:
+      - name: deis-router
+        image: quay.io/{{.router.org}}/router:{{env "ROUTER_GIT_TAG" | default .router.dockerTag}}
+        imagePullPolicy: {{.router.pullPolicy}}
+{{- if or (.router.limits_cpu) (.router.limits_memory)}}
+        resources:
+          limits:
+{{- if (.router.limits_cpu) }}
+            cpu: {{.router.limits_cpu}}
+{{- end}}
+{{- if (.router.limits_memory) }}
+            memory: {{.router.limits_memory}}
+{{- end}}
+{{- end}}
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        ports:
+        - containerPort: 8080
+          hostPort: 80
+        - containerPort: 6443
+          hostPort: 443
+        - containerPort: 2222
+          hostPort: 2222
+        - containerPort: 9090
+          hostPort: 9090
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 9090
+          initialDelaySeconds: 10
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 9090
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
