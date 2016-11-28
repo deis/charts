@@ -27,6 +27,13 @@ spec:
           imagePullPolicy: {{.database.pullPolicy}}
           ports:
             - containerPort: 5432
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - gosu
+                  - postgres
+                  - do_backup
           env:
             - name: DATABASE_STORAGE
               value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
@@ -48,13 +55,6 @@ spec:
                 - is_running
             initialDelaySeconds: 30
             timeoutSeconds: 1
-          lifecycle:
-            preStop:
-              exec:
-                commmand:
-                  - gosu
-                  - postgres
-                  - do_backup
           volumeMounts:
             - name: database-creds
               mountPath: /var/run/secrets/deis/database/creds
