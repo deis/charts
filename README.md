@@ -1,7 +1,5 @@
 # Deis Chart Repository
 
-[![Build Status](https://travis-ci.org/deis/charts.svg?branch=master)](https://travis-ci.org/deis/charts)
-
 This repository contains Helm Classic Charts for Deis, the open source PaaS company. Deis (pronounced DAY-iss) Workflow is an open source Platform as a Service (PaaS) that adds a developer-friendly layer to any [Kubernetes][k8s-home] cluster, making it easy to deploy and manage applications on your own servers.
 
 For more information about Deis Workflow, please visit the main project page at https://github.com/deis/workflow. For more general-purpose Helm Classic Charts, visit the [Helm Classic Chart repository](https://github.com/helm/charts). To learn more about Helm Classic, visit the [Helm Classic repository](https://github.com/helm/helm-classic).
