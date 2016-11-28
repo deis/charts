@@ -125,19 +125,19 @@ builder_container = "your-builder-container-name"
 [builder]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "v2.6.0"
+dockerTag = "v2.6.1"
 # limits_cpu = "100m"
 # limits_memory = "50Mi"
 
 [slugbuilder]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "v2.4.6"
+dockerTag = "v2.4.7"
 
 [dockerbuilder]
 org = "deis"
 pullPolicy = "IfNotPresent"
-dockerTag = "v2.5.1"
+dockerTag = "v2.5.2"
 
 [controller]
 org = "deis"
