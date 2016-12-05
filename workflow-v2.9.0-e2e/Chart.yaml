@@ -1,0 +1,19 @@
+name: workflow-v2.9.0-e2e
+home: https://github.com/deis/workflow-e2e
+version: v2.9.0
+description: |-
+  End-to-end tests for Deis Workflow, executed in parallel
+maintainers:
+- Deis Team <engineering@deis.com>
+details: |-
+  End-to-end tests for the Deis Workflow open source PaaS, executed in parallel.
+
+  Deis (pronounced DAY-iss) Workflow is an open source PaaS that makes it easy to deploy
+  and manage applications on your own servers. Workflow builds on Kubernetes to provide a
+  lightweight, Heroku-inspired workflow.
+
+  NOTE: Kubernetes Helm has replaced Helm classic, so these charts are deprecated.
+  Workflow v2.9.0 will be the last release installable with Helm classic (helmc).
+  See https://github.com/deis/workflow-migration#workflow-migration for help upgrading
+  to Kubernetes Helm, and see https://deis.com/docs/workflow/installing-workflow/ for
+  general installation instructions.

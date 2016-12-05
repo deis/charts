@@ -1,0 +1,5 @@
+[e2e]
+org = "deis"
+dockerTag = "v2.7.1"
+pullPolicy = "IfNotPresent"
+podName = "workflow-v2.9.0-e2e"
