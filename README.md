@@ -1,18 +1,16 @@
 # Deis Chart Repository
 
-NOTE: Kubernetes Helm has replaced Helm classic, so these charts are deprecated.
-Workflow v2.9.0 will be the last release installable with Helm classic (helmc).
-See https://github.com/deis/workflow-migration#workflow-migration for help upgrading
-to Kubernetes Helm, and see https://deis.com/docs/workflow/installing-workflow/ for
-general installation instructions.
+|![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Warning.svg/156px-Warning.svg.png) | Kubernetes Helm has replaced Helm Classic. The charts in this repository are now deprecated. Workflow v2.9.0 will be the last release installable with Helm Classic (helmc). |
+|---|---|
 
-This repository contains Helm Classic Charts for Deis, the open source PaaS company. Deis (pronounced DAY-iss) Workflow is an open source Platform as a Service (PaaS) that adds a developer-friendly layer to any [Kubernetes][k8s-home] cluster, making it easy to deploy and manage applications on your own servers.
+* For help migrating from Helm Classic to Kubernetes Helm see <https://github.com/deis/workflow-migration#workflow-migration>
+* For general installation instructions see <https://deis.com/docs/workflow/installing-workflow/>
 
-For more information about Deis Workflow, please visit the main project page at https://github.com/deis/workflow. For more general-purpose Helm Classic Charts, visit the [Helm Classic Chart repository](https://github.com/helm/charts). To learn more about Helm Classic, visit the [Helm Classic repository](https://github.com/helm/helm-classic).
+This repository contains Helm Classic Charts for Deis Workflow and its components. For more information about Deis Workflow, please visit the main project page at <https://github.com/deis/workflow>.
 
 We welcome your input! If you have feedback one one of the charts herein, please [submit an issue][issues]. If you'd like to participate in development, please read the "Development" section below and [submit a pull request][prs].
 
-# Development
+## Development
 
 The Deis project welcomes contributions from all developers. The high level process for development matches many other open source projects. See below for an outline.
 
