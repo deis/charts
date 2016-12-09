@@ -1,79 +1,12 @@
 # Deis Chart Repository
 
-NOTE: Kubernetes Helm has replaced Helm classic, so these charts are deprecated.
-Workflow v2.9.0 will be the last release installable with Helm classic (helmc).
-See https://github.com/deis/workflow-migration#workflow-migration for help upgrading
-to Kubernetes Helm, and see https://deis.com/docs/workflow/installing-workflow/ for
-general installation instructions.
+|![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Warning.svg/156px-Warning.svg.png) | Kubernetes Helm has replaced Helm Classic. The charts in this repository are now deprecated. Workflow v2.9.0 will be the last release installable with Helm Classic (helmc). |
+|---|---|
 
-This repository contains Helm Classic Charts for Deis, the open source PaaS company. Deis (pronounced DAY-iss) Workflow is an open source Platform as a Service (PaaS) that adds a developer-friendly layer to any [Kubernetes][k8s-home] cluster, making it easy to deploy and manage applications on your own servers.
+* For help migrating from Helm Classic to Kubernetes Helm see <https://github.com/deis/workflow-migration#workflow-migration>
+* For general installation instructions see <https://deis.com/docs/workflow/installing-workflow/>
 
-For more information about Deis Workflow, please visit the main project page at https://github.com/deis/workflow. For more general-purpose Helm Classic Charts, visit the [Helm Classic Chart repository](https://github.com/helm/charts). To learn more about Helm Classic, visit the [Helm Classic repository](https://github.com/helm/helm-classic).
-
-We welcome your input! If you have feedback one one of the charts herein, please [submit an issue][issues]. If you'd like to participate in development, please read the "Development" section below and [submit a pull request][prs].
-
-# Development
-
-The Deis project welcomes contributions from all developers. The high level process for development matches many other open source projects. See below for an outline.
-
-* Fork this repository
-* Make your changes
-* [Submit a pull request][prs] (PR) to this repository with your changes, and unit tests whenever possible
-	* If your PR fixes any [issues][issues], make sure you write `Fixes #1234` in your PR description (where `#1234` is the number of the issue you're closing)
-* The Deis core contributors will review your code. After each of them sign off on your code, they'll label your PR with `LGTM1` and `LGTM2` (respectively). Once that happens, a contributor will merge it
-
-## Contributing
-
-First, add this Chart repo to Helm Classic to install the current "workflow-dev" chart:
-
-### Prerequisites
-
-You must enable the extensions api for your kube-apiserver. For now the only requirement is that the daemonsets portion of the api be enabled. To do this add the following line to the script that starts your api server:
-
-```console
---runtime-config=extensions/v1beta1=true,extensions/v1beta1/daemonsets=true
-```
-
-you can also do `ENABLE_DAEMONSETS=true` before running the `kube-up.sh` script.
-
-### Installation
-
-First, add this Chart repo to Helm Classic to install the "workflow" chart:
-
-```console
-$ helmc repo add deis https://github.com/deis/charts
-$ helmc up
-$ helmc fetch deis/workflow-dev
-$ helmc generate workflow-dev  # creates the required secrets
-$ helmc install workflow-dev
-$ kubectl --namespace=deis get pods -w # watch this until all pods show "Running"
-$ kubectl --namespace=deis get svc deis-router
-# note the "EXTERNAL_IP" field for IP address on GKE/GCE/AWS, on Vagrant look for an "IP(S)"
-```
-
-Then install the `deis` client, register yourself as a user and create your first application:
-
-```console
-$ curl -sSL http://deis.io/deis-cli/install-v2.sh | bash
-$ export PATH=.:$PATH
-$ deis register deis.IP_YOU_GOT_ABOVE.xip.io  # register as the first user
-$ ssh-keygen -t rsa -b 4096 -C "your_email@deis.com"
-$ eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa
-$ deis keys:add ~/.ssh/id_rsa.pub
-```
-
-Now let's create an App:
-
-```
-$ git clone https://github.com/deis/example-go.git
-$ cd example-go
-$ deis create mytest
-Creating Application... done, created madras-radiator
-$ git push deis master
-Creating build... ..o
-$ deis open
-$ deis scale web=3 -a mytest # to scale up the app
-```
+This repository contains Helm Classic Charts for Deis Workflow and its components. For more information about Deis Workflow, please visit the main project page at <https://github.com/deis/workflow>.
 
 ## License
 
