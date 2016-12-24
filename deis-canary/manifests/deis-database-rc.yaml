@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-database
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    app: deis-database
+  template:
+    metadata:
+      labels:
+        app: deis-database
+    spec:
+      containers:
+        - name: deis-database
+          image: quay.io/deis/postgres:canary
+          imagePullPolicy: Always
+          env:
+            - name: POSTGRES_USER
+              value: "deis"
+            - name: POSTGRES_PASSWORD
+              value: "changeme123"
+          ports:
+            - containerPort: 5432

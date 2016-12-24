@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: deis-etcd-discovery
+  namespace: deis
+  labels:
+    name: deis-etcd-discovery
+    app: deis
+    heritage: deis
+spec:
+  ports:
+    - name: client
+      port: 2381
+  selector:
+    app: deis-etcd-discovery
