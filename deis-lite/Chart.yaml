@@ -1,0 +1,12 @@
+name: deis-lite
+home: https://github.com/deis/workflow
+version: 2.0.0-alpha
+description: For testing only!
+maintainers:
+- Rimas Mocevicius <rimas@deis.com>
+details: |-
+  Deis-Lite v2.0.0 alpha is Kubernetes one node setup, with a persistent setup via host folders.
+
+  Deis (pronounced DAY-iss) is an open source PaaS that makes it easy to deploy
+  and manage applications on your own servers. Deis builds on Kubernetes
+  to provide a lightweight, Heroku-inspired workflow.
