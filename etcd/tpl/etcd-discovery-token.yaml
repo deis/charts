@@ -1,0 +1,8 @@
+#helm:generate helm tpl -d tpl/values.toml -o manifests/etcd-discovery-token.yaml $HELM_GENERATE_FILE
+kind: Secret
+apiVersion: v1
+metadata:
+  name: deis-etcd-discovery-token
+  namespace: {{default "deis" .Namespace}}
+data:
+  token: "{{randAlphaNum 32 | b64enc}}"

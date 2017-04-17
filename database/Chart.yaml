@@ -1,0 +1,18 @@
+name: database
+home: https://github.com/deis/postgres
+version: 2.0.0-pre-alpha
+description: Deis postgres database for Kubernetes
+maintainers:
+- Matt Boersma <mboersma@deis.com>
+details: |-
+  This provides a Postgres database implementation designed for running inside
+  of Kubernetes.
+
+  It uses Etcd and Governor to cluster itself.
+dependencies:
+  - name: namespace
+    repo: https://github.com/technosophos/charts
+    version: ">1.99.99"
+  - name: etcd
+    repo: https://github.com/technosophos/charts
+    version: ">1.99.99"

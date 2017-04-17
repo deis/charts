@@ -1,0 +1,28 @@
+#helm:generate helm tpl -d tpl/values.toml -o manifests/database-rc.yaml $HELM_GENERATE_FILE
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-database
+  namespace: {{ default "deis" .Namespace}}
+  labels:
+    heritage: deis
+spec:
+  replicas: {{default "1" .Database.Replicas}}
+  selector:
+    name: deis-database
+  template:
+    metadata:
+      labels:
+        name: deis-database
+    spec:
+      containers:
+        - name: deis-database
+          image: {{default "quay.io/deisci/database:v2-alpha" .Image}}
+          imagePullPolicy: {{default "Always" .PullPolicy}}
+          env:
+            - name: POSTGRES_USER
+              value: {{default "deis" .Database.User}}
+            - name: POSTGRES_PASSWORD{{$pw := randAlphaNum 16}}
+              value: {{default $pw .Database.Password}}
+          ports:
+            - containerPort: 5432

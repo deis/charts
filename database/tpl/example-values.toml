@@ -1,0 +1,4 @@
+Namespace = "deis"
+
+[Database]
+Password = "DifferentPassword1234"

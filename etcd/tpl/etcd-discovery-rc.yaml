@@ -1,0 +1,41 @@
+#helm:generate helm tpl -d tpl/values.toml -o manifests/etcd-discovery-rc.yaml $HELM_GENERATE_FILE
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: deis-etcd-discovery
+  namespace: deis
+  labels:
+    name: deis-etcd-discovery{{range $key, $val := .Etcd.Labels}}
+    {{$key}}: {{$val}}{{end}}
+  annotations: {{range $key, $val := .Etcd.Annotations}}
+    {{$key}}: {{$val}}{{end}}
+spec:
+  replicas: 1
+  selector:
+    name: deis-etcd-discovery
+  template:
+    metadata:
+      labels:
+        name: deis-etcd-discovery
+    spec:
+      volumes:
+        - name: discovery-token
+          secret:
+            secretName: deis-etcd-discovery-token
+      containers:
+        - name: deis-etcd-discovery
+          image: {{default "quay.io/deisci/etcd:v2-alpha" .Etcd.Image}}
+          imagePullPolicy: {{default "Always" .Etcd.PullPolicy}}
+          command:
+            - {{default "/usr/local/bin/discovery" .Discovery.Command}}
+          ports:
+            - containerPort: 2381
+          env:
+            - name: DEIS_ETCD_CLUSTER_SIZE
+              value: "{{default "3" .Etcd.Replicas}}"
+            - name: ETCD_LISTEN_CLIENT_URLS
+              value: http://0.0.0.0:2381
+          volumeMounts:
+            - name: discovery-token
+              readOnly: true
+              mountPath: /var/run/secrets/deis/etcd/discovery

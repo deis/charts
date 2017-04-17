@@ -1,0 +1,13 @@
+name: etcd
+home: https://github.com/deis/etcd
+version: 2.0.0-pre-alpha
+description: Deis Etcd for Kubernetes
+maintainers:
+- Matt Butcher <mbutcher@deis.com>
+details: |-
+  This provides an etcd cluster optimized for Kubernetes. It creates a discovery
+  service and a three-node etcd cluster. It is relatively fault tolerant.
+dependencies:
+  - name: namespace
+    repo: https://github.com/technosophos/charts
+    version: ">1.99.99"
