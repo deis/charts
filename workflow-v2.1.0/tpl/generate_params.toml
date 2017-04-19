@@ -28,6 +28,11 @@ storage = "minio"
 # - off-cluster: Run PostgreSQL outside the Kubernetes cluster (configure in database section)
 database_location = "on-cluster"
 
+[images]
+registry = "quay.io"
+org = "deis"
+pullPolicy = "IfNotPresent"
+
 [minio]
 org = "deis"
 pullPolicy = "IfNotPresent"
@@ -61,33 +66,21 @@ database_bucket = "your-database-bucket-name"
 builder_bucket = "your-builder-bucket-name"
 
 [builder]
-org = "deis"
-pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 
 [slugbuilder]
-org = "deis"
-pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 
 [dockerbuilder]
-org = "deis"
-pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 
 [controller]
-org = "deis"
-pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 
 [slugrunner]
-org = "deis"
-pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 
 [database]
-org = "deis"
-pullPolicy = "IfNotPresent"
 dockerTag = "v2.1.0"
 # Configure the following ONLY if using an off-cluster PostgreSQL database
 name = "database name"

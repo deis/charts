@@ -18,8 +18,8 @@ spec:
       serviceAccount: deis-controller
       containers:
         - name: deis-controller
-          image: quay.io/{{.controller.org}}/controller:{{env "CONTROLLER_GIT_TAG" | default .controller.dockerTag}}
-          imagePullPolicy: {{.controller.pullPolicy}}
+          image: {{.controller.registry | default .images.registry}}/{{.controller.org | default .images.org}}/controller:{{env "CONTROLLER_GIT_TAG" | default .controller.dockerTag}}
+          imagePullPolicy: {{.controller.pullPolicy | default .images.pullPolicy}}
           livenessProbe:
             httpGet:
               path: /healthz
@@ -40,7 +40,7 @@ spec:
             - name: "APP_STORAGE"
               value: "{{ or (env "STORAGE_TYPE") (.storage)}}"
             - name: "SLUGRUNNER_IMAGE_NAME"
-              value: "quay.io/{{.slugrunner.org}}/slugrunner:{{env "SLUGRUNNER_GIT_TAG" | default .slugrunner.dockerTag}}"
+              value: "{{.slugrunner.registry | default .images.registry}}/{{.slugrunner.org | default .images.org}}/slugrunner:{{env "SLUGRUNNER_GIT_TAG" | default .slugrunner.dockerTag}}"
             - name: DEIS_SECRET_KEY
               valueFrom:
                 secretKeyRef:
